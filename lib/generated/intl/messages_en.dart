@@ -45,7 +45,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "eventsYouMightLike": MessageLookupByLibrary.simpleMessage(
       "Events you might like",
     ),
-    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "interests": MessageLookupByLibrary.simpleMessage("Interests"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "onboardingStep1": MessageLookupByLibrary.simpleMessage(

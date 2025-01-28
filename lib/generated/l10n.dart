@@ -100,15 +100,7 @@ class S {
     return Intl.message('E-mail', name: 'email', desc: '', args: []);
   }
 
-  /// `Forgot Password?`
-  String get forgotPassword {
-    return Intl.message(
-      'Forgot Password?',
-      name: 'forgotPassword',
-      desc: '',
-      args: [],
-    );
-  }
+  // skipped getter for the 'Forgot Password' key
 
   /// `Remember Me`
   String get rememberMe {

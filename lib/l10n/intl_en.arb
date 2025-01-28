@@ -5,7 +5,7 @@
   "userName": "User Name",
   "password": "Password",
   "email": "E-mail",
-  "forgotPassword": "Forgot Password?",
+  "Forgot Password": "Forgot Password?",
   "rememberMe": "Remember Me",
   "passwordConfirmation": "Password confirmation",
   "login": "Login",

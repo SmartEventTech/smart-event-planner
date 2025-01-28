@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:smart_event_planner/shared/extensions/localization_extension.dart';
 import 'generated/l10n.dart';
 
 class MyApp extends StatelessWidget {
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              S.of(context).onboardingStep1,
+              tr.createEvent,
             ),
             Text(
               '$_counter',
