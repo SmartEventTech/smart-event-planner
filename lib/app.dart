@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:smart_event_planner/features/onboarding/screens/onboarding_screen.dart';
+import 'package:smart_event_planner/config/routing/app_router.dart';
+import 'package:smart_event_planner/config/routing/routes.dart';
 import 'generated/l10n.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +14,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Smart Event Planner',
       locale: Locale('ar'),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -23,7 +21,8 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      home: const OnBoardingScreen(),
+      initialRoute: Routes.onBoardingScreen,
+      onGenerateRoute: appRouter.generateRoute,
     );
   }
 }
