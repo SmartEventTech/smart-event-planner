@@ -1,0 +1,38 @@
+<<<<<<< HEAD
+{}
+=======
+<<<<<<< HEAD
+{}
+=======
+{
+  "onboardingStep1": "Find events with people that matches your interests.",
+  "onboardingStep2": "Create your own event and invite your friends.",
+  "onboardingStep3": "Provided by your location you will get events recommendation.",
+  "userName": "User Name",
+  "password": "Password",
+  "email": "E-mail",
+  "Forgot Password": "Forgot Password?",
+  "rememberMe": "Remember Me",
+  "passwordConfirmation": "Password confirmation",
+  "login": "Login",
+  "register": "Register",
+  "orloginwith": "Or login with",
+  "orSignupwith": "Or signup with",
+  "dontHaveAnAccount": "Don’t have an account? sign up",
+  "IAgreeWithPrivacyPolicy": "I agree with privacy policy",
+  "alreadyHaveAnAccount": "Already have an account? Login",
+  "continuetext": "Continue",
+  "whatAreYouInterestedIn": "What are you interested in?",
+  "selectYourFavoriteHobbiesAndMajorsToAttendEvents": "Select your favorite hobbies and majors to attend events",
+  "interests": "Interests",
+  "createNow": "Create now",
+  "eventsYouMightLike": "Events you might like",
+  "search": "Search",
+  "createEvent": "Create event",
+  "eventName": "Event Name",
+  "eventDescription": "Event Description",
+  "tapToChooseALocation": "Tap to choose a location",
+  "chooseACategory": "Choose a category"
+}
+>>>>>>> dev-mohamed
+>>>>>>> development
