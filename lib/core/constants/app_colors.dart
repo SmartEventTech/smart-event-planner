@@ -6,7 +6,11 @@ class AppColors {
   static const primaryColor = Color(0xff01305A);
   static const secondaryColor = Color(0xffA00651);
 
+  static const lightScaffoldBgColor = Color(0xfff4f4f4);
+  static const darkScaffoldBgColor = Color(0xff000000);
+
   static const hintColor = Color(0xff948D8D);
+  static const bodyTextColor = Color(0xff797676);
 
   static const primaryTextColor = Color(0xff000000);
   static const blueTextColor = Color(0xff0E377C);
@@ -20,4 +24,7 @@ class AppColors {
 
   static const activeIconColor = Color(0xff0E377C);
   static const inactiveIconColor = Color(0xff8C8C8C);
+
+  static const outlinedBtnBorderColor = Color(0xffADADAD);
+  static const textFieldBorderColor = Color(0xff8C8C8C);
 }
