@@ -10,10 +10,10 @@ class AppSizes {
   static const double eventButtonRadius = 16.0;
 
   static const double searchBarRadius = 8.0;
-  
+
   static const double profileButtonRadius = 10.0;
 
-  static const double defaultScreenPadding = 20.0;
+  static const double defaultScreenPadding = 16.0;
   static const double verticalscreenPadding = 16.0;
   static const double horizontalScreenPadding = 16.0;
 
@@ -24,4 +24,7 @@ class AppSizes {
   static const double spaceBtwLogoAndItem = 12.0;
 
   static const double iconSize = 20.0;
+
+  static const double sm = 3;
+  static const double md = 8;
 }

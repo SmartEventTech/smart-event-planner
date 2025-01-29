@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      initialRoute: Routes.onBoardingScreen,
+      initialRoute: Routes.homeScreen,
       onGenerateRoute: appRouter.generateRoute,
       navigatorKey: AppContext.navigatorKey,
     );

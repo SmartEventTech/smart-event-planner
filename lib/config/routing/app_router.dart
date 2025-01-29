@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
+import 'package:smart_event_planner/features/home/presentation/screens/home_screen.dart';
 import 'package:smart_event_planner/features/onboarding/screens/onboarding_screen.dart';
 
 class AppRouter {
@@ -11,6 +12,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => Placeholder());
       case Routes.registerScreen:
         return MaterialPageRoute(builder: (_) => Placeholder());
+      case Routes.homeScreen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
