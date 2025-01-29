@@ -20,10 +20,6 @@ class AppTheme {
     appBarTheme: CustomAppbarTheme.lightAppBarTheme,
     outlinedButtonTheme: CustomOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.lightInputDecorationTheme,
-    colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: AppColors.primaryColor,
-      secondary: AppColors.secondaryColor,
-    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -37,9 +33,5 @@ class AppTheme {
     appBarTheme: CustomAppbarTheme.darkAppBarTheme,
     outlinedButtonTheme: CustomOutlinedButtonTheme.darkOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.darkInputDecorationTheme,
-    colorScheme: ColorScheme.fromSwatch().copyWith(
-      primary: AppColors.primaryColor,
-      secondary: AppColors.secondaryColor,
-    ),
   );
 }
