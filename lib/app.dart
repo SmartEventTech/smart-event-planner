@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,       
       ],
       supportedLocales: S.delegate.supportedLocales,
       initialRoute: Routes.onBoardingScreen,
