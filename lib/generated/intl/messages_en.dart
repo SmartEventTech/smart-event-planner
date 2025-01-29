@@ -21,5 +21,60 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "IAgreeWithPrivacyPolicy": MessageLookupByLibrary.simpleMessage(
+      "I agree with privacy policy",
+    ),
+    "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Already have an account? Login",
+    ),
+    "chooseACategory": MessageLookupByLibrary.simpleMessage(
+      "Choose a category",
+    ),
+    "continuetext": MessageLookupByLibrary.simpleMessage("Continue"),
+    "createEvent": MessageLookupByLibrary.simpleMessage("Create event"),
+    "createNow": MessageLookupByLibrary.simpleMessage("Create now"),
+    "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Don’t have an account? sign up",
+    ),
+    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+    "eventDescription": MessageLookupByLibrary.simpleMessage(
+      "Event Description",
+    ),
+    "eventName": MessageLookupByLibrary.simpleMessage("Event Name"),
+    "eventsYouMightLike": MessageLookupByLibrary.simpleMessage(
+      "Events you might like",
+    ),
+    "interests": MessageLookupByLibrary.simpleMessage("Interests"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "onboardingStep1": MessageLookupByLibrary.simpleMessage(
+      "Find events with people that matches your interests.",
+    ),
+    "onboardingStep2": MessageLookupByLibrary.simpleMessage(
+      "Create your own event and invite your friends.",
+    ),
+    "onboardingStep3": MessageLookupByLibrary.simpleMessage(
+      "Provided by your location you will get events recommendation.",
+    ),
+    "orSignupwith": MessageLookupByLibrary.simpleMessage("Or signup with"),
+    "orloginwith": MessageLookupByLibrary.simpleMessage("Or login with"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Password confirmation",
+    ),
+    "register": MessageLookupByLibrary.simpleMessage("Register"),
+    "rememberMe": MessageLookupByLibrary.simpleMessage("Remember Me"),
+    "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "selectYourFavoriteHobbiesAndMajorsToAttendEvents":
+        MessageLookupByLibrary.simpleMessage(
+          "Select your favorite hobbies and majors to attend events",
+        ),
+    "tapToChooseALocation": MessageLookupByLibrary.simpleMessage(
+      "Tap to choose a location",
+    ),
+    "userName": MessageLookupByLibrary.simpleMessage("User Name"),
+    "whatAreYouInterestedIn": MessageLookupByLibrary.simpleMessage(
+      "What are you interested in?",
+    ),
+  };
 }
