@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:smart_event_planner/features/home/presentation/widgets/create_event_section.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/custom_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             CustomAppBar(),
             const SizedBox(height: AppSizes.spaceBtwItem),
+            CreateEventSection(),
           ],
         ),
       ),

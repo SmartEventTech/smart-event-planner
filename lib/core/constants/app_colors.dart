@@ -27,4 +27,6 @@ class AppColors {
 
   static const outlinedBtnBorderColor = Color(0xffADADAD);
   static const textFieldBorderColor = Color(0xff8C8C8C);
+
+  static Color eventOpacity = Color.fromARGB(255, 39, 13, 75);
 }
