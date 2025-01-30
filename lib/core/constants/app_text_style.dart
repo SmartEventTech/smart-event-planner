@@ -33,7 +33,15 @@ class AppTextStyle {
       Theme.of(AppContext.context).textTheme.bodyMedium!;
 
   static final TextStyle textStyle16Regular =
-      Theme.of(AppContext.context).textTheme.bodyMedium!.copyWith(fontSize: 16);
+      Theme.of(AppContext.context).textTheme.bodyMedium!;
+
+  static final TextStyle textStyle16Medium =
+      Theme.of(AppContext.context).textTheme.bodyLarge!.copyWith(fontSize: 14);
+
+  static final TextStyle textStyle18Medium = Theme.of(AppContext.context)
+      .textTheme
+      .headlineSmall!
+      .copyWith(fontSize: 18);
 
   static final TextStyle textStyle12Regular =
       Theme.of(AppContext.context).textTheme.bodySmall!;
