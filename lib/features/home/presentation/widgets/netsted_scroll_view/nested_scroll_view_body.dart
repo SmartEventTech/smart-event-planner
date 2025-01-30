@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/features/home/presentation/widgets/suggested_events_section.dart';
+import 'package:smart_event_planner/features/home/presentation/widgets/suggested_section/suggested_events_section.dart';
 
 class NestedScrollViewBody extends StatelessWidget {
   const NestedScrollViewBody({super.key});

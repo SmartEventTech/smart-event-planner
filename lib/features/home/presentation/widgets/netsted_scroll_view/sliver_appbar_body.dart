@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/create_event_section.dart';
-import 'package:smart_event_planner/features/home/presentation/widgets/interests_section.dart';
+import 'package:smart_event_planner/features/home/presentation/widgets/interested_section/interests_section.dart';
 import 'package:smart_event_planner/shared/widgets/sections/section_heading.dart';
 
 class SliverAppBarBody extends StatelessWidget {
@@ -20,10 +20,7 @@ class SliverAppBarBody extends StatelessWidget {
             SizedBox(height: AppSizes.spaceBtwItem),
             CreateEventSection(),
             SizedBox(height: AppSizes.spaceBtwItem / 2),
-            SectionHeading(
-              title: 'Interests',
-              btnTitle: 'View All',
-            ),
+            SectionHeading(title: 'Interests', btnTitle: 'View All'),
             //SizedBox(height: AppSizes.spaceBtwItem / 2),
             InterestsSection(),
             SizedBox(height: AppSizes.spaceBtwSection),

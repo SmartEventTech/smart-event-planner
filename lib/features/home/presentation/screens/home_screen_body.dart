@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/home_sliverbar_bottom_tabBar.dart';
-import 'package:smart_event_planner/features/home/presentation/widgets/nested_scroll_view_body.dart';
-import 'package:smart_event_planner/features/home/presentation/widgets/sliver_appbar_body.dart';
+import 'package:smart_event_planner/features/home/presentation/widgets/netsted_scroll_view/nested_scroll_view_body.dart';
+import 'package:smart_event_planner/features/home/presentation/widgets/netsted_scroll_view/sliver_appbar_body.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
