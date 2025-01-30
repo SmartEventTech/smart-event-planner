@@ -1,6 +1,9 @@
 <<<<<<< HEAD
 {}
 =======
+<<<<<<< HEAD
+{}
+=======
 {
   "onboardingStep1": "Find events with people that matches your interests.",
   "onboardingStep2": "Create your own event and invite your friends.",
@@ -32,3 +35,4 @@
   "chooseACategory": "Choose a category"
 }
 >>>>>>> dev-mohamed
+>>>>>>> development

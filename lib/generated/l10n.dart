@@ -54,7 +54,6 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
-
   /// `Find events with people that matches your interests.`
   String get onboardingStep1 {
     return Intl.message(
