@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       title: 'Smart Event Planner',
       locale: Locale('en'),
+
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
