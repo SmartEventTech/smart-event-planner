@@ -36,16 +36,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: -26,
+          top: -20,
           left: 0,
           right: 0,
           child: Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(8),
             decoration:
                 ShapeDecoration(color: Colors.white, shape: CircleBorder()),
             child: Container(
-              width: 65,
-              height: 65,
+              padding: EdgeInsets.all(2),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: AppColors.interestedCardColor,
