@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/features/home/presentation/widgets/create_event_section.dart';
+import 'package:smart_event_planner/shared/widgets/events/event_card.dart';
 
 class SuggestedEventsSection extends StatelessWidget {
   const SuggestedEventsSection({super.key});
@@ -11,7 +11,7 @@ class SuggestedEventsSection extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) => Padding(
           padding: const EdgeInsets.only(bottom: AppSizes.spaceBtwItem),
-          child: CreateEventSection(),
+          child: EventCard(),
         ),
         childCount: 4,
       ),

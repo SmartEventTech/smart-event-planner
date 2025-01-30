@@ -33,7 +33,9 @@ class AppColors {
   static const textBtnColor = Color(0xFF4b68ff);
 
   static const sliverAppBarColor = Color.fromARGB(255, 245, 245, 245);
-  static const white = Colors.white;
+  
+  static const white = Color(0xffffffff);
+  static const black = Color(0xff000000);
 
   static LinearGradient interestedCardColor = LinearGradient(
     colors: [

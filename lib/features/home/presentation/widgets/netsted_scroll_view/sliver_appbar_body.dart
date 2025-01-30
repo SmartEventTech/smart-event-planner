@@ -20,7 +20,11 @@ class SliverAppBarBody extends StatelessWidget {
             SizedBox(height: AppSizes.spaceBtwItem),
             CreateEventSection(),
             SizedBox(height: AppSizes.spaceBtwItem / 2),
-            SectionHeading(title: 'Interests', btnTitle: 'View All'),
+            SectionHeading(
+              title: 'Interests',
+              btnTitle: 'View All',
+              onPressed: () {},
+            ),
             //SizedBox(height: AppSizes.spaceBtwItem / 2),
             InterestsSection(),
             SizedBox(height: AppSizes.spaceBtwSection),

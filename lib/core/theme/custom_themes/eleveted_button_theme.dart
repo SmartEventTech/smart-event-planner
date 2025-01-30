@@ -12,8 +12,8 @@ class CustomElevetedButtonTheme {
       backgroundColor: AppColors.primaryColor,
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
-      side: const BorderSide(color: Colors.blue),
-      padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 8),
+      side: const BorderSide(color: Colors.transparent),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
@@ -33,8 +33,8 @@ class CustomElevetedButtonTheme {
       backgroundColor: AppColors.primaryColor,
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
-      side: const BorderSide(color: Colors.blue),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
+      side: const BorderSide(color: Colors.transparent),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,

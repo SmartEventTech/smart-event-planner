@@ -15,8 +15,8 @@ class InterestedCard extends StatelessWidget {
         Flexible(
           child: Container(
             padding: EdgeInsets.all(AppSizes.defaultPadding),
-            width: 60,
-            height: 60,
+            width: 65,
+            height: 65,
             decoration: ShapeDecoration(
               gradient: AppColors.interestedCardColor,
               shape: RoundedRectangleBorder(
