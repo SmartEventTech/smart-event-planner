@@ -111,12 +111,9 @@ flutter:
     - assets/icons/
     - assets/images/user/
     - assets/images/animations/
-<<<<<<< HEAD
     - assets/images/chat_bot_icons/
     - assets/images/events/
 
-=======
->>>>>>> development
 
   fonts:
     - family: Poppins
