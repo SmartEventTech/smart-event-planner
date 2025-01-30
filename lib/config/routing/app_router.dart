@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
-import 'package:smart_event_planner/features/chat_bot/screens/chat_bot_screen.dart';
 import 'package:smart_event_planner/features/home/presentation/screens/home_screen.dart';
 import 'package:smart_event_planner/features/onboarding/screens/onboarding_screen.dart';
 
