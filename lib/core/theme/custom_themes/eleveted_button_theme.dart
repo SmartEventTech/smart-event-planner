@@ -3,7 +3,7 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 
 class CustomElevetedButtonTheme {
   CustomElevetedButtonTheme._();
-  
+
   static final ElevatedButtonThemeData lightElevetedButtonTheme =
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -12,15 +12,15 @@ class CustomElevetedButtonTheme {
       backgroundColor: AppColors.primaryColor,
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
-      side: const BorderSide(color: Colors.blue),
-      padding: const EdgeInsets.symmetric(vertical: 18),
+      side: const BorderSide(color: Colors.transparent),
+      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(16),
       ),
     ),
   );
@@ -33,15 +33,15 @@ class CustomElevetedButtonTheme {
       backgroundColor: AppColors.primaryColor,
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
-      side: const BorderSide(color: Colors.blue),
-      padding: const EdgeInsets.symmetric(vertical: 18),
+      side: const BorderSide(color: Colors.transparent),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(16),
       ),
     ),
   );

@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-{}
-=======
-<<<<<<< HEAD
-{}
-=======
 {
   "onboardingStep1": "Find events with people that matches your interests.",
   "onboardingStep2": "Create your own event and invite your friends.",
@@ -34,5 +28,4 @@
   "tapToChooseALocation": "Tap to choose a location",
   "chooseACategory": "Choose a category"
 }
->>>>>>> dev-mohamed
->>>>>>> development
+

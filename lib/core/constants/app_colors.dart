@@ -27,4 +27,22 @@ class AppColors {
 
   static const outlinedBtnBorderColor = Color(0xffADADAD);
   static const textFieldBorderColor = Color(0xff8C8C8C);
+
+  static const eventOpacity = Color.fromARGB(255, 39, 13, 75);
+
+  static const textBtnColor = Color(0xFF4b68ff);
+
+  static const sliverAppBarColor = Color.fromARGB(255, 245, 245, 245);
+  
+  static const white = Color(0xffffffff);
+  static const black = Color(0xff000000);
+
+  static LinearGradient interestedCardColor = LinearGradient(
+    colors: [
+      Color(0xff5C2FC2),
+      Color(0xff819FD3),
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
 }

@@ -11,7 +11,8 @@ class CustomAppbarTheme {
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
     iconTheme: IconThemeData(color: AppColors.secondaryColor, size: 22),
-    actionsIconTheme: IconThemeData(color: AppColors.secondaryColor, size: 22),
+    actionsIconTheme:
+        IconThemeData(color: AppColors.primaryTextColor, size: 22),
     titleTextStyle: TextStyle(
       fontSize: 18.0,
       fontWeight: FontWeight.w600,

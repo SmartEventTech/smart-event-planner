@@ -6,6 +6,7 @@ class CustomInputDecorationTheme {
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 1,
+    contentPadding: EdgeInsets.symmetric(vertical: 6),
     prefixIconColor: Colors.grey,
     suffixIconColor: Colors.grey,
     labelStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/shared/extensions/localization_extension.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/localization_extension.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});

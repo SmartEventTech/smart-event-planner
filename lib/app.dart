@@ -7,8 +7,7 @@ import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 import 'generated/l10n.dart';
 
 class MyApp extends StatelessWidget {
-  final AppRouter appRouter;
-  const MyApp({super.key, required this.appRouter});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +25,8 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      initialRoute: Routes.onBoardingScreen,
-      onGenerateRoute: appRouter.generateRoute,
+      initialRoute: Routes.navigationScreen,
+      onGenerateRoute: AppRouter().generateRoute,
       navigatorKey: AppContext.navigatorKey,
     );
   }
