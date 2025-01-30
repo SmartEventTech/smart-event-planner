@@ -29,9 +29,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 30,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Divider(height: 3, color: Color(0xffD9D9D9)),
           ),
           Expanded(child: const ChatBotBody()),
