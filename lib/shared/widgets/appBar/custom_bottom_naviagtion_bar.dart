@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -44,16 +46,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
             decoration:
                 ShapeDecoration(color: Colors.white, shape: CircleBorder()),
             child: Container(
-              padding: EdgeInsets.all(2),
+              padding: EdgeInsets.all(11),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: AppColors.interestedCardColor,
               ),
               child: Center(
-                child: IconButton(
-                  icon: Icon(Iconsax.add, color: Colors.white, size: 30),
-                  onPressed: () {},
-                ),
+                child: SvgPicture.asset(AppImages.plusIcon),
               ),
             ),
           ),

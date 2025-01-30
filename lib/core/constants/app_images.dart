@@ -26,6 +26,7 @@ class AppImages {
   // --Icons--
   static const String chatBotIcon = 'assets/icons/chatbot-icon.svg';
   static const String programmingIcon = 'assets/icons/programming-icon.svg';
+  static const String plusIcon = 'assets/icons/plus-icon.svg';
 
   // --Events--
   static const String event = 'assets/images/events/event-1.svg';
