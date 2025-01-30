@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smart_event_planner/features/home/presentation/screens/home_screen_body.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/chat_bot_floating_button.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/custom_appbar.dart';
-import 'package:smart_event_planner/shared/widgets/appBar/custom_bottom_naviagtion_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +12,6 @@ class HomeScreen extends StatelessWidget {
       appBar: CustomAppBar(),
       body: HomeScreenBody(),
       floatingActionButton: ChatBotFloatingActionButton(),
-      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }
