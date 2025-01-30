@@ -13,11 +13,11 @@ class CustomElevetedButtonTheme {
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
       side: const BorderSide(color: Colors.transparent),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -34,11 +34,11 @@ class CustomElevetedButtonTheme {
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
       side: const BorderSide(color: Colors.transparent),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),

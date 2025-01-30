@@ -51,11 +51,12 @@ class EventCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: AppTextStyle.textStyle13Light,
           ),
-          const SizedBox(height: AppSizes.md),
+          const SizedBox(height: AppSizes.lg),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.white,
               foregroundColor: AppColors.textBtnColor,
+              // textStyle: TextStyle(fontWeight: FontWeight.w400),
             ),
             onPressed: () {},
             child: Text('See More'),
