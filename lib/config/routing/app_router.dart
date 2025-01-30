@@ -17,6 +17,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => Placeholder());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+      case Routes.searchScreen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
