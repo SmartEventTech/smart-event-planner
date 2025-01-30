@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:smart_event_planner/features/home/presentation/screens/home_screen_body.dart';
+import 'package:smart_event_planner/features/home/presentation/widgets/chat_bot_floating_button.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/custom_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,18 +9,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSizes.defaultScreenPadding,
-          vertical: AppSizes.sm,
-        ),
-        child: Column(
-          children: [
-            CustomAppBar(),
-            const SizedBox(height: AppSizes.spaceBtwItem),
-          ],
-        ),
-      ),
+      appBar: CustomAppBar(),
+      body: HomeScreenBody(),
+      floatingActionButton: ChatBotFloatingActionButton(),
     );
   }
 }
