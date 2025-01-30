@@ -77,6 +77,10 @@ dependencies:
   # Selecting images from the Android and iOS image library
   image_picker: ^1.1.2
   dartz: ^0.10.1
+  flutter_gemini: ^3.0.0
+  dash_chat_2: ^0.0.21
+  arabic_numbers: ^1.0.0
+  flutter_svg: ^2.0.17
 
 dev_dependencies:
   flutter_test:
@@ -106,6 +110,7 @@ flutter:
     - assets/icons/
     - assets/images/user/
     - assets/images/animations/
+    - assets/images/chat_bot_icons/
 
   fonts:
     - family: Poppins

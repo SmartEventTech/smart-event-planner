@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Smart Event Planner',
-      locale: Locale('ar'),
+      // locale: Locale('ar'),
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
