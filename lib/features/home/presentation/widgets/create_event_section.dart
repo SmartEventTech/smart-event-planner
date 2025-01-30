@@ -81,15 +81,17 @@ class CreateEventSectionState extends State<CreateEventSection> {
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.secondaryColor,
-                              side: BorderSide(color: Colors.transparent),
+                        Flexible(
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.secondaryColor,
+                                side: BorderSide(color: Colors.transparent),
+                              ),
+                              onPressed: () {},
+                              child: FittedBox(child: Text('Create now')),
                             ),
-                            onPressed: () {},
-                            child: Text('Create now'),
                           ),
                         ),
                       ],
@@ -131,7 +133,8 @@ List<Map<String, dynamic>> eventData = [
     'imageUrl': AppImages.event1, // Change image paths accordingly
   },
   {
-    'title': 'Provided by your location you will get events recommendation.',
+    'title':
+        'Provided by your location you will get events recommendationssssssssssssssssssssssssssssssssssssssssss.',
     'imageUrl': AppImages.event2,
   },
   {

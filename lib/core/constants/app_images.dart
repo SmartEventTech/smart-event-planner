@@ -24,12 +24,12 @@ class AppImages {
   static const String userAvatar = 'assets/images/user/user-avatar.png';
 
   // --Icons--
-  static const String chatBotIcon = 'assets/icons/chat-bot.svg';
+  static const String chatBotIcon = 'assets/icons/chatbot-icon.svg';
+  static const String programmingIcon = 'assets/icons/programming-icon.svg';
 
   // --Events--
   static const String event = 'assets/images/events/event-1.svg';
   static const String event2 = 'assets/images/events/event2.png';
   static const String event3 = 'assets/images/events/event-3.svg';
   static const String event1 = 'assets/images/events/event.png';
-
 }

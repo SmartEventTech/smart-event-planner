@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
+import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/user_avatar_widget.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -8,27 +9,32 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      titleSpacing: 0,
-      centerTitle: false,
-      title: Image.asset(
-        AppImages.appLogo,
-        width: 88,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSizes.defaultScreenPadding,
       ),
-      automaticallyImplyLeading: false,
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Iconsax.message),
+      child: AppBar(
+        elevation: 0,
+        titleSpacing: 0,
+        centerTitle: false,
+        title: Image.asset(
+          AppImages.appLogo,
+          width: 90,
         ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Iconsax.notification),
-        ),
-        SizedBox(width: 4),
-        UserAvatarWidget(userImageUrl: AppImages.userAvatar)
-      ],
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Iconsax.message),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Iconsax.notification),
+          ),
+          SizedBox(width: 4),
+          UserAvatarWidget(userImageUrl: AppImages.userAvatar)
+        ],
+      ),
     );
   }
 
