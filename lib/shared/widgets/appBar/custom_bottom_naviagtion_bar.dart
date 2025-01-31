@@ -21,38 +21,42 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 topLeft: Radius.circular(AppSizes.btnNavBarRadius),
                 topRight: Radius.circular(AppSizes.btnNavBarRadius),
               ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.white,
-                selectedItemColor: AppColors.blueTextColor,
-                unselectedItemColor: Colors.grey,
-                showSelectedLabels: true,
-                showUnselectedLabels: true,
-                currentIndex: state,
-                onTap: (index) =>
-                    context.read<BottomNavCubit>().changeTab(index),
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Iconsax.home),
-                    label: "Home",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Iconsax.search_normal),
-                    label: "Search",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: SizedBox(),
-                    label: "",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Iconsax.calendar),
-                    label: "Sceduale",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Iconsax.user),
-                    label: "Profile",
-                  ),
-                ],
+              child: SizedBox(
+                height: 70,
+                child: BottomNavigationBar(
+                  type: BottomNavigationBarType.fixed,
+                  backgroundColor: Colors.white,
+                  selectedItemColor: AppColors.blueTextColor,
+                  elevation: 2,
+                  unselectedItemColor: Colors.grey,
+                  showSelectedLabels: true,
+                  showUnselectedLabels: true,
+                  currentIndex: state,
+                  onTap: (index) =>
+                      context.read<BottomNavCubit>().changeTab(index),
+                  items: const [
+                    BottomNavigationBarItem(
+                      icon: Icon(Iconsax.home),
+                      label: "Home",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Iconsax.search_normal),
+                      label: "Search",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SizedBox(),
+                      label: "",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Iconsax.calendar),
+                      label: "Sceduale",
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Iconsax.user),
+                      label: "Profile",
+                    ),
+                  ],
+                ),
               ),
             ),
             BottomNavBarPlusIcon(),

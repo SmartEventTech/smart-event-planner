@@ -18,7 +18,6 @@ class HomeScreenBody extends StatelessWidget {
           topRight: Radius.circular(AppSizes.defaultBorderRadius),
         ),
         child: NestedScrollView(
-          physics: NeverScrollableScrollPhysics(), // get error
           headerSliverBuilder:
               (BuildContext context, bool innerBoxIsScrolled) => [
             SliverAppBar(

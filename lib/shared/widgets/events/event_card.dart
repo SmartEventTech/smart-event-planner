@@ -20,6 +20,8 @@ class EventCard extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage(AppImages.event2),
           fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+              const Color.fromARGB(255, 39, 16, 71), BlendMode.exclusion),
         ),
       ),
       child: Column(

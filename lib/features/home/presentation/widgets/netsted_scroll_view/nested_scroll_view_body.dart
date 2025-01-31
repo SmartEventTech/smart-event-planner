@@ -7,23 +7,18 @@ class NestedScrollViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabBarView(
-      physics: NeverScrollableScrollPhysics(),
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppSizes.defaultScreenPadding,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSizes.defaultScreenPadding,
+      ),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(height: AppSizes.spaceBtwItem),
           ),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: SizedBox(height: AppSizes.spaceBtwItem),
-              ),
-              SuggestedEventsSection(),
-            ],
-          ),
-        ),
-      ],
+          SuggestedEventsSection(),
+        ],
+      ),
     );
   }
 }

@@ -25,9 +25,12 @@ class CalendarTabBarView extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-            child: const SizedBox(height: AppSizes.defaultPadding)),
+          child: const SizedBox(height: AppSizes.defaultPadding),
+        ),
         SliverFillRemaining(
-          child: EventsListView(physics: NeverScrollableScrollPhysics()),
+          child: EventsListView(
+            physics: NeverScrollableScrollPhysics(),
+          ),
         ),
       ],
     );
