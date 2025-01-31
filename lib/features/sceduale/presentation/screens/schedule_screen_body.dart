@@ -12,22 +12,28 @@ class ScheduleScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Column(
-        children: [
-          const SizedBox(height: AppSizes.sm),
-          TabBar(
-            labelStyle: AppTextStyle.textStyle16Bold,
-            dividerColor: Colors.transparent,
-            unselectedLabelColor: AppColors.inactiveIconColor,
-            unselectedLabelStyle:
-                AppTextStyle.textStyle16Bold.copyWith(fontSize: 15.7),
-            indicatorColor: AppColors.secondaryColor,
-            tabs: [
-              Tab(text: 'Your Events'),
-              Tab(text: 'Calendar'),
-            ],
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                const SizedBox(height: AppSizes.sm),
+                TabBar(
+                  labelStyle: AppTextStyle.textStyle16Bold,
+                  dividerColor: Colors.transparent,
+                  unselectedLabelColor: AppColors.inactiveIconColor,
+                  unselectedLabelStyle:
+                      AppTextStyle.textStyle16Bold.copyWith(fontSize: 15.7),
+                  indicatorColor: AppColors.secondaryColor,
+                  tabs: [
+                    Tab(text: 'Your Events'),
+                    Tab(text: 'Calendar'),
+                  ],
+                ),
+              ],
+            ),
           ),
-          Expanded(
+          SliverFillRemaining(
             child: Padding(
               padding: const EdgeInsets.only(
                 right: AppSizes.defaultScreenPadding,

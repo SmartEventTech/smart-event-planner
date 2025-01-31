@@ -28,7 +28,7 @@ class CalendarTabBarView extends StatelessWidget {
         ),
         const SizedBox(height: AppSizes.defaultPadding),
         Expanded(
-          child: EventsListView(),
+          child: EventsListView(physics: NeverScrollableScrollPhysics()),
         ),
       ],
     );
