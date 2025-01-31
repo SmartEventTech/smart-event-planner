@@ -33,7 +33,7 @@ class AppColors {
   static const textBtnColor = Color(0xFF4b68ff);
 
   static const sliverAppBarColor = Color.fromARGB(255, 245, 245, 245);
-  
+
   static const white = Color(0xffffffff);
   static const black = Color(0xff000000);
 
@@ -45,4 +45,6 @@ class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
+
+  static const dividerColor = Color(0xff808080);
 }

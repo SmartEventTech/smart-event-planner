@@ -38,6 +38,14 @@ class AppTextStyle {
   static final TextStyle textStyle16Medium =
       Theme.of(AppContext.context).textTheme.bodyLarge!.copyWith(fontSize: 14);
 
+  static final defaultCalendarTextStyle =
+      Theme.of(AppContext.context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500);
+
+  static final TextStyle textStyle16Bold = Theme.of(AppContext.context)
+      .textTheme
+      .bodyLarge!
+      .copyWith(fontSize: 16, fontWeight: FontWeight.w700);
+
   static final TextStyle textStyle18Medium = Theme.of(AppContext.context)
       .textTheme
       .headlineSmall!

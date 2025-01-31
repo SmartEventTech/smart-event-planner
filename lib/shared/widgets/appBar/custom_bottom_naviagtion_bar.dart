@@ -46,7 +46,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Iconsax.calendar),
-                    label: "Schedule",
+                    label: "Sceduale",
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Iconsax.user),

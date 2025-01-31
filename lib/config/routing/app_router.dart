@@ -3,6 +3,7 @@ import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
 import 'package:smart_event_planner/features/home/presentation/screens/home_screen.dart';
 import 'package:smart_event_planner/features/onboarding/screens/onboarding_screen.dart';
+import 'package:smart_event_planner/features/sceduale/presentation/screens/schedule_screen.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -19,6 +20,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case Routes.searchScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+      case Routes.scheduleScreen:
+        return MaterialPageRoute(builder: (_) => ScheduleScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

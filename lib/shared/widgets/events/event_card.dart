@@ -7,7 +7,7 @@ import 'package:smart_event_planner/core/constants/app_text_style.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key});
-
+  // Model of Event
   @override
   Widget build(BuildContext context) {
     return Container(
