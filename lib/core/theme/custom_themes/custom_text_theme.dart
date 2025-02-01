@@ -21,6 +21,21 @@ class CustomTextTheme {
       color: AppColors.primaryTextColor,
     ),
     headlineSmall: TextStyle().copyWith(fontWeight: FontWeight.w600),
+    bodyLarge: const TextStyle().copyWith(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w500,
+      color: AppColors.primaryTextColor,
+    ),
+    bodySmall: const TextStyle().copyWith(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w500,
+      color: AppColors.primaryTextColor,
+    ),
+    displayLarge: const TextStyle().copyWith(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w500,
+      color: AppColors.primaryTextColor,
+    ),
   );
 
   static TextTheme darkTextTheme = TextTheme(
@@ -31,32 +46,32 @@ class CustomTextTheme {
     titleMedium: TextStyle().copyWith(
       fontSize: 20,
       fontWeight: FontWeight.bold,
-      color: AppColors.primaryTextColor,
+      color: AppColors.white,
     ),
     titleLarge: TextStyle().copyWith(
       fontWeight: FontWeight.w800,
       fontSize: 20,
-      color: AppColors.primaryTextColor,
+      color: AppColors.white,
     ),
     headlineSmall: TextStyle().copyWith(
       fontSize: 18.0,
       fontWeight: FontWeight.w600,
-      color: Colors.black,
+      color: Colors.white,
     ),
     bodyLarge: const TextStyle().copyWith(
       fontSize: 14.0,
       fontWeight: FontWeight.w500,
-      color: Colors.black,
+      color: Colors.white,
     ),
     bodyMedium: const TextStyle().copyWith(
       fontSize: 14.0,
       fontWeight: FontWeight.normal,
-      color: Colors.black,
+      color: Colors.white,
     ),
     bodySmall: const TextStyle().copyWith(
       fontSize: 14.0,
       fontWeight: FontWeight.w500,
-      color: Colors.black.withValues(alpha: 0.5),
+      color: AppColors.white,
     ),
   );
 }

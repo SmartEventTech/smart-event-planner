@@ -117,6 +117,8 @@ flutter:
     - assets/images/animations/
     - assets/images/chat_bot_icons/
     - assets/images/events/
+    - assets/icons/chat-bot/
+    - assets/logos/eventy/
 
 
   fonts:

@@ -16,11 +16,11 @@ class ScheduleScreenBody extends StatelessWidget {
         children: [
           const SizedBox(height: AppSizes.sm),
           TabBar(
-            labelStyle: AppTextStyle.textStyle16Bold,
+            labelStyle: AppTextStyle.textStyle16Bold(context),
             dividerColor: Colors.transparent,
             unselectedLabelColor: AppColors.inactiveIconColor,
             unselectedLabelStyle:
-                AppTextStyle.textStyle16Bold.copyWith(fontSize: 15.7),
+                AppTextStyle.textStyle16Bold(context).copyWith(fontSize: 15.7),
             indicatorColor: AppColors.secondaryColor,
             tabs: [
               Tab(text: 'Your Events'),
@@ -30,8 +30,6 @@ class ScheduleScreenBody extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(
-                right: AppSizes.defaultScreenPadding,
-                left: AppSizes.defaultScreenPadding,
                 top: AppSizes.defaultScreenPadding,
               ),
               child: TabBarView(

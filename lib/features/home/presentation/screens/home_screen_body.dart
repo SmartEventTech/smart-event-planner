@@ -10,6 +10,7 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return DefaultTabController(
       length: 1,
       child: ClipRRect(
@@ -25,8 +26,9 @@ class HomeScreenBody extends StatelessWidget {
               floating: true,
               automaticallyImplyLeading: false,
               expandedHeight:
-                  480, //MediaQuery.sizeOf(context).height * 0.562, // 0.62
-              backgroundColor: AppColors.sliverAppBarColor,
+                  490, //MediaQuery.sizeOf(context).height * 0.562, // 0.62
+              backgroundColor:
+                  isDark ? Colors.black : AppColors.sliverAppBarColor,
               flexibleSpace: SliverAppBarBody(),
               bottom: HomeSliverBarBottomTabBar(),
             ),

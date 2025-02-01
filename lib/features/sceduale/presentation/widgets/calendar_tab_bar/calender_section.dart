@@ -33,31 +33,36 @@ class CalenderSectionState extends State<CalenderSection> {
             focusedDay: DateTime.now(),
             weekendDays: [DateTime.friday, DateTime.saturday],
             headerStyle: HeaderStyle(
-              titleTextStyle: AppTextStyle.textStyle18Medium,
+              titleTextStyle: AppTextStyle.textStyle16Medium(context),
               headerPadding: const EdgeInsets.only(bottom: 8.0),
             ),
             calendarStyle: CalendarStyle(
-              defaultTextStyle: AppTextStyle.defaultCalendarTextStyle,
-              outsideTextStyle: AppTextStyle.defaultCalendarTextStyle.copyWith(
-                color:
-                    AppTextStyle.defaultCalendarTextStyle.color!.withAlpha(80),
+              cellMargin:
+                  const EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
+              defaultTextStyle: AppTextStyle.defaultCalendarTextStyle(context),
+              outsideTextStyle:
+                  AppTextStyle.defaultCalendarTextStyle(context).copyWith(
+                color: AppTextStyle.defaultCalendarTextStyle(context)
+                    .color!
+                    .withAlpha(90),
               ),
-              weekendTextStyle: AppTextStyle.defaultCalendarTextStyle,
+              weekendTextStyle: AppTextStyle.defaultCalendarTextStyle(context),
               isTodayHighlighted: true,
               todayDecoration: BoxDecoration(
                 color: Colors.transparent,
                 border: Border.all(color: AppColors.blueTextColor, width: 1.6),
                 borderRadius: BorderRadius.circular(4.0),
               ),
-              todayTextStyle: AppTextStyle.defaultCalendarTextStyle,
+              todayTextStyle: AppTextStyle.defaultCalendarTextStyle(context),
               selectedDecoration: ShapeDecoration(
                 color: AppColors.secondaryColor.withAlpha(135),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                 ),
               ),
-              selectedTextStyle: AppTextStyle.defaultCalendarTextStyle.copyWith(
-                fontSize: 17,
+              selectedTextStyle:
+                  AppTextStyle.defaultCalendarTextStyle(context).copyWith(
+                fontSize: 17.0,
                 color: AppColors.black,
               ),
             ),
@@ -83,9 +88,11 @@ class CalenderSectionState extends State<CalenderSection> {
             },
           ),
           const SizedBox(height: AppSizes.spaceBtwSection),
-          Text(
-            _focusedDay.toFormattedFullDate(),
-            style: AppTextStyle.textStyle16Bold,
+          FittedBox(
+            child: Text(
+              _focusedDay.toFormattedFullDate(),
+              style: AppTextStyle.textStyle16Bold(context),
+            ),
           ),
         ],
       ),

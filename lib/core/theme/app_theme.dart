@@ -20,6 +20,14 @@ class AppTheme {
     appBarTheme: CustomAppbarTheme.lightAppBarTheme,
     outlinedButtonTheme: CustomOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.lightInputDecorationTheme,
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: AppColors.white,
+      indicatorColor: AppColors.navBarBlack.withValues(alpha: 0.2),
+      iconTheme: WidgetStatePropertyAll(
+        IconThemeData(color: const Color.fromARGB(255, 110, 126, 155)),
+      ),
+    ),
+  
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -33,5 +41,12 @@ class AppTheme {
     appBarTheme: CustomAppbarTheme.darkAppBarTheme,
     outlinedButtonTheme: CustomOutlinedButtonTheme.darkOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.darkInputDecorationTheme,
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: AppColors.black,
+      indicatorColor: AppColors.activeIconColor.withValues(alpha: 0.6),
+      iconTheme: WidgetStatePropertyAll(
+        IconThemeData(color: AppColors.grayColor),
+      ),
+    ),
   );
 }

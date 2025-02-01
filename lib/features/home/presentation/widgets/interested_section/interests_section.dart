@@ -15,7 +15,7 @@ class InterestsSection extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           childAspectRatio: 1,
-          mainAxisSpacing: 4,
+          mainAxisSpacing: 8,
         ),
         itemBuilder: (context, index) => InterestedCard(),
       ),

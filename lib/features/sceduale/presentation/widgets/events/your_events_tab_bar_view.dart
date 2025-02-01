@@ -8,7 +8,11 @@ class YourEventsTabBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: AppSizes.slg),
+      padding: const EdgeInsets.only(
+        top: AppSizes.slg,
+        right: AppSizes.defaultScreenPadding,
+        left: AppSizes.defaultScreenPadding,
+      ),
       child: EventsListView(),
     );
   }

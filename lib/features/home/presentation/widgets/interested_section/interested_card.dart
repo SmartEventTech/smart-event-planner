@@ -15,8 +15,8 @@ class InterestedCard extends StatelessWidget {
         Flexible(
           child: Container(
             padding: EdgeInsets.all(AppSizes.defaultPadding),
-            width: 65,
-            height: 65,
+            width: 64,
+            height: 64,
             decoration: ShapeDecoration(
               gradient: AppColors.interestedCardColor,
               shape: RoundedRectangleBorder(
@@ -24,8 +24,11 @@ class InterestedCard extends StatelessWidget {
                     BorderRadius.circular(AppSizes.interestedCardRadius),
               ),
             ),
-            child: Center(
-              child: SvgPicture.asset(AppImages.programmingIcon),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Center(
+                child: SvgPicture.asset(AppImages.programmingIcon),
+              ),
             ),
           ),
         ),
@@ -33,7 +36,7 @@ class InterestedCard extends StatelessWidget {
         FittedBox(
           child: Text(
             'IT',
-            style: AppTextStyle.textStyle12Regular
+            style: AppTextStyle.textStyle12Regular(context)
                 .copyWith(fontWeight: FontWeight.w500, fontSize: 14),
           ),
         ),

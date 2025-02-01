@@ -6,8 +6,12 @@ import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 
 class EventCard extends StatelessWidget {
-  const EventCard({super.key});
+  const EventCard(
+      {super.key, this.editCard = false, this.onEditTap, this.seeMoreTap});
   // Model of Event
+  final bool editCard;
+  final Function()? onEditTap;
+  final Function()? seeMoreTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,8 +24,6 @@ class EventCard extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage(AppImages.event2),
           fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-              const Color.fromARGB(255, 39, 16, 71), BlendMode.exclusion),
         ),
       ),
       child: Column(
@@ -34,7 +36,7 @@ class EventCard extends StatelessWidget {
                 'Event Name',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: AppTextStyle.textStyle18Medium.copyWith(
+                style: AppTextStyle.textStyle17Medium(context).copyWith(
                   color: Colors.white,
                 ),
               ),
@@ -51,17 +53,15 @@ class EventCard extends StatelessWidget {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: AppTextStyle.textStyle13Light,
+            style: AppTextStyle.textStyle13Light(context),
           ),
           const SizedBox(height: AppSizes.lg),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.white,
-              foregroundColor: AppColors.textBtnColor,
-              // textStyle: TextStyle(fontWeight: FontWeight.w400),
+          OutlinedButton(
+            onPressed: editCard ? onEditTap : seeMoreTap,
+            style: OutlinedButton.styleFrom(
+              padding: editCard ? EdgeInsets.symmetric(horizontal: 46) : null,
             ),
-            onPressed: () {},
-            child: Text('See More'),
+            child: Text(editCard ? 'Edit' : 'See More'),
           ),
         ],
       ),

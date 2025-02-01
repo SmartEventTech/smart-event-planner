@@ -9,13 +9,17 @@ class BottomNavBarPlusIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Positioned(
-      top: -20,
+      top: -25,
       left: 0,
       right: 0,
       child: Container(
         padding: EdgeInsets.all(8),
-        decoration: ShapeDecoration(color: Colors.white, shape: CircleBorder()),
+        decoration: ShapeDecoration(
+          color: isDark ? AppColors.darkScaffoldBgColor : AppColors.white,
+          shape: CircleBorder(),
+        ),
         child: GestureDetector(
           onTap: () {
             context.push(

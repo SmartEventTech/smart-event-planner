@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: AppContext.navigatorKey,
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       title: 'Smart Event Planner',
       locale: Locale('en'),
-
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       initialRoute: Routes.navigationScreen,
       onGenerateRoute: AppRouter().generateRoute,
-      navigatorKey: AppContext.navigatorKey,
     );
   }
 }

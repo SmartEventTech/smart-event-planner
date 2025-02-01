@@ -36,11 +36,21 @@ class AppColors {
 
   static const white = Color(0xffffffff);
   static const black = Color(0xff000000);
+  static const navBarBlack = Color(0xFF232323);
 
   static LinearGradient interestedCardColor = LinearGradient(
     colors: [
       Color(0xff5C2FC2),
       Color(0xff819FD3),
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static LinearGradient eventCardGradientColor = LinearGradient(
+    colors: [
+      Color(0xff5C2FC2).withValues(alpha: 0.32),
+      Color(0xff819FD3).withValues(alpha: 0.3),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
