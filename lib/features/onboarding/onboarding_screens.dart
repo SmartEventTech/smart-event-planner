@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
-import 'package:smart_event_planner/features/widgets/onboarding_page.dart';
+import 'package:smart_event_planner/features/widgets/onboarding_widget.dart';
 
 class OnboardingScreens extends StatefulWidget {
   static const String id = Routes.onboardingScreen;

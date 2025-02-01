@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/features/onboarding/onboarding_screens.dart';
+import 'package:smart_event_planner/config/routing/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String id = 'SplashScreen';
@@ -16,7 +16,7 @@ class SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       // ignore: use_build_context_synchronously
-      Navigator.pushReplacementNamed(context, OnboardingScreens.id);
+      Navigator.pushReplacementNamed(context, Routes.onboardingScreen);
     });
   }
 
@@ -24,7 +24,7 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset('assets/icons/appLogo.png'),
+        child: Image.asset('assets/logos/appLogo.png'),
       ),
     );
   }
