@@ -43,7 +43,7 @@ class EventCard extends StatelessWidget {
             left: AppSizes.defaultPadding,
             right: AppSizes.defaultPadding,
             bottom: AppSizes.defaultPadding,
-            top: AppSizes.eventTopPadding - 3,
+            top: AppSizes.defaultPadding + 2,
             child: Event(
               editCard: editCard,
               onEditTap: onEditTap,
@@ -88,9 +88,11 @@ class Event extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20),
-            InkWell(
-              onTap: () {},
-              child: Icon(Iconsax.star, color: AppColors.white),
+            Flexible(
+              child: InkWell(
+                onTap: () {},
+                child: Icon(Iconsax.star, color: AppColors.white),
+              ),
             ),
           ],
         ),
@@ -99,7 +101,7 @@ class Event extends StatelessWidget {
           'Lorem ipsum dolor sit amet,consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.',
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: AppTextStyle.textStyle16Light(context),
+          style: AppTextStyle.textStyle14Light(context),
         ),
         const SizedBox(height: AppSizes.md),
         Flexible(

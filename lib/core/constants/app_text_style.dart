@@ -68,7 +68,7 @@ class AppTextStyle {
   static TextStyle textStyle13Light(BuildContext context) =>
       Theme.of(AppContext.context).textTheme.bodyMedium!.copyWith(
           fontWeight: FontWeight.w300, fontSize: 13, color: Colors.white);
-  static TextStyle textStyle16Light(BuildContext context) =>
+  static TextStyle textStyle14Light(BuildContext context) =>
       Theme.of(AppContext.context).textTheme.bodyMedium!.copyWith(
-          fontWeight: FontWeight.w300, fontSize: 16, color: Colors.white);
+          fontWeight: FontWeight.w300, fontSize: 14, color: Colors.white);
 }
