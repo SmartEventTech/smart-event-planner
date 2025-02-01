@@ -73,8 +73,9 @@ class CreateEventSectionState extends State<CreateEventSection> {
                               itemBuilder: (context, index) {
                                 return Text(
                                   eventData[index]['title'],
-                                  style: AppTextStyle.textStyle18ExtraBold(context)
-                                      .copyWith(color: Colors.white),
+                                  style:
+                                      AppTextStyle.textStyle18ExtraBold(context)
+                                          .copyWith(color: Colors.white),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 );
