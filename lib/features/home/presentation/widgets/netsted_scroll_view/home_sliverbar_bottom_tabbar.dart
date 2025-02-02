@@ -18,8 +18,8 @@ class HomeSliverBarBottomTabBar extends StatelessWidget
       tabs: [
         Container(
           color: isDark
-              ? AppColors.darkScaffoldBgColor
-              : AppColors.lightScaffoldBgColor,
+              ? AppColors.darkSliverAppBarColor
+              : AppColors.lightSliverAppBarColor,
           padding:
               EdgeInsets.symmetric(horizontal: AppSizes.defaultScreenPadding),
           child: Tab(

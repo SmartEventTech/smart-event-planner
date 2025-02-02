@@ -7,7 +7,7 @@ class InterestsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.25,
+      height: MediaQuery.sizeOf(context).height * 0.23,
       child: GridView.builder(
         itemCount: 8,
         padding: EdgeInsets.all(0),

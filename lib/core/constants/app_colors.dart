@@ -32,7 +32,8 @@ class AppColors {
 
   static const textBtnColor = Color(0xFF4b68ff);
 
-  static const sliverAppBarColor = Color.fromARGB(255, 245, 245, 245);
+  static const lightSliverAppBarColor = Color.fromARGB(255, 245, 245, 245);
+  static const darkSliverAppBarColor = Color.fromARGB(251, 20, 20, 20);
 
   static const white = Color(0xffffffff);
   static const black = Color(0xff000000);
