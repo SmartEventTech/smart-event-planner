@@ -3,24 +3,23 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 
 class CustomElevetedButtonTheme {
   CustomElevetedButtonTheme._();
-  
   static final ElevatedButtonThemeData lightElevetedButtonTheme =
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
       foregroundColor: Colors.white,
       backgroundColor: AppColors.primaryColor,
-      disabledForegroundColor: Colors.grey,
-      disabledBackgroundColor: Colors.grey,
-      side: const BorderSide(color: Colors.blue),
-      padding: const EdgeInsets.symmetric(vertical: 18),
+      disabledForegroundColor: Colors.white,
+      disabledBackgroundColor: AppColors.primaryColor,
+      side: const BorderSide(color: Colors.transparent),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(16),
       ),
     ),
   );
@@ -31,17 +30,17 @@ class CustomElevetedButtonTheme {
       elevation: 0,
       foregroundColor: Colors.white,
       backgroundColor: AppColors.primaryColor,
-      disabledForegroundColor: Colors.grey,
-      disabledBackgroundColor: Colors.grey,
-      side: const BorderSide(color: Colors.blue),
-      padding: const EdgeInsets.symmetric(vertical: 18),
+      disabledForegroundColor: Colors.white,
+      disabledBackgroundColor: AppColors.primaryColor,
+      side: const BorderSide(color: Colors.transparent),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(16),
       ),
     ),
   );
