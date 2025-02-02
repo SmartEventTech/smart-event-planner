@@ -32,6 +32,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+lib/api_edpoints.dart
+
 
 # Symbolication related
 app.*.symbols
