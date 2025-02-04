@@ -42,7 +42,7 @@ class EventCard extends StatelessWidget {
           Positioned(
             left: AppSizes.defaultPadding,
             right: AppSizes.defaultPadding,
-            bottom: AppSizes.defaultPadding,
+            bottom: AppSizes.defaultPadding / 2,
             top: AppSizes.defaultPadding + 2,
             child: Event(
               editCard: editCard,
@@ -72,29 +72,35 @@ class Event extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Text(
-                'Event Name',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyle.textStyle17Medium(context).copyWith(
-                  color: Colors.white,
+        Flexible(
+          flex: 1,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  'Event Name',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyle.textStyle17Medium(context).copyWith(
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 20),
-            Flexible(
-              child: InkWell(
-                onTap: () {},
-                child: Icon(Iconsax.star, color: AppColors.white),
+              const SizedBox(width: 20),
+              Flexible(
+                fit: FlexFit.loose,
+                child: FittedBox(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Icon(Iconsax.star, color: AppColors.white),
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: AppSizes.md),
         Text(
@@ -111,12 +117,12 @@ class Event extends StatelessWidget {
             child: OutlinedButton(
               onPressed: editCard ? onEditTap : seeMoreTap,
               style: OutlinedButton.styleFrom(
-                padding: editCard ? EdgeInsets.symmetric(horizontal: 46) : null,
+                padding: editCard ? EdgeInsets.symmetric(horizontal: 40) : null,
               ),
               child: FittedBox(child: Text(editCard ? 'Edit' : 'See More')),
             ),
           ),
-        ),
+        )
       ],
     );
   }

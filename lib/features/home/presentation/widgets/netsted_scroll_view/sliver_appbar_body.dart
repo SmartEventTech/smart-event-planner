@@ -21,6 +21,7 @@ class SliverAppBarBody extends StatelessWidget {
           vertical: AppSizes.sm,
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: AppSizes.spaceBtwItem),
             CreateEventSection(),

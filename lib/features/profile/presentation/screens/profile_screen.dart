@@ -25,94 +25,97 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: DefaultTabController(
         length: 2,
-        child: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                SliverAppBar(
-                  pinned: true,
-                  floating: true,
-                  automaticallyImplyLeading: false,
-                  expandedHeight:
-                      MediaQuery.sizeOf(context).height * 0.45, //398
-                  backgroundColor:
-                      isDark ? Colors.black : AppColors.lightScaffoldBgColor,
-                  flexibleSpace: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Container(
+                color: isDark ? Colors.black : AppColors.lightScaffoldBgColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      UserAvatarWidget(
+                        maxRadius: 60,
+                        minRadius: 30,
+                        showBorder: false,
+                        userImageUrl: AppImages.userAvatar,
+                      ),
+                      const SizedBox(height: AppSizes.slg),
+                      Column(
                         children: [
-                          UserAvatarWidget(
-                            maxRadius: 60,
-                            minRadius: 30,
-                            showBorder: false,
-                            userImageUrl: AppImages.userAvatar,
+                          Text(
+                            'John Doe',
+                            style: AppTextStyle.textStyle24Medium(context),
                           ),
-                          const SizedBox(height: AppSizes.slg),
-                          Column(
-                            children: [
-                              Text(
-                                'John Doe',
-                                style: AppTextStyle.textStyle24Medium(context),
-                              ),
-                              Text(
-                                'BwM4V@example.com',
-                                style: AppTextStyle.textStyle16Regular(context),
-                              ),
-                            ],
+                          Text(
+                            'BwM4V@example.com',
+                            style: AppTextStyle.textStyle16Regular(context),
                           ),
-                          const SizedBox(height: AppSizes.spaceBtwItem * 2),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: AppSizes.defaultScreenPadding,
-                            ),
-                            child: Row(
-                              children: [
-                                CustomElevetedBtn(
-                                  title: 'Shared Profile',
-                                  icon: Icons.share,
-                                ),
-                                const SizedBox(width: 30),
-                                CustomElevetedBtn(
-                                  title: 'Edit Profile',
-                                  icon: Iconsax.edit,
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Divider(height: 3, color: AppColors.dividerColor),
                         ],
                       ),
-                    ),
+                      const SizedBox(height: AppSizes.spaceBtwItem * 2),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSizes.defaultScreenPadding,
+                        ),
+                        child: Row(
+                          children: [
+                            CustomElevetedBtn(
+                              title: 'Shared Profile',
+                              icon: Icons.share,
+                            ),
+                            const SizedBox(width: 30),
+                            CustomElevetedBtn(
+                              title: 'Edit Profile',
+                              icon: Iconsax.edit,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Divider(height: 3, color: AppColors.dividerColor),
+                    ],
                   ),
-                  bottom: ProfileSliverBottomTabBar(),
                 ),
-              ];
-            },
-            body: Padding(
-              padding: const EdgeInsets.only(
-                top: AppSizes.spaceBtwSection,
               ),
-              child: TabBarView(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      right: AppSizes.defaultScreenPadding,
-                      left: AppSizes.defaultScreenPadding,
+            ),
+            SliverAppBar(
+              pinned: true,
+              floating: true,
+              automaticallyImplyLeading: false,
+              expandedHeight: 0, //398
+              backgroundColor:
+                  isDark ? Colors.black : AppColors.lightScaffoldBgColor,
+              bottom: ProfileSliverBottomTabBar(),
+            ),
+            SliverFillRemaining(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: AppSizes.spaceBtwSection,
+                ),
+                child: TabBarView(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: AppSizes.defaultScreenPadding,
+                        left: AppSizes.defaultScreenPadding,
+                      ),
+                      child: Expanded(child: EventsListView()),
                     ),
-                    child: EventsListView(),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      right: AppSizes.defaultScreenPadding,
-                      left: AppSizes.defaultScreenPadding,
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: AppSizes.defaultScreenPadding,
+                        left: AppSizes.defaultScreenPadding,
+                      ),
+                      child: Expanded(child: EventsListView(editCard: true)),
                     ),
-                    child: EventsListView(editCard: true),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            )),
+            )
+          ],
+        ),
       ),
     );
   }
