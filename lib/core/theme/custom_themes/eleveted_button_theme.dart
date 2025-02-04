@@ -3,7 +3,6 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 
 class CustomElevetedButtonTheme {
   CustomElevetedButtonTheme._();
-
   static final ElevatedButtonThemeData lightElevetedButtonTheme =
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(

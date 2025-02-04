@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter/material.dart';
+import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 
 class InterestedCard extends StatelessWidget {
@@ -36,8 +36,10 @@ class InterestedCard extends StatelessWidget {
         FittedBox(
           child: Text(
             'IT',
-            style: AppTextStyle.textStyle12Regular(context)
-                .copyWith(fontWeight: FontWeight.w500, fontSize: 14),
+            style: AppTextStyle.textStyle12Regular(context).copyWith(
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+            ),
           ),
         ),
       ],

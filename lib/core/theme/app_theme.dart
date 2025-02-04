@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/theme/custom_themes/custom_appbar_theme.dart';
-import 'package:smart_event_planner/core/theme/custom_themes/custom_input_decoration_theme.dart';
-import 'package:smart_event_planner/core/theme/custom_themes/custom_outlined_button_teme.dart';
 import 'package:smart_event_planner/core/theme/custom_themes/custom_text_theme.dart';
+import 'package:smart_event_planner/core/theme/custom_themes/custom_appbar_theme.dart';
 import 'package:smart_event_planner/core/theme/custom_themes/eleveted_button_theme.dart';
+import 'package:smart_event_planner/core/theme/custom_themes/custom_outlined_button_teme.dart';
+import 'package:smart_event_planner/core/theme/custom_themes/custom_input_decoration_theme.dart';
 
 class AppTheme {
   AppTheme._();
@@ -16,7 +16,7 @@ class AppTheme {
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.white,
     textTheme: CustomTextTheme.lightTextTheme,
-    elevatedButtonTheme: CustomElevetedButtonTheme.lightElevetedButtonTheme,
+    // elevatedButtonTheme: CustomElevetedButtonTheme.lightElevetedButtonTheme,
     appBarTheme: CustomAppbarTheme.lightAppBarTheme,
     outlinedButtonTheme: CustomOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.lightInputDecorationTheme,

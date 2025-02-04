@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 
+
 class CustomTextTheme {
   CustomTextTheme._();
 
   static TextTheme lightTextTheme = TextTheme(
-    headlineLarge: const TextStyle().copyWith(
+    headlineLarge:  TextStyle().copyWith(
       fontWeight: FontWeight.bold,
       color: AppColors.primaryColor,
     ),

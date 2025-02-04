@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
+import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/user_avatar_widget.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {

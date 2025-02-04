@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
 
 class UserAvatarWidget extends StatelessWidget {
   const UserAvatarWidget({

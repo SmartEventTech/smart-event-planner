@@ -9,9 +9,6 @@ class ResponsiveText {
     double lowerBound = baseFontSize * 0.8;
     double upperBound = baseFontSize * 1.2;
 
-    print(
-        "baseFontSize: $baseFontSize, scaleFactor: $scaleFactor, responsiveFontSize: $responsiveFontSize, lowerBound: $lowerBound, upperBound: $upperBound");
-
     return responsiveFontSize.clamp(lowerBound, upperBound);
   }
 
