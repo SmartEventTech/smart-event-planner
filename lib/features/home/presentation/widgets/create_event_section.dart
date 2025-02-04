@@ -3,6 +3,7 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
+import 'package:smart_event_planner/features/home/presentation/widgets/custom_dots_indicator.dart';
 
 class CreateEventSection extends StatefulWidget {
   const CreateEventSection({super.key});
@@ -28,41 +29,41 @@ class CreateEventSectionState extends State<CreateEventSection> {
       child: Stack(
         children: [
           Container(
-            padding: EdgeInsets.only(
-              top: AppSizes.eventTopPadding,
-              bottom: AppSizes.dotIndicatorPadding,
+            foregroundDecoration: BoxDecoration(
+              gradient: AppColors.eventCardGradientColor,
+              borderRadius: _buildBorderRadius(),
             ),
             decoration: ShapeDecoration(
-              color: Colors.grey,
               image: DecorationImage(
-                opacity: 0.9,
-                colorFilter: ColorFilter.mode(
-                    AppColors.eventOpacity, BlendMode.exclusion),
+                fit: BoxFit.cover,
                 image: AssetImage(
                   eventData[_currentIndex]['imageUrl'],
                 ),
-                fit: BoxFit.cover,
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(AppSizes.eventCardRadius),
-                ),
+                borderRadius: _buildBorderRadius(),
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: AppSizes.eventTopPadding,
+              bottom: AppSizes.dotIndicatorPadding,
             ),
             child: Column(
               children: [
                 Flexible(
                   child: Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       right: AppSizes.eventTopPadding,
                       left: AppSizes.eventTopPadding,
                     ),
                     child: Column(
                       children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: SizedBox(
-                            height: 80,
+                        Flexible(
+                          flex: 2,
+                          child: Align(
+                            alignment: Alignment.center,
                             child: PageView.builder(
                               physics: BouncingScrollPhysics(),
                               controller: _pageController,
@@ -72,8 +73,9 @@ class CreateEventSectionState extends State<CreateEventSection> {
                               itemBuilder: (context, index) {
                                 return Text(
                                   eventData[index]['title'],
-                                  style: AppTextStyle.textStyle20ExtraBold
-                                      .copyWith(color: Colors.white),
+                                  style:
+                                      AppTextStyle.textStyle18ExtraBold(context)
+                                          .copyWith(color: Colors.white),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 );
@@ -84,14 +86,7 @@ class CreateEventSectionState extends State<CreateEventSection> {
                         Flexible(
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.secondaryColor,
-                                side: BorderSide(color: Colors.transparent),
-                              ),
-                              onPressed: () {},
-                              child: FittedBox(child: Text('Create now')),
-                            ),
+                            child: _buildCreateButton(),
                           ),
                         ),
                       ],
@@ -100,22 +95,9 @@ class CreateEventSectionState extends State<CreateEventSection> {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      eventData.length,
-                      (index) => Container(
-                        width: 8,
-                        height: 8,
-                        decoration: ShapeDecoration(
-                          color: _currentIndex == index
-                              ? Colors.white
-                              : Colors.grey, // Active dot color change
-                          shape: CircleBorder(),
-                        ),
-                        margin: EdgeInsets.all(4),
-                      ),
-                    ),
+                  child: CustomDotsIndicator(
+                    currentIndex: _currentIndex,
+                    length: eventData.length,
                   ),
                 ),
               ],
@@ -123,6 +105,23 @@ class CreateEventSectionState extends State<CreateEventSection> {
           ),
         ],
       ),
+    );
+  }
+
+  BorderRadius _buildBorderRadius() {
+    return const BorderRadius.all(
+      Radius.circular(AppSizes.eventCardRadius),
+    );
+  }
+
+  Widget _buildCreateButton() {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.secondaryColor,
+        side: const BorderSide(color: Colors.transparent),
+      ),
+      onPressed: () {},
+      child: FittedBox(child: Text('Create now')),
     );
   }
 }
@@ -134,7 +133,7 @@ List<Map<String, dynamic>> eventData = [
   },
   {
     'title':
-        'Provided by your location you will get events recommendationssssssssssssssssssssssssssssssssssssssssss.',
+        'Provided by your location you will get events recommendation. M7H, flutter developer.',
     'imageUrl': AppImages.event2,
   },
   {

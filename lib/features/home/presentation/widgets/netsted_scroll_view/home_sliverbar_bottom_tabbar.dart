@@ -9,6 +9,7 @@ class HomeSliverBarBottomTabBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return TabBar(
       isScrollable: false,
       indicatorColor: AppColors.blueTextColor,
@@ -16,7 +17,9 @@ class HomeSliverBarBottomTabBar extends StatelessWidget
       labelPadding: EdgeInsets.zero,
       tabs: [
         Container(
-          color: Colors.white,
+          color: isDark
+              ? AppColors.darkSliverAppBarColor
+              : AppColors.lightSliverAppBarColor,
           padding:
               EdgeInsets.symmetric(horizontal: AppSizes.defaultScreenPadding),
           child: Tab(

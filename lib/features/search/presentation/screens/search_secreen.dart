@@ -15,7 +15,9 @@ class SearchSecreen extends StatelessWidget {
         ),
         child: Column(
           children: [
+            const SizedBox(height: AppSizes.md),
             SearchScreenHeader(),
+            const SizedBox(height: AppSizes.md),
             FilterEventsList(),
           ],
         ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_event_planner/features/bottom_navigation/presentation/cubit/bottom_nav_cubit.dart';
 import 'package:smart_event_planner/features/home/presentation/screens/home_screen.dart';
+import 'package:smart_event_planner/features/profile/presentation/screens/profile_screen.dart';
+import 'package:smart_event_planner/features/sceduale/presentation/screens/schedule_screen.dart';
 import 'package:smart_event_planner/features/search/presentation/screens/search_secreen.dart';
 
 class NavigationScreenBody extends StatelessWidget {
@@ -9,12 +11,10 @@ class NavigationScreenBody extends StatelessWidget {
 
   static final List<Widget> _screens = [
     HomeScreen(),
-    //Another screens
     SearchSecreen(),
     Container(),
-    Container(),
-    Container(),
-    Container(),
+    ScheduleScreen(),
+    ProfileScreen(),
   ];
 
   @override

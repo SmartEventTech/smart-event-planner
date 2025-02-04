@@ -3,17 +3,16 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 
 class CustomElevetedButtonTheme {
   CustomElevetedButtonTheme._();
-
   static final ElevatedButtonThemeData lightElevetedButtonTheme =
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
       foregroundColor: Colors.white,
       backgroundColor: AppColors.primaryColor,
-      disabledForegroundColor: Colors.grey,
-      disabledBackgroundColor: Colors.grey,
+      disabledForegroundColor: Colors.white,
+      disabledBackgroundColor: AppColors.primaryColor,
       side: const BorderSide(color: Colors.transparent),
-      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
@@ -31,10 +30,10 @@ class CustomElevetedButtonTheme {
       elevation: 0,
       foregroundColor: Colors.white,
       backgroundColor: AppColors.primaryColor,
-      disabledForegroundColor: Colors.grey,
-      disabledBackgroundColor: Colors.grey,
+      disabledForegroundColor: Colors.white,
+      disabledBackgroundColor: AppColors.primaryColor,
       side: const BorderSide(color: Colors.transparent),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
       textStyle: const TextStyle(
         fontSize: 18,
         color: Colors.white,
