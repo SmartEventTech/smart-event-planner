@@ -53,11 +53,11 @@ class ProfileScreen extends StatelessWidget {
                             children: [
                               Text(
                                 'John Doe',
-                                style: AppTextStyle.textStyle24Medium,
+                                style: AppTextStyle.textStyle24Medium(context),
                               ),
                               Text(
                                 'BwM4V@example.com',
-                                style: AppTextStyle.textStyle16Regular,
+                                style: AppTextStyle.textStyle16Regular(context),
                               ),
                             ],
                           ),

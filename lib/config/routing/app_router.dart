@@ -5,8 +5,9 @@ import 'package:smart_event_planner/features/authentication/login_screen.dart';
 import 'package:smart_event_planner/features/authentication/signup_screen.dart';
 import 'package:smart_event_planner/features/splash/screens/splash_screen.dart';
 import 'package:smart_event_planner/features/onboarding/onboarding_screens.dart';
-import 'package:smart_event_planner/features/onboarding/screens/onboarding_screen.dart';
+import 'package:smart_event_planner/shared/widgets/events/create_event_screen.dart';
 import 'package:smart_event_planner/features/home/presentation/screens/home_screen.dart';
+import 'package:smart_event_planner/features/search/presentation/screens/search_secreen.dart';
 import 'package:smart_event_planner/features/sceduale/presentation/screens/schedule_screen.dart';
 import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
 
@@ -25,16 +26,16 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const HobbyScreen());
       case Routes.navigationScreen:
         return MaterialPageRoute(builder: (_) => NavigationScreen());
-      case Routes.onBoardingScreen:
-        return MaterialPageRoute(builder: (_) => OnBoardingScreen());
       case Routes.registerScreen:
         return MaterialPageRoute(builder: (_) => Placeholder());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case Routes.searchScreen:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => SearchSecreen());
       case Routes.scheduleScreen:
         return MaterialPageRoute(builder: (_) => ScheduleScreen());
+        case Routes.createEventScreen:
+        return MaterialPageRoute(builder: (_) => CreateEventScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

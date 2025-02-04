@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/custom_dots_indicator.dart';
 
@@ -120,7 +120,9 @@ class CreateEventSectionState extends State<CreateEventSection> {
         backgroundColor: AppColors.secondaryColor,
         side: const BorderSide(color: Colors.transparent),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed('/createEventScreen');
+      },
       child: FittedBox(child: Text('Create now')),
     );
   }

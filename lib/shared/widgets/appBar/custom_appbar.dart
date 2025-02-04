@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           //SizedBox(width: 5),
           IconButton(
-            onPressed: null,
+            onPressed: () => Navigator.pop(context),
             icon: UserAvatarWidget(userImageUrl: AppImages.userAvatar),
           )
         ],
