@@ -74,7 +74,13 @@ Widget buildTextField(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: Text(label,
+            style: const TextStyle(
+              fontSize: 12,
+                fontWeight: FontWeight.bold, color: Colors.black)),
+      ),
       const SizedBox(height: 5),
       TextField(
         obscureText: isPassword,
@@ -108,9 +114,7 @@ Widget buildLoginButton(BuildContext context) {
       minimumSize: const Size(double.infinity, 55),
     ),
     onPressed: () {
-      Navigator.pushNamed(
-        context
-        , Routes.hobbyScreen);
+      Navigator.pushNamed(context, Routes.hobbyScreen);
     },
     child: const Text(
       'Login',
@@ -126,7 +130,8 @@ Widget buildDividerWithText() {
       const Expanded(child: Divider(color: Colors.black, thickness: 1)),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 8),
-        child: Text("Or login with", style: TextStyle(fontSize: 16)),
+        child: Text("Or login with",
+            style: TextStyle(fontSize: 12, color: Colors.black)),
       ),
       const Expanded(child: Divider(color: Colors.black, thickness: 1)),
     ],
@@ -154,13 +159,13 @@ Widget buildSignupText(BuildContext context) {
     children: [
       const Text(
         "Don't have an account?",
-        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 8),
       ),
       InkWell(
         onTap: () => Navigator.pushNamed(context, Routes.signupScreen),
         child: const Text(
           ' Sign Up',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 10),
         ),
       ),
     ],

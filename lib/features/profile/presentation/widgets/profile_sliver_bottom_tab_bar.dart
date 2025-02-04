@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 
 class ProfileSliverBottomTabBar extends StatelessWidget

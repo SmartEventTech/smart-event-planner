@@ -89,7 +89,9 @@ class HobbyScreenState extends State<HobbyScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/navigationScreen');
+                },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   shape: RoundedRectangleBorder(
@@ -122,42 +124,63 @@ class HobbyScreenState extends State<HobbyScreen> {
 
   Widget buildHobbyContainer(String interest) {
     final bool isSelected = selectedInterests.contains(interest);
+    return containersHobby(isSelected, interest);
+  }
+
+  GestureDetector containersHobby(bool isSelected, String interest) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          isSelected
-              ? selectedInterests.remove(interest)
-              : selectedInterests.add(interest);
-        });
-      },
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 4),
-        padding: const EdgeInsets.symmetric(
-            vertical: 8, horizontal: 12), // Increased padding for better fit
-        decoration: BoxDecoration(
+    onTap: () {
+      setState(() {
+        isSelected
+            ? selectedInterests.remove(interest)
+            : selectedInterests.add(interest);
+      });
+    },
+    child: Container(
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      constraints: BoxConstraints(
+        minWidth: 90, // Minimum width for tap target
+        maxWidth: MediaQuery.of(context).size.width *
+            0.5, // Maximum 40% of screen width
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+      decoration: BoxDecoration(
+        color:
+            isSelected ? const Color.fromRGBO(15, 55, 124, 1) : Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
           color:
-              isSelected ? const Color.fromRGBO(15, 55, 124, 1) : Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color:
-                isSelected ? const Color.fromRGBO(15, 55, 124, 1) : Colors.grey,
-          ),
+              isSelected ? const Color.fromRGBO(15, 55, 124, 1) : Colors.grey,
         ),
+      ),
+      child: IntrinsicWidth(
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset('assets/icons/Ellipse.png', width: 20, height: 20),
+            Image.asset(
+              'assets/icons/Ellipse.png',
+              width: 16,
+              height: 16,
+            ),
             const SizedBox(width: 8),
-            Text(
-              interest,
-              style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  interest,
+                  style: TextStyle(
+                    fontSize: 15, // Base font size
+                    color: isSelected ? Colors.white : Colors.black,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 }

@@ -83,7 +83,7 @@ Widget buildPrivacyPolicyCheckbox() {
       Checkbox(value: false, onChanged: (value) {}),
       const Text(
         'I agree to the privacy policy',
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 10),
       ),
     ],
   );
@@ -99,14 +99,12 @@ Widget buildSignupButton(BuildContext context) {
       minimumSize: const Size(double.infinity, 55),
     ),
     onPressed: () {
-      Navigator.pushNamed(
-        context
-        , Routes.hobbyScreen);
+      Navigator.pushNamed(context, Routes.hobbyScreen);
     },
     child: const Text(
       'Sign Up',
       style: TextStyle(
-          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
     ),
   );
 }
@@ -116,11 +114,11 @@ Widget buildLoginText(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       const Text('Already have an account?',
-          style: TextStyle(fontWeight: FontWeight.bold)),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 8)),
       InkWell(
-        onTap: () => Navigator.pop(context),
-        child:
-            const Text(' Login', style: TextStyle(fontWeight: FontWeight.bold)),
+        onTap: () => Navigator.pushNamed(context, Routes.loginScreen),
+        child: const Text(' Login',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 10)),
       ),
     ],
   );

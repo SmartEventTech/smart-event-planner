@@ -1,8 +1,8 @@
+import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:smart_event_planner/features/bottom_navigation/presentation/cubit/bottom_nav_cubit.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/bottom_nav_bar_plus_icon.dart';
+import 'package:smart_event_planner/features/bottom_navigation/presentation/cubit/bottom_nav_cubit.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({super.key});
