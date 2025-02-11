@@ -20,8 +20,8 @@ class CustomDrawer extends StatelessWidget {
       child: Drawer(
       
           width: screenWidth < 600
-              ? screenWidth * 0.35
-              : screenWidth * 0.35, // Responsive drawer width
+              ? screenWidth * 0.40
+              : screenWidth * 0.30, // Responsive drawer width
           child: Padding(
             padding: const EdgeInsets.only(top: 5),
             child: Column(

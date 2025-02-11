@@ -15,6 +15,7 @@ class HomeSliverBarBottomTabBar extends StatelessWidget
       indicatorColor: AppColors.blueTextColor,
       dividerColor: Colors.transparent,
       labelPadding: EdgeInsets.zero,
+      
       tabs: [
         Container(
           color: isDark

@@ -28,6 +28,9 @@ class HomeScreenBody extends StatelessWidget {
               floating: true,
               automaticallyImplyLeading: false,
               expandedHeight: 0,
+              elevation: 0,
+              
+
               backgroundColor: isDark
                   ? AppColors.lightSliverAppBarColor
                   : AppColors.darkSliverAppBarColor,

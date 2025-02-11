@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
         title:
-            Text('My Profile', style: AppTextStyle.textStyle20Medium(context)),
+            Text('Profile', style: AppTextStyle.textStyle20Medium(context)),
       ),
       body: DefaultTabController(
         length: 2,
@@ -53,18 +53,7 @@ class ProfileScreen extends StatelessWidget {
                             style: AppTextStyle.textStyle16Regular(context),
                           ),
                           const SizedBox(height: AppSizes.slg),
-                          Column(
-                            children: [
-                              Text(
-                                'John Doe',
-                                style: AppTextStyle.textStyle24Medium(context),
-                              ),
-                              Text(
-                                'BwM4V@example.com',
-                                style: AppTextStyle.textStyle16Regular(context),
-                              ),
-                            ],
-                          ),
+                          
                         ],
                       ),
                       const SizedBox(height: AppSizes.spaceBtwItem * 2),

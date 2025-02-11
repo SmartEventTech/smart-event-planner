@@ -18,7 +18,7 @@ Widget buildLoginBackground() {
         right: 0,
         left: 0,
         child: Image.asset(
-          'assets/images/OpacityLogin.png',
+          'assets/images/Opacitylogin.png',
           fit: BoxFit.fill,
         ),
       ),

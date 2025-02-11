@@ -1,6 +1,9 @@
-import 'package:iconsax/iconsax.dart';
+// ignore_for_file: library_private_types_in_public_api
+
+
 import 'package:flutter/material.dart';
-import '../appBar/bottom_nav_bar_plus_icon.dart';
+import 'package:smart_event_planner/features/map/presentation/screens/map_screen.dart';
+
 
 class CreateEventScreen extends StatefulWidget {
   const CreateEventScreen({super.key});
@@ -20,7 +23,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   ];
 
   final Set<int> selectedIndexes = {};
-  int _currentIndex = 0;
+  
 
   double _calculateFontSize(double screenWidth) =>
       (screenWidth * 0.03).clamp(12.0, 16.0);
@@ -57,7 +60,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
               child: _buildContent(screenSize),
             ),
           ),
-          _buildBottomNavigation(),
+        
         ],
       ),
     );
@@ -112,27 +115,33 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
   Widget _buildLocationConfirmation() {
     return IntrinsicWidth(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 45,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-        decoration: BoxDecoration(
-          color: const Color(0xffA00651),
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.location_on_sharp, color: Colors.white),
-            const SizedBox(width: 8),
-            Text(
-              'Confirmed',
-              style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width * 0.035,
-                color: Colors.white,
+
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MapScreen()));
+        },
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 45,
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+          decoration: BoxDecoration(
+            color: const Color(0xffA00651),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.location_on_sharp, color: Colors.white),
+              const SizedBox(width: 8),
+              Text(
+                'Confirmed',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width * 0.035,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -231,48 +240,4 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     );
   }
 
-  Widget _buildBottomNavigation() {
-    return Container(
-      height: 70,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            // ignore: deprecated_member_use
-            color: Colors.grey.withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, -5),
-          ),
-        ],
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          NavigationBar(
-            selectedIndex: _currentIndex,
-            height: 60,
-            backgroundColor: Colors.transparent,
-            destinations: const [
-              NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-              NavigationDestination(
-                  icon: Icon(Iconsax.search_normal), label: 'Search'),
-              NavigationDestination(icon: SizedBox.shrink(), label: ''),
-              NavigationDestination(
-                  icon: Icon(Iconsax.calendar), label: 'Schedule'),
-              NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
-            ],
-            onDestinationSelected: (index) =>
-                setState(() => _currentIndex = index),
-          ),
-          const Positioned(
-            left: 0,
-            right: 0,
-            bottom: 25,
-            child:
-                BottomNavBarPlusIcon(), 
-          ),
-        ],
-      ),
-    );
-  }
 }
