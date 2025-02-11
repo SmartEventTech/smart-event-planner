@@ -5,7 +5,8 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 
 class SearchScreenHeader extends StatelessWidget {
-  const SearchScreenHeader({super.key});
+  const SearchScreenHeader({super.key, required this.onFilterButtonPressed});
+  final VoidCallback onFilterButtonPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,10 @@ class SearchScreenHeader extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              onFilterButtonPressed();
+
+            },
             icon: SvgPicture.asset(AppImages.filterIcon),
           )
         ],

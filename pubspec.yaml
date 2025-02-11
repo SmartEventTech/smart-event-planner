@@ -82,6 +82,9 @@ dependencies:
   arabic_numbers: ^1.0.0
   device_preview: ^1.2.0
   flutter_svg: ^2.0.17
+  flutter_map: ^8.0.0
+  latlong2: ^0.9.1
+  location: ^8.0.0
 
 dev_dependencies:
   flutter_test:

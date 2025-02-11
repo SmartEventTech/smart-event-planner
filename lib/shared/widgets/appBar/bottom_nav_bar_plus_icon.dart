@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
+
+import 'package:smart_event_planner/features/map/presentation/screens/map_screen.dart';
 
 class BottomNavBarPlusIcon extends StatelessWidget {
   const BottomNavBarPlusIcon({super.key});
@@ -18,12 +19,14 @@ class BottomNavBarPlusIcon extends StatelessWidget {
         decoration: ShapeDecoration(color: Colors.white, shape: CircleBorder()),
         child: GestureDetector(
           onTap: () {
-            context.push(
-              Scaffold(
-                appBar: AppBar(),
-                body: Center(child: Text('Add Event Screen')),
-              ),
-            );
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => MapScreen()));
+            // context.push(
+            //   // Scaffold(
+            //   //   appBar: AppBar(),
+            //   //   body: Center(child: Text('Add Event Screen')),
+            //   // ),
+              
+            // );
           },
           child: Container(
             padding: EdgeInsets.all(11),
