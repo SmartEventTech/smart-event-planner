@@ -35,8 +35,10 @@ class AppSizes {
   static const double interestedCardPadding = 10;
 
   static const double btnNavBarRadius = 18;
+  static const double dividerHeight = 30;
 
   static const double sm = 3;
   static const double md = 6;
   static const double lg = 8;
+  static const double slg = 10;
 }

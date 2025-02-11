@@ -22,47 +22,57 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "IAgreeWithPrivacyPolicy":
-            MessageLookupByLibrary.simpleMessage("أوافق على سياسة الخصوصية"),
-        "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
-            "هل لديك حساب بالفعل؟ تسجيل الدخول"),
-        "chooseACategory": MessageLookupByLibrary.simpleMessage("اختر فئة"),
-        "continuetext": MessageLookupByLibrary.simpleMessage("متابعة"),
-        "createEvent": MessageLookupByLibrary.simpleMessage("إنشاء فعالية"),
-        "createNow": MessageLookupByLibrary.simpleMessage("أنشئ الآن"),
-        "dontHaveAnAccount":
-            MessageLookupByLibrary.simpleMessage("لا تملك حسابًا؟ سجل الآن"),
-        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
-        "eventDescription":
-            MessageLookupByLibrary.simpleMessage("وصف الفعالية"),
-        "eventName": MessageLookupByLibrary.simpleMessage("اسم الفعالية"),
-        "eventsYouMightLike":
-            MessageLookupByLibrary.simpleMessage("الفعاليات التي قد تعجبك"),
-        "interests": MessageLookupByLibrary.simpleMessage("الاهتمامات"),
-        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-        "onboardingStep1": MessageLookupByLibrary.simpleMessage(
-            "ابحث عن فعاليات مع أشخاص يتشاركون اهتماماتك."),
-        "onboardingStep2": MessageLookupByLibrary.simpleMessage(
-            "أنشئ فعاليتك الخاصة وادعُ أصدقائك."),
-        "onboardingStep3": MessageLookupByLibrary.simpleMessage(
-            "استنادًا إلى موقعك، ستتلقى توصيات بفعاليات."),
-        "orSignupwith":
-            MessageLookupByLibrary.simpleMessage("أو التسجيل باستخدام"),
-        "orloginwith":
-            MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول باستخدام"),
-        "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
-        "passwordConfirmation":
-            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
-        "register": MessageLookupByLibrary.simpleMessage("تسجيل حساب"),
-        "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
-        "search": MessageLookupByLibrary.simpleMessage("بحث"),
-        "selectYourFavoriteHobbiesAndMajorsToAttendEvents":
-            MessageLookupByLibrary.simpleMessage(
-                "اختر هواياتك المفضلة وتخصصاتك لحضور الفعاليات"),
-        "tapToChooseALocation":
-            MessageLookupByLibrary.simpleMessage("اضغط لاختيار الموقع"),
-        "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
-        "whatAreYouInterestedIn":
-            MessageLookupByLibrary.simpleMessage("ما الذي يثير اهتمامك؟")
-      };
+    "IAgreeWithPrivacyPolicy": MessageLookupByLibrary.simpleMessage(
+      "أوافق على سياسة الخصوصية",
+    ),
+    "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "هل لديك حساب بالفعل؟ تسجيل الدخول",
+    ),
+    "chooseACategory": MessageLookupByLibrary.simpleMessage("اختر فئة"),
+    "continuetext": MessageLookupByLibrary.simpleMessage("متابعة"),
+    "createEvent": MessageLookupByLibrary.simpleMessage("إنشاء فعالية"),
+    "createNow": MessageLookupByLibrary.simpleMessage("أنشئ الآن"),
+    "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "لا تملك حسابًا؟ سجل الآن",
+    ),
+    "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "eventDescription": MessageLookupByLibrary.simpleMessage("وصف الفعالية"),
+    "eventName": MessageLookupByLibrary.simpleMessage("اسم الفعالية"),
+    "eventsYouMightLike": MessageLookupByLibrary.simpleMessage(
+      "الفعاليات التي قد تعجبك",
+    ),
+    "interests": MessageLookupByLibrary.simpleMessage("الاهتمامات"),
+    "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "onboardingStep1": MessageLookupByLibrary.simpleMessage(
+      "ابحث عن فعاليات مع أشخاص يتشاركون اهتماماتك.",
+    ),
+    "onboardingStep2": MessageLookupByLibrary.simpleMessage(
+      "أنشئ فعاليتك الخاصة وادعُ أصدقائك.",
+    ),
+    "onboardingStep3": MessageLookupByLibrary.simpleMessage(
+      "استنادًا إلى موقعك، ستتلقى توصيات بفعاليات.",
+    ),
+    "orSignupwith": MessageLookupByLibrary.simpleMessage("أو التسجيل باستخدام"),
+    "orloginwith": MessageLookupByLibrary.simpleMessage(
+      "أو تسجيل الدخول باستخدام",
+    ),
+    "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "passwordConfirmation": MessageLookupByLibrary.simpleMessage(
+      "تأكيد كلمة المرور",
+    ),
+    "register": MessageLookupByLibrary.simpleMessage("تسجيل حساب"),
+    "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+    "search": MessageLookupByLibrary.simpleMessage("بحث"),
+    "selectYourFavoriteHobbiesAndMajorsToAttendEvents":
+        MessageLookupByLibrary.simpleMessage(
+          "اختر هواياتك المفضلة وتخصصاتك لحضور الفعاليات",
+        ),
+    "tapToChooseALocation": MessageLookupByLibrary.simpleMessage(
+      "اضغط لاختيار الموقع",
+    ),
+    "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+    "whatAreYouInterestedIn": MessageLookupByLibrary.simpleMessage(
+      "ما الذي يثير اهتمامك؟",
+    ),
+  };
 }

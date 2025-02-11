@@ -24,11 +24,17 @@ class _SearchSecreenState extends State<SearchSecreen> {
         ),
         child: Column(
           children: [
+<<<<<<< HEAD
             SearchScreenHeader(
               onFilterButtonPressed: () { // Callback function
                 _scaffoldKey.currentState!.openEndDrawer();
               },
             ),
+=======
+            const SizedBox(height: AppSizes.md),
+            SearchScreenHeader(),
+            const SizedBox(height: AppSizes.md),
+>>>>>>> ebd962399bcb263059472c1e1b24807e2878bdc8
             FilterEventsList(),
           ],
         ),

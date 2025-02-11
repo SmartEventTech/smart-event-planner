@@ -4,6 +4,10 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:smart_event_planner/core/constants/app_images.dart';
+import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:smart_event_planner/core/constants/app_text_style.dart';
 
 class ChatBotBody extends StatefulWidget {
   const ChatBotBody({super.key});
@@ -18,11 +22,12 @@ class _ChatBotBodyState extends State<ChatBotBody> {
   ChatUser currentUser = ChatUser(
     id: "0",
     firstName: "User",
+    profileImage: AppImages.userAvatar,
   );
   ChatUser botUser = ChatUser(
     id: "1",
     firstName: "Eventy",
-    profileImage: "assets/images/chat_bot_icons/ChatBotIcon.png",
+    profileImage: AppImages.chatbotAvatar,
   );
 
   bool _isLoading = false;
@@ -32,9 +37,7 @@ class _ChatBotBodyState extends State<ChatBotBody> {
     return Stack(
       children: [
         _buildUI(),
-         // Center the indicator
-        if (messages.isEmpty && !_isLoading) // Show custom widget if no messages and not loading
-          _buildNoChatsWidget(),
+        if (messages.isEmpty && !_isLoading) _buildNoChatsWidget(),
       ],
     );
   }
@@ -45,37 +48,22 @@ class _ChatBotBodyState extends State<ChatBotBody> {
       messageOptions: MessageOptions(
         currentUserContainerColor: const Color(0xff0E377C),
         containerColor: const Color(0xffD9D9D9),
-
       ),
-        typingUsers: _isLoading ? [botUser] : [],
+      typingUsers: _isLoading ? [botUser] : [],
       currentUser: currentUser,
       onSend: _sendMessage,
       messages: messages,
-      
-    // Important: Remove default placeholder
     );
   }
 
-
   Widget _buildNoChatsWidget() {
-    return Center( // Center the widget
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(80.0),
-            child: SvgPicture.asset(
-              "assets/images/chat_bot_icons/HI, how can I help you today.svg", // Replace with your image path
-              
-            ),
-          ),
-          SizedBox(height: 160),
-        
-        ],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(80.0),
+        child: SvgPicture.asset(AppImages.startChatbotMessage),
       ),
     );
   }
-
 
   InputOptions _inputStyle() {
     return InputOptions(
@@ -84,6 +72,25 @@ class _ChatBotBodyState extends State<ChatBotBody> {
       cursorStyle: const CursorStyle(
         color: Colors.deepPurple,
       ),
+      inputDecoration: InputDecoration(
+        hintText: "Write a message...",
+        hintStyle: AppTextStyle.textStyle16Medium(context).copyWith(
+          color: Colors.grey,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(color: AppColors.secondaryColor, width: 1.3),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(color: AppColors.secondaryColor, width: 1.3),
+        ),
+        contentPadding: EdgeInsets.symmetric(
+          vertical: AppSizes.slg,
+          horizontal: AppSizes.slg + 4,
+        ),
+      ),
+      inputTextStyle: AppTextStyle.textStyle16Medium(context),
     );
   }
 
@@ -103,7 +110,7 @@ class _ChatBotBodyState extends State<ChatBotBody> {
                   .map((part) => part.text)
                   .join(" ") ??
               "No response";
-              // How I Can Learn Flutter
+          // How I Can Learn Flutter
 
           if (mounted) {
             setState(() {
@@ -112,7 +119,6 @@ class _ChatBotBodyState extends State<ChatBotBody> {
                   text: response,
                   user: botUser,
                   createdAt: messages.first.createdAt,
-                   
                 );
               } else {
                 messages.insert(

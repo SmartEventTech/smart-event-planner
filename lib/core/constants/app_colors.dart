@@ -32,10 +32,12 @@ class AppColors {
 
   static const textBtnColor = Color(0xFF4b68ff);
 
-  static const sliverAppBarColor = Color.fromARGB(255, 245, 245, 245);
-  
+  static const lightSliverAppBarColor = Color.fromARGB(255, 245, 245, 245);
+  static const darkSliverAppBarColor = Color.fromARGB(251, 20, 20, 20);
+
   static const white = Color(0xffffffff);
   static const black = Color(0xff000000);
+  static const navBarBlack = Color(0xFF232323);
 
   static LinearGradient interestedCardColor = LinearGradient(
     colors: [
@@ -45,4 +47,15 @@ class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
+
+  static LinearGradient eventCardGradientColor = LinearGradient(
+    colors: [
+      Color(0xff5C2FC2).withValues(alpha: 0.32),
+      Color(0xff819FD3).withValues(alpha: 0.3),
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static const dividerColor = Color(0xff808080);
 }
