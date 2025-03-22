@@ -9,12 +9,14 @@ class CustomOutlinedButtonTheme {
       elevation: 0,
       foregroundColor: Colors.white,
       side: const BorderSide(color: AppColors.outlinedBtnBorderColor),
+      disabledBackgroundColor: Colors.white,
+      disabledForegroundColor: Colors.black,
       textStyle: const TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: Colors.black,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
       ),
@@ -24,13 +26,15 @@ class CustomOutlinedButtonTheme {
     style: OutlinedButton.styleFrom(
       elevation: 0,
       foregroundColor: Colors.white,
+      disabledBackgroundColor: Colors.white,
+      disabledForegroundColor: Colors.black,
       side: const BorderSide(color: AppColors.outlinedBtnBorderColor),
       textStyle: const TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: Colors.white,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
       ),
