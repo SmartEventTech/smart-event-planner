@@ -18,7 +18,7 @@ Widget buildLoginBackground() {
         right: 0,
         left: 0,
         child: Image.asset(
-          'assets/images/OpacityLogin.png',
+          'assets/images/Opacitylogin.png',
           fit: BoxFit.fill,
         ),
       ),
@@ -32,7 +32,7 @@ Widget buildLoginForm(BuildContext context) {
     left: 0,
     right: 0,
     child: Container(
-      height: MediaQuery.of(context).size.height * 0.79,
+      height: MediaQuery.of(context).size.height * 0.73, //79
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -108,9 +108,7 @@ Widget buildLoginButton(BuildContext context) {
       minimumSize: const Size(double.infinity, 55),
     ),
     onPressed: () {
-      Navigator.pushNamed(
-        context
-        , Routes.hobbyScreen);
+      Navigator.pushNamed(context, Routes.hobbyScreen);
     },
     child: const Text(
       'Login',

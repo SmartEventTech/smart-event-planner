@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
 
 class HobbyScreen extends StatefulWidget {
   const HobbyScreen({super.key});
@@ -89,7 +91,7 @@ class HobbyScreenState extends State<HobbyScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => context.pushAndRemoveAll(NavigationScreen()),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   shape: RoundedRectangleBorder(

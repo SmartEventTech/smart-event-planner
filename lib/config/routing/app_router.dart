@@ -19,9 +19,9 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const OnboardingScreens());
       case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
-        case Routes.signupScreen:
+      case Routes.signupScreen:
         return MaterialPageRoute(builder: (_) => const SignupScreen());
-        case Routes.hobbyScreen:
+      case Routes.hobbyScreen:
         return MaterialPageRoute(builder: (_) => const HobbyScreen());
       case Routes.navigationScreen:
         return MaterialPageRoute(builder: (_) => NavigationScreen());
