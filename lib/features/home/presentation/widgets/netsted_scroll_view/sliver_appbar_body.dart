@@ -15,25 +15,19 @@ class SliverAppBarBody extends StatelessWidget {
       color: isDark
           ? AppColors.darkSliverAppBarColor
           : AppColors.lightSliverAppBarColor,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSizes.defaultScreenPadding,
-          vertical: AppSizes.sm,
-        ),
-        child: Column(
-          children: [
-            SizedBox(height: AppSizes.spaceBtwItem),
-            CreateEventSection(),
-            SizedBox(height: AppSizes.spaceBtwItem / 2),
-            SectionHeading(
-              title: 'Interests',
-              btnTitle: 'View All',
-              onPressed: () {},
-            ),
-            SizedBox(height: AppSizes.spaceBtwItem / 2),
-            InterestsSection(),
-          ],
-        ),
+      child: Column(
+        children: [
+          SizedBox(height: AppSizes.spaceBtwItem),
+          CreateEventSection(),
+          SizedBox(height: AppSizes.spaceBtwItem / 2),
+          SectionHeading(
+            title: 'Interests',
+            btnTitle: 'View All',
+            onPressed: () {},
+          ),
+          SizedBox(height: AppSizes.spaceBtwItem / 2),
+          InterestsSection(),
+        ],
       ),
     );
   }

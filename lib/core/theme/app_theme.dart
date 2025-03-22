@@ -27,7 +27,6 @@ class AppTheme {
         IconThemeData(color: const Color.fromARGB(255, 110, 126, 155)),
       ),
     ),
-  
   );
 
   static ThemeData darkTheme = ThemeData(
