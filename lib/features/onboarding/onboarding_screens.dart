@@ -84,7 +84,7 @@ class OnboardingScreensState extends State<OnboardingScreens> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, Routes.loginScreen);
+                    Navigator.pushNamedAndRemoveUntil(context, Routes.loginScreen ,(route) => false,);
                   },
                   child: const Text(
                     'Get Started',

@@ -6,6 +6,8 @@ import 'package:smart_event_planner/shared/widgets/popup/messeges_popup_elements
 import 'package:smart_event_planner/shared/widgets/popup/notification_popup_elements.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/user_avatar_widget.dart';
 
+import '../../../core/constants/app_colors.dart';
+
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
 
@@ -89,6 +91,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSizes.defaultScreenPadding,
@@ -97,6 +100,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         elevation: 0,
         titleSpacing: 0,
         centerTitle: false,
+        backgroundColor: isDark ? Colors.black : AppColors.white,
         title: Image.asset(
           AppImages.appLogo,
           width: 90,

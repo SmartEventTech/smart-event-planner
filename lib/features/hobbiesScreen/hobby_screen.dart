@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
 
 class HobbyScreen extends StatefulWidget {
   const HobbyScreen({super.key});
@@ -99,7 +100,7 @@ class HobbyScreenState extends State<HobbyScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    backgroundColor: const Color.fromRGBO(15, 55, 124, 1),
+                    backgroundColor: AppColors.primaryColor,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -151,11 +152,11 @@ class HobbyScreenState extends State<HobbyScreen> {
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
       decoration: BoxDecoration(
         color:
-            isSelected ? const Color.fromRGBO(15, 55, 124, 1) : Colors.white,
+            isSelected ? AppColors.secondaryColor : Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color:
-              isSelected ? const Color.fromRGBO(15, 55, 124, 1) : Colors.grey,
+              isSelected ? AppColors.secondaryColor : Colors.grey,
         ),
       ),
       child: IntrinsicWidth(

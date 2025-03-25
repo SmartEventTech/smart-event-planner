@@ -1,9 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
-
 import 'package:flutter/material.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/features/map/presentation/screens/map_screen.dart';
-
+import 'package:smart_event_planner/shared/widgets/buttons/custom_eleveted_btn.dart';
 
 class CreateEventScreen extends StatefulWidget {
   const CreateEventScreen({super.key});
@@ -23,7 +24,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   ];
 
   final Set<int> selectedIndexes = {};
-  
 
   double _calculateFontSize(double screenWidth) =>
       (screenWidth * 0.03).clamp(12.0, 16.0);
@@ -37,11 +37,14 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
+        titleSpacing: 0,
         title: const Text('Create Event'),
+        backgroundColor: isDark ? Colors.black : AppColors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
           onPressed: () => Navigator.pop(context),
@@ -60,7 +63,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
               child: _buildContent(screenSize),
             ),
           ),
-        
         ],
       ),
     );
@@ -85,6 +87,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
         const SizedBox(height: 15),
         _buildSectionTitle('Event Photo'),
         _buildPhotoUploadSection(screenSize),
+        const SizedBox(
+          height: AppSizes.spaceBtwSection,
+        ),
+        SizedBox(
+            width: double.infinity,
+            child: CustomElevetedBtn(
+              title: 'Create Event',
+              color: AppColors.secondaryColor ,
+              textColor: Colors.white,
+            ))
       ],
     );
   }
@@ -115,10 +127,10 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
   Widget _buildLocationConfirmation() {
     return IntrinsicWidth(
-
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MapScreen()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const MapScreen()));
         },
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -239,5 +251,4 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
       ),
     );
   }
-
 }

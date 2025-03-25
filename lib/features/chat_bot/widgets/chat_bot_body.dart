@@ -18,49 +18,75 @@ class ChatBotBody extends StatefulWidget {
 
 class _ChatBotBodyState extends State<ChatBotBody> {
   final Gemini gemini = Gemini.instance;
-  List<ChatMessage> messages = [];
-  ChatUser currentUser = ChatUser(
+  final List<ChatMessage> messages = [];
+  final ChatUser currentUser = ChatUser(
     id: "0",
     firstName: "User",
     profileImage: AppImages.userAvatar,
   );
-  ChatUser botUser = ChatUser(
+  final ChatUser botUser = ChatUser(
     id: "1",
     firstName: "Eventy",
     profileImage: AppImages.chatbotAvatar,
   );
 
   bool _isLoading = false;
+  String _fullResponse = '';
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        _buildUI(),
-        if (messages.isEmpty && !_isLoading) _buildNoChatsWidget(),
-      ],
-    );
-  }
-
-  Widget _buildUI() {
-    return DashChat(
-      inputOptions: _inputStyle(),
-      messageOptions: MessageOptions(
-        currentUserContainerColor: const Color(0xff0E377C),
-        containerColor: const Color(0xffD9D9D9),
+    return Scaffold(
+      body: Stack(
+        children: [
+          _buildChatInterface(),
+          if (messages.isEmpty && !_isLoading) _buildWelcomeWidget(),
+        ],
       ),
-      typingUsers: _isLoading ? [botUser] : [],
-      currentUser: currentUser,
-      onSend: _sendMessage,
-      messages: messages,
     );
   }
 
-  Widget _buildNoChatsWidget() {
+  Widget _buildChatInterface() {
+     return DashChat(
+    inputOptions: _inputStyle(),
+    messageOptions: MessageOptions(
+      currentUserContainerColor: AppColors.primaryColor,
+      containerColor: AppColors.fillColor,
+      currentUserTextColor: Colors.white,  // White text for user bubbles
+      textColor: Colors.black,             // Black text for bot bubbles
+      maxWidth: MediaQuery.of(context).size.width * 0.75,
+      messageTextBuilder: (message, _, __) {
+        return SelectableText(
+          message.text,
+          style: TextStyle(
+            fontSize: 16,                  // Larger font size
+            color: message.user == currentUser 
+                ? Colors.white            // User message text color
+                : Colors.black,            // Bot message text color
+            fontWeight: FontWeight.w300,    // Medium weight
+          ),
+        );
+      },
+    ),
+    typingUsers: _isLoading ? [botUser] : [],
+    currentUser: currentUser,
+    onSend: _handleMessageSending,
+    messages: messages,
+  );
+}
+  Widget _buildWelcomeWidget() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(80.0),
-        child: SvgPicture.asset(AppImages.startChatbotMessage),
+        padding: const EdgeInsets.all(40.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              AppImages.startChatbotMessage,
+              height: 200,
+            ),
+            const SizedBox(height: 90),
+          ],
+        ),
       ),
     );
   }
@@ -69,9 +95,7 @@ class _ChatBotBodyState extends State<ChatBotBody> {
     return InputOptions(
       sendOnEnter: true,
       alwaysShowSend: true,
-      cursorStyle: const CursorStyle(
-        color: Colors.deepPurple,
-      ),
+      cursorStyle: CursorStyle(color: AppColors.primaryColor),
       inputDecoration: InputDecoration(
         hintText: "Write a message...",
         hintStyle: AppTextStyle.textStyle16Medium(context).copyWith(
@@ -79,89 +103,100 @@ class _ChatBotBodyState extends State<ChatBotBody> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: AppColors.secondaryColor, width: 1.3),
+          borderSide: BorderSide(color: AppColors.secondaryColor, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: AppColors.secondaryColor, width: 1.3),
+          borderSide: BorderSide(color: AppColors.secondaryColor, width: 1),
         ),
         contentPadding: EdgeInsets.symmetric(
           vertical: AppSizes.slg,
           horizontal: AppSizes.slg + 4,
         ),
+        fillColor: Colors.white,
+        filled: true,
       ),
-      inputTextStyle: AppTextStyle.textStyle16Medium(context),
+      inputTextStyle: AppTextStyle.textStyle16Medium(context).copyWith(
+        fontSize: 14      ),
+      sendButtonBuilder: (onSend) {
+        return IconButton(
+          icon: Icon(Icons.send, color: AppColors.primaryColor),
+          onPressed: onSend,
+        );
+      },
     );
   }
 
-  void _sendMessage(ChatMessage chatMessage) {
+  void _handleMessageSending(ChatMessage chatMessage) {
     setState(() {
-      messages = [chatMessage, ...messages];
+      messages.insert(0, chatMessage);
       _isLoading = true;
+      _fullResponse = '';
     });
 
-    try {
-      String question = chatMessage.text;
+    // Create initial empty bot message
+    final botMessage = ChatMessage(
+      text: '...',
+      user: botUser,
+      createdAt: DateTime.now(),
+    );
+    setState(() => messages.insert(0, botMessage));
 
-      gemini.streamGenerateContent(question).listen(
+    try {
+      gemini.streamGenerateContent(chatMessage.text).listen(
         (event) {
-          String response = event.content?.parts
+          final chunk = event.content?.parts
                   ?.whereType<TextPart>()
                   .map((part) => part.text)
-                  .join(" ") ??
-              "No response";
-          // How I Can Learn Flutter
+                  .join(" ") ?? '';
+          
+          _fullResponse += chunk;
 
           if (mounted) {
             setState(() {
-              if (messages.isNotEmpty && messages.first.user == botUser) {
-                messages.first = ChatMessage(
-                  text: response,
-                  user: botUser,
-                  createdAt: messages.first.createdAt,
-                );
-              } else {
-                messages.insert(
-                  0,
-                  ChatMessage(
-                    text: response,
-                    user: botUser,
-                    createdAt: DateTime.now(),
-                  ),
-                );
-              }
+              messages[0] = ChatMessage(
+                text: _fullResponse,
+                user: botUser,
+                createdAt: messages[0].createdAt,
+              );
             });
           }
         },
         onError: (error) {
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('Error communicating with Gemini API')),
+              SnackBar(content: Text('Error: ${error.toString()}')),
             );
+            setState(() {
+              _isLoading = false;
+              messages[0] = ChatMessage(
+                text: "Sorry, I couldn't process your request.",
+                user: botUser,
+                createdAt: messages[0].createdAt,
+              );
+            });
           }
-          print("Gemini API Error: $error");
-          setState(() {
-            _isLoading = false;
-          });
         },
         onDone: () {
-          print("Gemini stream completed");
-          setState(() {
-            _isLoading = false;
-          });
+          if (mounted) {
+            setState(() => _isLoading = false);
+          }
         },
       );
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('An error occurred')),
+          SnackBar(content: Text('Error: ${e.toString()}')),
         );
+        setState(() {
+          _isLoading = false;
+          messages[0] = ChatMessage(
+            text: "An error occurred. Please try again.",
+            user: botUser,
+            createdAt: messages[0].createdAt,
+          );
+        });
       }
-      print("General Error: $e");
-      setState(() {
-        _isLoading = false;
-      });
     }
   }
 }
