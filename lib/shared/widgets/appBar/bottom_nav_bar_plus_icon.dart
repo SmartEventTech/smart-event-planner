@@ -2,6 +2,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
+import 'package:smart_event_planner/shared/widgets/events/create_event_screen.dart';
 
 class BottomNavBarPlusIcon extends StatelessWidget {
   const BottomNavBarPlusIcon({super.key});
@@ -14,7 +15,9 @@ class BottomNavBarPlusIcon extends StatelessWidget {
       left: 0,
       right: 0,
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateEventScreen()));
+        },
         child: Container(
           padding: EdgeInsets.all(8),
           decoration: ShapeDecoration(

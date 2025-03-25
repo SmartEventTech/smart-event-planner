@@ -8,6 +8,7 @@ import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 
 void main() {
   Gemini.init(apiKey: GEMINI_API_KEY);
+  
   runApp(
     DevicePreview(
       enabled: false,

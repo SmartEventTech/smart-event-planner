@@ -45,7 +45,7 @@ class OnboardingScreensState extends State<OnboardingScreens> {
             children: onboardingPages,
           ),
           Positioned(
-            bottom: 20,
+            bottom: 70,
             left: 0,
             right: 0,
             child: Row(
@@ -84,7 +84,7 @@ class OnboardingScreensState extends State<OnboardingScreens> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, Routes.loginScreen);
+                    Navigator.pushNamedAndRemoveUntil(context, Routes.loginScreen ,(route) => false,);
                   },
                   child: const Text(
                     'Get Started',

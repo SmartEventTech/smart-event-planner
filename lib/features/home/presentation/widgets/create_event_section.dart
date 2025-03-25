@@ -123,7 +123,9 @@ class CreateEventSectionState extends State<CreateEventSection> {
       onPressed: () {
         Navigator.of(context).pushNamed('/createEventScreen');
       },
-      child: FittedBox(child: Text('Create now')),
+      child: FittedBox(child: Text('Create now',style: TextStyle(
+        color: AppColors.shadowhiteColot
+      ),)),
     );
   }
 }

@@ -5,7 +5,8 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/user_avatar_widget.dart';
-import 'package:smart_event_planner/features/profile/presentation/screens/profile_screen.dart';
+
+import 'package:smart_event_planner/shared/widgets/buttons/custom_eleveted_btn.dart';
 
 class CreateEvent extends StatelessWidget {
   const CreateEvent({super.key});

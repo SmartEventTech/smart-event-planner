@@ -14,7 +14,7 @@ class SliverAppBarBody extends StatelessWidget {
     return Container(
       color: isDark
           ? AppColors.darkSliverAppBarColor
-          : AppColors.lightSliverAppBarColor,
+          : AppColors.white,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppSizes.defaultScreenPadding,
