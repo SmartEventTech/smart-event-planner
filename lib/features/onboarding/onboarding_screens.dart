@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:smart_event_planner/config/routing/routes.dart';
+import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
+import 'package:smart_event_planner/core/constants/app_constants.dart';
 import 'package:smart_event_planner/features/widgets/onboarding_widget.dart';
 
 class OnboardingScreens extends StatefulWidget {
@@ -84,7 +87,12 @@ class OnboardingScreensState extends State<OnboardingScreens> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(context, Routes.loginScreen ,(route) => false,);
+                    SharedPreferenceSingleton.setBool(kisOnBoardingSeen, true);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.loginScreen,
+                      (route) => false,
+                    );
                   },
                   child: const Text(
                     'Get Started',
