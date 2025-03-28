@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:smart_event_planner/core/entities/user_entity.dart';
 
 abstract class OtpVerificationState extends Equatable {
-  const OtpVerificationState();
+  const OtpVerificationState(); 
 
   @override
   List<Object> get props => [];

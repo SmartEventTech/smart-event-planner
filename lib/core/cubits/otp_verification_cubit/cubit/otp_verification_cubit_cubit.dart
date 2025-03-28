@@ -16,7 +16,7 @@ class OtpVerificationCubit extends Cubit<OtpVerificationState> {
     try {
       final result = await authRepo.verifyUser(
         email: email,
-        verificationCode: verificationCode,
+        verificationCode: verificationCode, 
       );
 
       result.fold(

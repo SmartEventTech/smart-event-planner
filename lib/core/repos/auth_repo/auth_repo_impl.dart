@@ -113,7 +113,7 @@ Future<Either<Failure, UserEntity>> verifyUser({
       endpoint: '/auth/verifyUser',
       data: {
         'email': email.trim(),
-        'confirmCode': confirmCode,
+        'confirmCode': confirmCode, 
       },
     );
 
