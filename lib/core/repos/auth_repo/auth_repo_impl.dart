@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:smart_event_planner/core/entities/user_entity.dart';
 import 'package:smart_event_planner/core/errors/exceptions.dart';
@@ -94,7 +95,63 @@ class AuthRepoImplementation implements AuthRepo {
           message: 'Login failed. Please try again.'));
     }
   }
+@override
+Future<Either<Failure, UserEntity>> verifyUser({
+  required String email,
+  required String verificationCode,
+}) async {
+  try {
+    logger.d('Attempting to verify user: $email with code: $verificationCode');
+    
+    // Convert verificationCode to integer
+    final confirmCode = int.tryParse(verificationCode.trim());
+    if (confirmCode == null) {
+      return Left(ServerFailure(message: 'Invalid OTP format'));
+    }
 
+    final response = await apiService.post(
+      endpoint: '/auth/verifyUser',
+      data: {
+        'email': email.trim(),
+        'confirmCode': confirmCode,
+      },
+    );
+
+    logger.d('Verification response: ${response.toString()}');
+
+    if (response['status'] != 'success') {
+      final errorMsg = response['message'] ?? 'Verification failed';
+      logger.e('Verification failed: $errorMsg');
+      return Left(ServerFailure(message: errorMsg));
+    }
+
+    logger.i('User verification successful for: $email');
+    
+    // Handle null data case
+    if (response['data'] == null) {
+      // Return a UserEntity with just the email if no data is provided
+      return Right(UserEntity(
+        email: email,
+        // Add other required fields with default values
+        
+        name: '', uId: '',
+        // ... other required fields
+      ));
+    }
+
+    // If data exists, parse it normally
+    final userData = response['data'] as Map<String, dynamic>;
+    final userEntity = UserModel.fromJson(userData).toEntity();
+    
+    return Right(userEntity);
+  } on DioException catch (e) {
+    logger.e('Dio error during verification: ${e.message}');
+    return Left(ServerFailure(message: 'Network error occurred'));
+  } catch (e, stackTrace) {
+    logger.e('Unexpected verification error', error: e, stackTrace: stackTrace);
+    return Left(ServerFailure(message: 'An unexpected error occurred'));
+  }
+}
   @override
   Future<Either<Failure, void>> addUserData({
     required UserEntity user,

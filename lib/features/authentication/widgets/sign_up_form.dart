@@ -6,6 +6,8 @@ import 'package:smart_event_planner/core/cubits/signup_cubit/signup_state.dart';
 import 'package:smart_event_planner/core/success_dialog/success_dialog.dart';
 import 'package:smart_event_planner/core/widgets/custom_text_field.dart';
 import 'package:smart_event_planner/core/widgets/error_bar.dart';
+import 'package:smart_event_planner/features/authentication/otp_werificatioin_screen.dart';
+
 import 'package:smart_event_planner/features/authentication/widgets/privacy_plicy_check_box.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -32,22 +34,32 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return BlocListener<SignupCubit, SignupState>(
-      listener: (context, state) {
-        if (state is SignupFailure) {
-          buildErrorBar(context, state.message);
-        } else if (state is SignupSuccess) {
-          // Navigator.pushNamed(context, Routes.hobbyScreen);
-          showSuccessDialog(
-              context: context,
-              title: 'Account Created Successfully',
-              message:
-                  'An Email has been sent to \n${state.userEntity.email}\n\nPlease verify your account',
-              buttonText: 'Continue',
-              onPressed: () {});
-        }
-      },
+Widget build(BuildContext context) {
+  return BlocListener<SignupCubit, SignupState>(
+    listener: (context, state) {
+      if (state is SignupFailure) {
+        buildErrorBar(context, state.message);
+      } else if (state is SignupSuccess) {
+        showSuccessDialog(
+          context: context,
+          title: 'Account Created Successfully',
+          message: 'An Email has been sent to \n${state.userEntity.email}\n\nPlease verify your account',
+          buttonText: 'Continue',
+          onPressed: () {
+            // Navigate to OTP verification screen with the user's email
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OtpVerificationScreen(
+                  email: state.userEntity.email,
+                  
+                ),
+              ),
+            );
+          },
+        );
+      }
+    },
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.white,

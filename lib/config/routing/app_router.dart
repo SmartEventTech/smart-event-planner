@@ -4,6 +4,7 @@ import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/core/cubits/signin_cubit/signin_cubit.dart';
 import 'package:smart_event_planner/core/cubits/signup_cubit/signup_cubit.dart';
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo.dart';
+import 'package:smart_event_planner/features/authentication/otp_werificatioin_screen.dart';
 import 'package:smart_event_planner/features/hobbiesScreen/hobby_screen.dart';
 import 'package:smart_event_planner/features/authentication/login_screen.dart';
 import 'package:smart_event_planner/features/authentication/signup_screen.dart';
@@ -38,6 +39,8 @@ class AppRouter {
                   ),
                   child: const SignupScreen(),
                 ));
+
+        
       case Routes.hobbyScreen:
         return MaterialPageRoute(builder: (_) => const HobbyScreen());
       case Routes.navigationScreen:
