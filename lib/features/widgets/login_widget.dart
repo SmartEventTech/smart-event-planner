@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
+import 'package:smart_event_planner/core/widgets/custom_text_field.dart';
 
-Widget buildLoginBackground() {
-  return Stack(
-    children: [
-      Positioned(
-        top: 0,
-        right: 0,
-        left: 0,
-        child: Image.asset(
-          'assets/images/login.png',
-          fit: BoxFit.fill,
+
+
+class LoginBackGround extends StatelessWidget {
+  const LoginBackGround({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          top: 0,
+          right: 0,
+          left: 0,
+          child: Image.asset(
+            'assets/images/login.png',
+            fit: BoxFit.fill,
+          ),
         ),
-      ),
-      Positioned(
-        top: 0,
-        right: 0,
-        left: 0,
-        child: Image.asset(
-          'assets/images/Opacitylogin.png',
-          fit: BoxFit.fill,
+        Positioned(
+          top: 0,
+          right: 0,
+          left: 0,
+          child: Image.asset(
+            'assets/images/Opacitylogin.png',
+            fit: BoxFit.fill,
+          ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }
 
 Widget buildLoginForm(BuildContext context) {
@@ -32,7 +42,7 @@ Widget buildLoginForm(BuildContext context) {
     left: 0,
     right: 0,
     child: Container(
-      height: MediaQuery.of(context).size.height * 0.79,
+      height: MediaQuery.of(context).size.height * 0.73,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -47,12 +57,11 @@ Widget buildLoginForm(BuildContext context) {
             children: [
               Image.asset('assets/logos/appLogo.png', width: 140),
               const SizedBox(height: 40),
-              buildTextField(label: 'E-mail', hint: 'Enter your email'),
+              CustomTextField(label:  'Email'
+              , hint: 'Enter your email'
+              ),
               const SizedBox(height: 15),
-              buildTextField(
-                  label: 'Password',
-                  hint: 'Enter your password',
-                  isPassword: true),
+              CustomTextField(label: 'Password', hint: 'Enter your password', isPassword: true),
               const SizedBox(height: 15),
               buildLoginButton(context),
               const SizedBox(height: 25),
@@ -70,39 +79,17 @@ Widget buildLoginForm(BuildContext context) {
 }
 
 Widget buildTextField(
-    {required String label, required String hint, bool isPassword = false}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Text(label,
-            style: const TextStyle(
-              fontSize: 12,
-                fontWeight: FontWeight.bold, color: Colors.black)),
-      ),
-      const SizedBox(height: 5),
-      TextField(
-        obscureText: isPassword,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(color: Colors.grey),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(color: Colors.grey),
-          ),
-          filled: true,
-          fillColor: Colors.white,
-          hintText: hint,
-          hintStyle: const TextStyle(color: Colors.grey),
-        ),
-      ),
-    ],
+    {required String label, required String hint, bool isPassword = false,
+    FocusNode? focusNode}) {
+  return CustomTextField(
+    label: label,
+    hint: hint,
+    isPassword: isPassword,
+    
   );
 }
+
+
 
 Widget buildLoginButton(BuildContext context) {
   return ElevatedButton(
