@@ -38,12 +38,9 @@ class HomeScreenBody extends StatelessWidget {
                   SectionHeading(
                     title: 'Events you might like',
                     btnTitle: 'View All',
-                    onPressed: () async {
-                      //await TestApi().getEvents();
-                      //await TestApi().chattest(message: 'ازيك عامل اي ؟ ');
-                    },
+                    onPressed: () async {},
                   ),
-                  const SizedBox(height: AppSizes.spaceBtwItem),
+                  const SizedBox(height: AppSizes.spaceBtwItem / 2),
                 ],
               ),
             ),
