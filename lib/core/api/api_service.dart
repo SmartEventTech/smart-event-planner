@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:smart_event_planner/core/api/api_client.dart';
 import 'package:smart_event_planner/core/api/api_error.dart';
@@ -22,16 +21,9 @@ class ApiServices {
     );
 
     return response.fold((error) {
-      debugPrint('=================');
-      debugPrint('error');
-      debugPrint('=================');
       return Left(error);
     }, (response) {
-      _storage.write(key: 'token', value: response.data['data']['accessToken']);
-      debugPrint('=================');
-      debugPrint('success');
-      debugPrint('=================');
-
+      _storage.write(key: 'access_token', value: response.data['data']['accessToken']);
       return const Right(null);
     });
   }
@@ -48,7 +40,7 @@ class ApiServices {
     return response.fold((error) {
       return Left(error);
     }, (response) {
-      _storage.write(key: 'token', value: response.data['data']['accessToken']);
+      _storage.write(key: 'access_token', value: response.data['data']['accessToken']);
       return const Right(null);
     });
   }
