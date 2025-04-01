@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 
 extension NavigationExtension on BuildContext {
+  void pushPage(Widget page, {Object? arguments}) => Navigator.push(
+        this,
+        MaterialPageRoute(
+            builder: (_) => page,
+            settings: RouteSettings(arguments: arguments)),
+      );
 
-  void pushPage(String routeName) => Navigator.pushNamed(this, routeName);
-  void pushPageAndRemoveAll(String routeName, {dynamic arguments}) => Navigator.pushNamedAndRemoveUntil(this, routeName, (route) => false,arguments: arguments);
-  
-  void pushReplacement(Widget screen) => Navigator.pushReplacement(this, MaterialPageRoute(builder: (context) => screen));
-  void pushAndRemoveAll(Widget screen) => Navigator.pushAndRemoveUntil(this, MaterialPageRoute(builder: (context) => screen), (route) => false); // fasle => mean remove all another screens
+  void pushNamedPage(String route, {Object? arguments}) =>
+      Navigator.pushNamed(this, route, arguments: arguments);
+  void pushReplacementNamedPage(String route) =>
+      Navigator.pushReplacementNamed(this, route);
+  void pushNamedAndRemoveUntilPage(String route, {Object? arguments}) =>
+      Navigator.pushNamedAndRemoveUntil(
+          this, route, arguments: arguments, (route) => false);
+  void pushNamedAndRemoveUntilPageSaveStack(String route) =>
+      Navigator.pushNamedAndRemoveUntil(this, route, (route) => true);
 
-  void pop() => Navigator.pop(this);
+  void popPage() => Navigator.pop(this);
 }

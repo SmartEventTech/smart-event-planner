@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:smart_event_planner/core/entities/user_entity.dart';
 import 'package:smart_event_planner/core/errors/failures.dart';
 
-
 abstract class AuthRepo {
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword({
     required String email,
@@ -19,8 +18,6 @@ abstract class AuthRepo {
     required String email,
     required String verificationCode,
   });
-  // auth_repo.dart
-
 
   Future<Either<Failure, void>> addUserData({
     required UserEntity user,

@@ -12,9 +12,7 @@ class SliverAppBarBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
-      color: isDark
-          ? AppColors.darkSliverAppBarColor
-          : AppColors.white,
+      color: isDark ? AppColors.darkSliverAppBarColor : AppColors.white,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppSizes.defaultScreenPadding,
@@ -23,15 +21,15 @@ class SliverAppBarBody extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: AppSizes.spaceBtwItem),
+            SizedBox(height: AppSizes.spaceBtwItems),
             CreateEventSection(),
-            SizedBox(height: AppSizes.spaceBtwItem / 2),
+            SizedBox(height: AppSizes.spaceBtwItems / 2),
             SectionHeading(
               title: 'Interests',
               btnTitle: 'View All',
               onPressed: () {},
             ),
-            SizedBox(height: AppSizes.spaceBtwItem / 2),
+            SizedBox(height: AppSizes.spaceBtwItems / 2),
             InterestsSection(),
           ],
         ),

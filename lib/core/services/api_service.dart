@@ -47,6 +47,7 @@ class ApiService {
   Future<Map<String, dynamic>> post({
     required String endpoint,
     required Map<String, dynamic> data,
+    String? baseUrl,
   }) async {
     try {
       final connectivityResult = await connectivity.checkConnectivity();
@@ -55,6 +56,8 @@ class ApiService {
         throw ServerException('No internet connection');
       }
 
+      dio.options.baseUrl = baseUrl ?? dio.options.baseUrl;
+
       final response = await dio.post(endpoint, data: data);
       return response.data as Map<String, dynamic>;
     } on DioException catch (e) {
@@ -62,14 +65,14 @@ class ApiService {
     }
   }
 
-Future<Map<String, dynamic>> delete({
-  required String endpoint,
-}) async {
-  try {
-    final response = await dio.delete(endpoint);
-    return response.data as Map<String, dynamic>; // Return the response
-  } on DioException catch (e) {
-    throw ServerException.fromDioError(e);
+  Future<Map<String, dynamic>> delete({
+    required String endpoint,
+  }) async {
+    try {
+      final response = await dio.delete(endpoint);
+      return response.data as Map<String, dynamic>; // Return the response
+    } on DioException catch (e) {
+      throw ServerException.fromDioError(e);
+    }
   }
-}
 }

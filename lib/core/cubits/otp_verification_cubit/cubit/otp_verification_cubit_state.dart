@@ -1,8 +1,4 @@
-// otp_verification_state.dart
-
-
 import 'package:equatable/equatable.dart';
-import 'package:smart_event_planner/core/entities/user_entity.dart';
 
 abstract class OtpVerificationState extends Equatable {
   const OtpVerificationState(); 
@@ -16,7 +12,7 @@ class OtpVerificationInitial extends OtpVerificationState {}
 class OtpVerificationLoading extends OtpVerificationState {}
 
 class OtpVerificationSuccess extends OtpVerificationState {
-  final UserEntity user;
+  final String user;
 
   const OtpVerificationSuccess(this.user);
 

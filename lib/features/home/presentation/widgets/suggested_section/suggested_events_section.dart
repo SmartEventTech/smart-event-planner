@@ -11,7 +11,7 @@ class SuggestedEventsSection extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) => Padding(
           padding: const EdgeInsets.only(
-            bottom: AppSizes.spaceBtwItem,
+            bottom: AppSizes.spaceBtwItems,
             right: AppSizes.defaultScreenPadding,
             left: AppSizes.defaultScreenPadding,
           ),

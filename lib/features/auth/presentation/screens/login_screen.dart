@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
                   getIt.get<SignInCubit>()..getStorageEmailAndPassword(),
               child: LoginForm(),
             ),
-            const SizedBox(height: AppSizes.spaceBtwSection),
+            const SizedBox(height: AppSizes.spaceBtwSections),
             const TFormDivider(dividerText: 'or Sign in with'),
             const SizedBox(height: 32.0),
             // Footer

@@ -85,12 +85,16 @@ class ErrorHandler {
     switch (code) {
       case 400:
         return ValidationError(message, details: data);
+      case 404:
+        if (response.data is Map<String, dynamic> &&
+            response.data.containsKey('message')) {
+          return ValidationError(message, details: data);
+        }
+        return NetworkError('Resource not found', details: data);
       case 401:
         return NetworkError('Unauthorized', details: data);
       case 403:
         return NetworkError('Forbidden', details: data);
-      case 404:
-        return NetworkError('Resource not found', details: data);
       case 500:
         return ServerError('Internal server error',
             statusCode: code, details: data);

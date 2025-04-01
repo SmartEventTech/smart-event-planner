@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
-import 'package:smart_event_planner/features/auth/presentation/otp_werificatioin_screen.dart';
+import 'package:smart_event_planner/features/auth/presentation/cubits/forget_password/reset_password_cubit.dart';
+import 'package:smart_event_planner/features/auth/presentation/screens/forget_password_screen.dart';
+import 'package:smart_event_planner/features/auth/presentation/screens/otp_screen.dart';
+import 'package:smart_event_planner/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:smart_event_planner/features/chat_bot/screens/chat_bot_screen.dart';
 import 'package:smart_event_planner/features/hobbiesScreen/hobby_screen.dart';
 import 'package:smart_event_planner/features/auth/presentation/screens/login_screen.dart';
@@ -27,15 +31,19 @@ class AppRouter {
     Routes.scheduleScreen: (_) => ScheduleScreen(),
     Routes.createEventScreen: (_) => CreateEventScreen(),
     Routes.chatBotScreen: (_) => ChatBotScreen(),
-    Routes.otpVerificationScreen: (_) => OtpVerificationScreen(),
+    Routes.otpVerificationScreen: (_) => OtpScreen(),
+    Routes.resetPasswordScreen: (_) => BlocProvider(
+          create: (context) => ResetPasswordCubit(),
+          child: ResetPasswordScreen(),
+        ),
+    Routes.forgetPasswordScreen: (_) => BlocProvider(
+          create: (context) => ResetPasswordCubit(),
+          child: ForgetPasswordScreen(),
+        ),
   };
 
-   Route<dynamic>? generateRoute(RouteSettings settings) {
-    final Uri uri = Uri.parse(settings.name ?? '');
-    final path =
-        (uri.pathSegments.isNotEmpty) ? '/${uri.pathSegments[0]}' : uri.path;
-
-    final pageBuilder = _routes[path];
+  Route<dynamic>? generateRoute(RouteSettings settings) {
+    final pageBuilder = _routes[settings.name];
 
     if (pageBuilder != null) {
       return MaterialPageRoute(builder: pageBuilder, settings: settings);

@@ -87,7 +87,7 @@ class CalenderSectionState extends State<CalenderSection> {
               _focusedDay = focusedDay; // update focused day
             },
           ),
-          const SizedBox(height: AppSizes.spaceBtwSection),
+          const SizedBox(height: AppSizes.spaceBtwSections),
           FittedBox(
             child: Text(
               _focusedDay.toFormattedFullDate(),

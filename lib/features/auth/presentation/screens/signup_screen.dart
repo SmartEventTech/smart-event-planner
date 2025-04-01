@@ -29,7 +29,7 @@ class SignupScreen extends StatelessWidget {
               const SizedBox(height: 40),
               // Login Form
               SignupForm(),
-              SizedBox(height: AppSizes.spaceBtwSection),
+              SizedBox(height: AppSizes.spaceBtwSections),
               // Divider
               TFormDivider(dividerText: 'or Sign in with'),
               SizedBox(height: 32.0),

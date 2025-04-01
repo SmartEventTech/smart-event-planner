@@ -21,7 +21,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: GestureDetector(
-          onTap: () => context.pop(),
+          onTap: () => context.popPage(),
           child: Icon(
             Icons.arrow_back_ios_new,
           ),

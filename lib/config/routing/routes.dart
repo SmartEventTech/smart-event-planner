@@ -13,4 +13,8 @@ class Routes {
   static const String createEventScreen = '/createEventScreen';
   static const String otpVerificationScreen = '/otpVerificationScreen';
   static const String chatBotScreen = '/chatBotScreen';
+
+  static const String resetPasswordScreen = '/resetPasswordScreen';
+  static const String forgetPasswordScreen = '/forgetPasswordScreen';
+  static const String successScreen = '/successScreen';
 }

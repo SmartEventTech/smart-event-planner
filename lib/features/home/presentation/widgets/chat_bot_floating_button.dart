@@ -18,7 +18,7 @@ class ChatBotFloatingActionButton extends StatelessWidget {
       child: FloatingActionButton(
         backgroundColor: Colors.transparent,
         onPressed: () {
-          context.pushPage(Routes.chatBotScreen);
+          context.pushNamedPage(Routes.chatBotScreen);
         },
         shape: CircleBorder(),
         child: Center(child: SvgPicture.asset(AppImages.chatBotIcon)),

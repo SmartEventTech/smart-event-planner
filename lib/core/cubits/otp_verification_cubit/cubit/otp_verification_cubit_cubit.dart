@@ -1,30 +1,47 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_event_planner/core/api/api_client.dart';
+import 'package:smart_event_planner/core/api/api_service.dart';
 import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp_verification_cubit_state.dart';
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo.dart';
 
 class OtpVerificationCubit extends Cubit<OtpVerificationState> {
   final AuthRepo authRepo;
   final String email;
+  final ApiServices apiService = ApiServices(ApiClient());
 
   OtpVerificationCubit({
     required this.authRepo,
     required this.email,
   }) : super(OtpVerificationInitial());
 
-  Future<void> verifyOtp(String verificationCode) async {
+  Future<void> verifyOtp(String verificationCode, {bool reset = false}) async {
     emit(OtpVerificationLoading());
     try {
-      final result = await authRepo.verifyUser(
-        email: email,
-        verificationCode: verificationCode, 
-      );
+      final Either<dynamic, dynamic> result;
+      if (!reset) {
+        result = await authRepo.verifyUser(
+          email: email,
+          verificationCode: verificationCode,
+        );
+      } else {
+        final confirmCode = int.tryParse(verificationCode.trim()) ?? 0;
+
+        result = await apiService.verifyResetPassword(
+          email: email,
+          verificationCode: confirmCode,
+        );
+      }
 
       result.fold(
         (failure) => emit(OtpVerificationFailure(failure.message)),
-        (user) => emit(OtpVerificationSuccess(user)),
+        (user) => emit(OtpVerificationSuccess('Verification successful')),
       );
     } catch (e) {
-      emit(OtpVerificationFailure('An unexpected error occurred. Please try again.'));
+      emit(OtpVerificationFailure(
+          'An unexpected error occurred. Please try again.'));
     }
   }
+
+  Future<void> resendOtp(String email, {bool reset = false}) async {}
 }

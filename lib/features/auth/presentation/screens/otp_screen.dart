@@ -3,17 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:smart_event_planner/core/constants/app_images.dart';
+import 'package:smart_event_planner/core/constants/text_strings.dart';
 import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp_verification_cubit_cubit.dart';
 import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp_verification_cubit_state.dart';
+import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
+import 'package:smart_event_planner/core/widgets/success_pages/success_page.dart'
+    show SuccessPage;
 
-class OtpVerificationScreen extends StatefulWidget {
-  const OtpVerificationScreen({super.key});
+class OtpScreen extends StatefulWidget {
+  const OtpScreen({super.key, this.reset});
+  final bool? reset;
 
   @override
-  State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
+  State<OtpScreen> createState() => _OtpScreenState();
 }
 
-class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+class _OtpScreenState extends State<OtpScreen> {
   final formKey = GlobalKey<FormState>();
   final pinController = TextEditingController();
   final focusNode = FocusNode();
@@ -27,12 +35,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final email = ModalRoute.of(context)?.settings.arguments as String;
-
+    final email = ModalRoute.of(context)?.settings.arguments as String?;
     return BlocProvider(
       create: (context) => OtpVerificationCubit(
         authRepo: context.read(),
-        email: email,
+        email: email ?? '',
       ),
       child: Scaffold(
         body: Center(
@@ -41,21 +48,25 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
             child: BlocConsumer<OtpVerificationCubit, OtpVerificationState>(
               listener: (context, state) {
                 if (state is OtpVerificationSuccess) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      backgroundColor: Colors.green,
-                      content: Text('Account verified successfully'),
-                    ),
-                  );
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, Routes.hobbyScreen, (route) => false);
+                  if (widget.reset == true) {
+                    context.pushNamedPage(Routes.resetPasswordScreen,
+                        arguments: email);
+                  } else {
+                    AppContext.context.pushPage(
+                      SuccessPage(
+                        title: TTexts.yourAccountCreatedTitle,
+                        subtitle: TTexts.yourAccountCreatedSubTitle,
+                        image: AppImages.successfullRegisterAnimation,
+                        onPressed: () {
+                          context.pushNamedAndRemoveUntilPage(
+                            Routes.navigationScreen,
+                          );
+                        },
+                      ),
+                    );
+                  }
                 } else if (state is OtpVerificationFailure) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: Colors.red,
-                      content: Text(state.message),
-                    ),
-                  );
+                  Loaders.errorSnackBar(title: 'Error', message: state.message);
                 }
               },
               builder: (context, state) {
@@ -102,7 +113,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         },
                         onCompleted: (pin) {
                           if (formKey.currentState!.validate()) {
-                            context.read<OtpVerificationCubit>().verifyOtp(pin);
+                            context.read<OtpVerificationCubit>().verifyOtp(
+                                  pin,
+                                  reset: widget.reset ?? false,
+                                );
                           }
                         },
                         cursor: Column(
@@ -143,22 +157,44 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       ),
                       const SizedBox(height: 30),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
+                        width: MediaQuery.of(context).size.width * 0.45,
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             focusNode.unfocus();
                             if (formKey.currentState!.validate()) {
-                              context
+                              await context
                                   .read<OtpVerificationCubit>()
-                                  .verifyOtp(pinController.text);
+                                  .verifyOtp(
+                                    pinController.text,
+                                    reset: widget.reset ?? false,
+                                  );
                             }
                           },
                           child: state is OtpVerificationLoading
-                              ? const CircularProgressIndicator()
+                              ? Center(
+                                  child: SizedBox(
+                                    width: 22,
+                                    height: 22,
+                                    child: FittedBox(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                )
                               : const Text(
                                   'Verify',
                                   style: TextStyle(color: Colors.white),
                                 ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: TextButton(
+                          child: const Text('Resend OTP'),
+                          onPressed: () => context
+                              .read<OtpVerificationCubit>()
+                              .resendOtp(email ?? '',
+                                  reset: widget.reset ?? false),
                         ),
                       ),
                     ],

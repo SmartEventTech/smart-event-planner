@@ -88,13 +88,13 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
         _buildSectionTitle('Event Photo'),
         _buildPhotoUploadSection(screenSize),
         const SizedBox(
-          height: AppSizes.spaceBtwSection,
+          height: AppSizes.spaceBtwSections,
         ),
         SizedBox(
             width: double.infinity,
             child: CustomElevetedBtn(
               title: 'Create Event',
-              color: AppColors.secondaryColor ,
+              color: AppColors.secondaryColor,
               textColor: Colors.white,
             ))
       ],

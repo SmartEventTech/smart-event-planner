@@ -6,7 +6,7 @@ class PasswordAndSelectionCubit extends Cubit<PasswordAndSelectionState> {
       : super(PasswordAndSelectionState(
           isPasswordHidden: true,
           isPrivacyAccepted: false,
-          isRememberMe: false,
+          isRememberMe: true,
           isConfirmPasswordHidden: true,
         ));
 

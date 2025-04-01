@@ -1,5 +1,5 @@
 class AppImages {
-  AppImages._();
+  const AppImages._();
   // --Logos--
   // -- Social Logos
   static const String google = "assets/logos/google-icon.png";
@@ -25,6 +25,12 @@ class AppImages {
       'assets/images/animations/72785-searching.json';
   static const String paymentSuccessfulAnimation =
       'assets/images/animations/120978-payment-successful.json';
+
+  static const String successfullRegisterAnimation =
+      "assets/images/animations/72462-check-register.json";
+
+  static const String deliveredEmailIllustration =
+      "assets/images/animations/sammy-line-man-receives-a-mail.png";
 
   // --User--
   static const String userAvatar = 'assets/images/user/user-avatar.png';

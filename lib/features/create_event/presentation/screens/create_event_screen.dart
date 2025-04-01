@@ -42,7 +42,7 @@ class CreateEvent extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: AppSizes.spaceBtwItem * 2),
+                  const SizedBox(height: AppSizes.spaceBtwItems * 2),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSizes.defaultScreenPadding,

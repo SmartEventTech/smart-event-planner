@@ -45,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: AppSizes.spaceBtwItem * 2),
+                  const SizedBox(height: AppSizes.spaceBtwItems * 2),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSizes.defaultScreenPadding,
@@ -64,14 +64,16 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: AppSizes.spaceBtwSection),
+                  SizedBox(height: AppSizes.spaceBtwSections),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Divider(height: 3, color: const Color.fromARGB(255, 195, 191, 191)),
+                    child: Divider(
+                        height: 3,
+                        color: const Color.fromARGB(255, 195, 191, 191)),
                   ),
                   SizedBox(height: AppSizes.md),
                   ProfileTabBar(),
-                  SizedBox(height: AppSizes.spaceBtwSection),
+                  SizedBox(height: AppSizes.spaceBtwSections),
                 ],
               ),
             ),

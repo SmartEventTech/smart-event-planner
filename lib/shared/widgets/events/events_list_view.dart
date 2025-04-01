@@ -16,7 +16,7 @@ class EventsListView extends StatelessWidget {
       physics: physics,
       itemBuilder: (context, index) => EventCard(editCard: editCard),
       separatorBuilder: (context, index) =>
-          const SizedBox(height: AppSizes.spaceBtwItem),
+          const SizedBox(height: AppSizes.spaceBtwItems),
     );
   }
 }

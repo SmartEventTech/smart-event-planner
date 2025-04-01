@@ -41,9 +41,9 @@ class LoginForm extends StatelessWidget {
               const SizedBox(height: AppSizes.spaceBtwTextField / 2),
               // Remember Me & Forget Password
               _rememberMeAndForgetPassword(context),
-              const SizedBox(height: AppSizes.spaceBtwSection),
+              const SizedBox(height: AppSizes.spaceBtwSections),
               _signIn(context),
-              const SizedBox(height: AppSizes.spaceBtwItem),
+              const SizedBox(height: AppSizes.spaceBtwItems),
               _createAccount(context),
             ],
           ),
@@ -86,14 +86,7 @@ class LoginForm extends StatelessWidget {
           ],
         ),
         TextButton(
-          onPressed: () {
-            // context.push(
-            //   BlocProvider(
-            //     create: (context) => ResetPasswordCubit(),
-            //     child: const ForgetPasswordPage(),
-            //   ),
-            // );
-          },
+          onPressed: () => context.pushNamedPage(Routes.forgetPasswordScreen),
           child: const Text(
             'Forget Password',
             style: TextStyle(
@@ -146,7 +139,7 @@ class LoginForm extends StatelessWidget {
       child: OutlinedButton(
         onPressed: () {
           // Navigate to Sign Up screen
-          context.pushPage(Routes.signupScreen);
+          context.pushNamedPage(Routes.signupScreen);
         },
         child: const Text('Create Account'),
       ),
@@ -154,6 +147,6 @@ class LoginForm extends StatelessWidget {
   }
 
   _navigateToMenuPage(BuildContext context) {
-    context.pushPageAndRemoveAll(Routes.navigationScreen);
+    context.pushNamedAndRemoveUntilPage(Routes.navigationScreen);
   }
 }

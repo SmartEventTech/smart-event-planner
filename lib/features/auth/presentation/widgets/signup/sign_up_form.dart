@@ -120,6 +120,10 @@ class SignupForm extends StatelessWidget {
               title: 'Congratulations',
               message: state.message,
             );
+            Loaders.successSnackBar(
+              title: 'Verify your email',
+              message: 'Please check your email to verify your account',
+            );
           }
         },
         child: Builder(builder: (context) {
@@ -139,7 +143,7 @@ class SignupForm extends StatelessWidget {
   }
 
   void _navigateToVerifyEmail(BuildContext context, email) {
-    context.pushPageAndRemoveAll(Routes.otpVerificationScreen,
+    context.pushNamedAndRemoveUntilPage(Routes.otpVerificationScreen,
         arguments: email);
   }
 }

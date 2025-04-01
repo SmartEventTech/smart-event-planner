@@ -4,6 +4,9 @@ class AppSizes {
   static const double buttonRadius = 20.0;
   static const double textFieldRadius = 22.0;
 
+  // AppBar height
+  static const double appBarHeight = 56.0;
+
   static const double defaultPadding = 14;
   static const double defaultBorderRadius = 20;
 
@@ -23,8 +26,8 @@ class AppSizes {
   static const double verticalscreenPadding = 16.0;
   static const double horizontalScreenPadding = 16.0;
 
-  static const double spaceBtwSection = 24.0;
-  static const double spaceBtwItem = 16.0;
+  static const double spaceBtwSections = 24.0;
+  static const double spaceBtwItems = 16.0;
 
   static const double spaceBtwTextField = 16.0;
   static const double spaceBtwLogoAndItem = 12.0;

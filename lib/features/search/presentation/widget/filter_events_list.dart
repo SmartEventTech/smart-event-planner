@@ -13,7 +13,7 @@ class FilterEventsList extends StatelessWidget {
         itemCount: 6,
         itemBuilder: (context, index) => EventCard(),
         separatorBuilder: (context, index) =>
-            const SizedBox(height: AppSizes.spaceBtwItem),
+            const SizedBox(height: AppSizes.spaceBtwItems),
       ),
     );
   }

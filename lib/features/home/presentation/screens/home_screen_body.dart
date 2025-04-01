@@ -25,28 +25,28 @@ class HomeScreenBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  SizedBox(height: AppSizes.spaceBtwItem),
+                  SizedBox(height: AppSizes.spaceBtwItems),
                   CreateEventSection(),
-                  SizedBox(height: AppSizes.spaceBtwItem / 2),
+                  SizedBox(height: AppSizes.spaceBtwItems / 2),
                   SectionHeading(
                     title: 'Interests',
                     btnTitle: 'View All',
                     onPressed: () async {},
                   ),
-                  SizedBox(height: AppSizes.spaceBtwItem / 2),
+                  SizedBox(height: AppSizes.spaceBtwItems / 2),
                   InterestsSection(),
                   SectionHeading(
                     title: 'Events you might like',
                     btnTitle: 'View All',
                     onPressed: () async {},
                   ),
-                  const SizedBox(height: AppSizes.spaceBtwItem / 2),
+                  const SizedBox(height: AppSizes.spaceBtwItems / 2),
                 ],
               ),
             ),
             SuggestedEventsListView(),
             SliverToBoxAdapter(
-              child: const SizedBox(height: AppSizes.spaceBtwItem),
+              child: const SizedBox(height: AppSizes.spaceBtwItems),
             ),
           ],
         ),
