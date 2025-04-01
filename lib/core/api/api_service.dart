@@ -98,7 +98,17 @@ class ApiServices {
   }
 
   /// Logout
-  Future<void> logout() async {
-    await _storage.delete(key: 'access_token');
+  Future<Either<ApiError, void>> logout() async {
+    final response = await apiClient.request(
+      path: 'ce6e.up.railway.app/api/auth/logout',
+      method: 'GET',
+    );
+
+    return response.fold((error) {
+      return Left(error);
+    }, (response) async {
+      await _storage.delete(key: 'access_token');
+      return const Right(null);
+    });
   }
 }

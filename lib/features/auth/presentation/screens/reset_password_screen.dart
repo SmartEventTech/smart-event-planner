@@ -37,8 +37,12 @@ class ResetPasswordScreen extends StatelessWidget {
                     'Reset Password',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  const SizedBox(height: AppSizes.spaceBtwSections),
-                  _emailField(context),
+                  const SizedBox(height: AppSizes.spaceBtwItems),
+                  Text(
+                    'Please enter your new password for\n$email', 
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  // _emailField(context),
                   const SizedBox(height: AppSizes.spaceBtwSections),
                   PasswordField(
                     controller:
