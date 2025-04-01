@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
-import 'package:smart_event_planner/features/auth/presentation/otp_verificatioin_screen.dart';
+import 'package:smart_event_planner/features/auth/presentation/otp_werificatioin_screen.dart';
 import 'package:smart_event_planner/features/chat_bot/screens/chat_bot_screen.dart';
 import 'package:smart_event_planner/features/hobbiesScreen/hobby_screen.dart';
 import 'package:smart_event_planner/features/auth/presentation/screens/login_screen.dart';

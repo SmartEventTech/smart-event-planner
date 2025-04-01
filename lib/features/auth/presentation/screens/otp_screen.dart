@@ -7,9 +7,7 @@ import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp
 import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp_verification_cubit_state.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
-  final String email;
-
-  const OtpVerificationScreen({super.key, required this.email});
+  const OtpVerificationScreen({super.key});
 
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
@@ -20,25 +18,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final pinController = TextEditingController();
   final focusNode = FocusNode();
 
-  // Styling for the OTP input fields
-  final defaultPinTheme = PinTheme(
-    width: 56,
-    height: 56,
-    textStyle: const TextStyle(
-      fontSize: 22,
-      color: Colors.black,
-    ),
-    decoration: BoxDecoration(
-      color: Colors.grey.shade200,
-      borderRadius: BorderRadius.circular(8),
-      border: Border.all(color: Colors.transparent),
-    ),
-  );
-
-  // Colors
-  final focusedBorderColor = AppColors.primaryColor;
-  final fillColor = Colors.grey.shade100;
-
   @override
   void dispose() {
     pinController.dispose();
@@ -48,50 +27,72 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final email = ModalRoute.of(context)?.settings.arguments as String;
+
     return BlocProvider(
       create: (context) => OtpVerificationCubit(
         authRepo: context.read(),
-        email: widget.email,
+        email: email,
       ),
       child: Scaffold(
-        body: BlocConsumer<OtpVerificationCubit, OtpVerificationState>(
-          listener: (context, state) {
-            if (state is OtpVerificationSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor: Colors.green,
-                content: Text('Account verified successfully'),
-              ));
-              Navigator.pushNamedAndRemoveUntil(context, Routes.hobbyScreen , (route) => false);
-            } else if (state is OtpVerificationFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.red,
-                  content: Text(state.message),
-                ),
-              );
-            }
-          },
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 250, left:55 , ),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Enter the OTP sent to\n ${widget.email}',
-                      style: const TextStyle(fontSize: 18),
-                      textAlign: TextAlign.center,
+        body: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: BlocConsumer<OtpVerificationCubit, OtpVerificationState>(
+              listener: (context, state) {
+                if (state is OtpVerificationSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: Colors.green,
+                      content: Text('Account verified successfully'),
                     ),
-                    const SizedBox(height: 30),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Pinput(
+                  );
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, Routes.hobbyScreen, (route) => false);
+                } else if (state is OtpVerificationFailure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(state.message),
+                    ),
+                  );
+                }
+              },
+              builder: (context, state) {
+                return Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.lock_outline,
+                        size: 80,
+                        color: AppColors.primaryColor,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Enter the OTP sent to\n$email',
+                        style: const TextStyle(fontSize: 18),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 30),
+                      Pinput(
                         length: 4,
                         controller: pinController,
                         focusNode: focusNode,
-                        defaultPinTheme: defaultPinTheme,
+                        defaultPinTheme: PinTheme(
+                          width: 56,
+                          height: 56,
+                          textStyle: const TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.transparent),
+                          ),
+                        ),
                         separatorBuilder: (index) => const SizedBox(width: 8),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -99,15 +100,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           }
                           return null;
                         },
-                        hapticFeedbackType: HapticFeedbackType.lightImpact,
                         onCompleted: (pin) {
-                          debugPrint('onCompleted: $pin');
                           if (formKey.currentState!.validate()) {
                             context.read<OtpVerificationCubit>().verifyOtp(pin);
                           }
-                        },
-                        onChanged: (value) {
-                          debugPrint('onChanged: $value');
                         },
                         cursor: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -116,38 +112,39 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                               margin: const EdgeInsets.only(bottom: 9),
                               width: 22,
                               height: 1,
-                              color: focusedBorderColor,
+                              color: AppColors.primaryColor,
                             ),
                           ],
                         ),
-                        focusedPinTheme: defaultPinTheme.copyWith(
-                          decoration: defaultPinTheme.decoration!.copyWith(
+                        focusedPinTheme: PinTheme(
+                          width: 56,
+                          height: 56,
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: focusedBorderColor),
+                            border: Border.all(color: AppColors.primaryColor),
                           ),
                         ),
-                        submittedPinTheme: defaultPinTheme.copyWith(
-                          decoration: defaultPinTheme.decoration!.copyWith(
-                            color: fillColor,
+                        submittedPinTheme: PinTheme(
+                          width: 56,
+                          height: 56,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
                             borderRadius: BorderRadius.circular(19),
-                            border: Border.all(color: focusedBorderColor),
+                            border: Border.all(color: AppColors.primaryColor),
                           ),
                         ),
-                        errorPinTheme: defaultPinTheme.copyWith(
-                          decoration: defaultPinTheme.decoration!.copyWith(
+                        errorPinTheme: PinTheme(
+                          width: 56,
+                          height: 56,
+                          decoration: BoxDecoration(
                             border: Border.all(color: Colors.redAccent),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 30),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Removed Resend OTP button since API doesn't support it
-                        const SizedBox(height: 20),
-
-                        ElevatedButton(
+                      const SizedBox(height: 30),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: ElevatedButton(
                           onPressed: () {
                             focusNode.unfocus();
                             if (formKey.currentState!.validate()) {
@@ -156,28 +153,20 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                   .verifyOtp(pinController.text);
                             }
                           },
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: const Size(200, 50),
-                            backgroundColor: AppColors.primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
                           child: state is OtpVerificationLoading
-                              ? const CircularProgressIndicator(
-                                  color: Colors.white)
+                              ? const CircularProgressIndicator()
                               : const Text(
                                   'Verify',
                                   style: TextStyle(color: Colors.white),
                                 ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );
