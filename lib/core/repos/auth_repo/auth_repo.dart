@@ -15,6 +15,13 @@ abstract class AuthRepo {
     required String password,
   });
 
+  Future<Either<Failure, UserEntity>> verifyUser({
+    required String email,
+    required String verificationCode,
+  });
+  // auth_repo.dart
+
+
   Future<Either<Failure, void>> addUserData({
     required UserEntity user,
   });
