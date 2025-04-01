@@ -33,6 +33,8 @@ void main() async {
   // Remove Splash Screen after initialization
   FlutterNativeSplash.remove();
 
+  await entry();
+
   runApp(
     DevicePreview(
       enabled: false,

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logger/logger.dart';
+import 'package:smart_event_planner/core/storage/secure_storage.dart';
 import 'package:smart_event_planner/core/theme/app_theme.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/config/routing/app_router.dart';
@@ -11,6 +12,8 @@ import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 import 'package:smart_event_planner/core/services/api_service.dart';
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo.dart';
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo_impl.dart';
+
+bool isLogin = false;
 
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
@@ -52,8 +55,17 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: const [Locale('en')],
         onGenerateRoute: (settings) => appRouter.generateRoute(settings),
-        initialRoute: Routes.splashScreen,
+        initialRoute: isLogin ? Routes.navigationScreen : Routes.splashScreen,
       ),
     );
+  }
+}
+
+Future<void> entry() async {
+  SecureStorage secureStorage = SecureStorage();
+  if (await secureStorage.getAccessToken() != null) {
+    isLogin = true;
+  } else {
+    isLogin = false;
   }
 }
