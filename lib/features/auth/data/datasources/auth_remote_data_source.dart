@@ -12,9 +12,11 @@ abstract class AuthRemoteDataSource {
   Future<Either<ApiError, void>> signup(SignupModel signupModel);
 
   // logout
+  Future<void> logout();
 
   // reset password
-  Future<Either<ApiError, void>> resetPassword(ResetPassworModel resetPassworModel);
+  Future<Either<ApiError, void>> resetPassword(
+      ResetPassworModel resetPassworModel);
 
   // forget password
   Future<Either<ApiError, void>> forgetPassword({required String email});
@@ -42,7 +44,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<ApiError, void>> resetPassword(ResetPassworModel resetPassworModel) async {
+  Future<Either<ApiError, void>> resetPassword(
+      ResetPassworModel resetPassworModel) async {
     return await apiService.restPassword(resetPassworModel: resetPassworModel);
+  }
+  
+  @override
+  Future<void> logout() async{
+    await apiService.logout();
   }
 }

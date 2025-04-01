@@ -5,16 +5,17 @@ import 'package:smart_event_planner/core/constants/app_text_style.dart';
 
 class CustomElevetedBtn extends StatelessWidget {
   const CustomElevetedBtn(
-      {super.key, required this.title, this.icon, this.color, this.textColor});
+      {super.key, required this.title, this.icon, this.color, this.textColor, this.onPressed});
   final String title;
   final IconData? icon;
   final Color? color;
   final Color ?textColor;
+  final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: TextButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: TextButton.styleFrom(
           backgroundColor: color,
           padding: const EdgeInsets.symmetric(vertical: 15),

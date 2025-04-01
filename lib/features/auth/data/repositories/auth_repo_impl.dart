@@ -16,8 +16,8 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<ApiError, void>> logout() async {
-    throw UnimplementedError();
+  Future<void> logout() async {
+    return await authRemoteDataSource.logout();
   }
 
   @override
@@ -31,9 +31,8 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<ApiError, void>> resetPassword({required ResetPassworModel resetPassworModel}) {
+  Future<Either<ApiError, void>> resetPassword(
+      {required ResetPassworModel resetPassworModel}) {
     return authRemoteDataSource.resetPassword(resetPassworModel);
   }
-
- 
 }

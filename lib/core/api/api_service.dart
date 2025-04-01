@@ -96,4 +96,9 @@ class ApiServices {
       return const Right(null);
     });
   }
+
+  /// Logout
+  Future<void> logout() async {
+    await _storage.delete(key: 'access_token');
+  }
 }

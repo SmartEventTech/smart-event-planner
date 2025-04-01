@@ -1,9 +1,13 @@
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_event_planner/config/routing/routes.dart';
+import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
 import 'package:smart_event_planner/features/profile/presentation/widgets/profile_tab_bar.dart';
 
 import 'package:smart_event_planner/shared/widgets/buttons/custom_eleveted_btn.dart';
@@ -60,6 +64,18 @@ class ProfileScreen extends StatelessWidget {
                         CustomElevetedBtn(
                           title: 'Edit Profile',
                           icon: Iconsax.edit,
+                          onPressed: () async {
+                            try {
+                              await getIt.get<AuthRepo>().logout();
+                              if (context.mounted) {
+                                context.pushNamedAndRemoveUntilPage(
+                                  Routes.loginScreen,
+                                );
+                              }
+                            } catch (e) {
+                              debugPrint(e.toString());
+                            }
+                          },
                         ),
                       ],
                     ),
