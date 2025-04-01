@@ -55,6 +55,9 @@ class SignupScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: kToolbarHeight,
               )
             ],
           ),

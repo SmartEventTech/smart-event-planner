@@ -14,7 +14,6 @@ import 'package:smart_event_planner/core/services/api_service.dart';
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo.dart';
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo_impl.dart';
 
-
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
 
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: const [Locale('en')],
-        onGenerateRoute: appRouter.generateRoute,
+        onGenerateRoute: (settings) => appRouter.generateRoute(settings),
         initialRoute: Routes.splashScreen,
       ),
     );

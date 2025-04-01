@@ -33,10 +33,16 @@ class PrivacyValidationErrorState extends SignupState {
   final String errorMessage;
 
   const PrivacyValidationErrorState(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
 }
 
 class PasswordValidationErrorState extends SignupState {
   final String errorMessage;
 
   const PasswordValidationErrorState(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
 }

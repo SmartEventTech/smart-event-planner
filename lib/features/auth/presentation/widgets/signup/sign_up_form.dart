@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_cubit.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
 import 'package:smart_event_planner/core/widgets/popups/full_screen_loader.dart';
 import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
 import 'package:smart_event_planner/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
@@ -110,10 +112,10 @@ class SignupForm extends StatelessWidget {
             );
           } else if (state is SignupSuccessState) {
             TFullScreenLoader.stopLoading();
-            // _navigateToVerifyEmail(
-            //   context,
-            //   context.read<SignupCubit>().emailController.text.trim(),
-            // );
+            _navigateToVerifyEmail(
+              context,
+              context.read<SignupCubit>().emailController.text.trim(),
+            );
             Loaders.successSnackBar(
               title: 'Congratulations',
               message: state.message,
@@ -136,9 +138,8 @@ class SignupForm extends StatelessWidget {
     );
   }
 
-  // void _navigateToVerifyEmail(BuildContext context, email) {
-  //   context.removeAll(
-  //     VerifyEmailPage(email: email),
-  //   );
-  // }
+  void _navigateToVerifyEmail(BuildContext context, email) {
+    context.pushPageAndRemoveAll(Routes.otpVerificationScreen,
+        arguments: email);
+  }
 }
