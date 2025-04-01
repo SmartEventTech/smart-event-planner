@@ -114,13 +114,24 @@ class Event extends StatelessWidget {
           fit: FlexFit.loose,
           child: Align(
             alignment: Alignment.centerLeft,
-            child: OutlinedButton(
-              onPressed: editCard ? onEditTap : seeMoreTap,
-              style: OutlinedButton.styleFrom(
-                padding: editCard ? EdgeInsets.symmetric(horizontal: 40) : null,
-              ),
-              child: FittedBox(child: Text(editCard ? 'Edit' : 'See More')),
-            ),
+            child: LayoutBuilder(builder: (context, constraints) {
+              return SizedBox(
+                width: constraints.maxWidth * 0.3,
+                child: OutlinedButton(
+                  onPressed: editCard ? onEditTap : seeMoreTap,
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: AppColors.white,
+                    //padding: editCard ? EdgeInsets.symmetric(horizontal: 40) : null,
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  ),
+                  child: FittedBox(
+                      child: Text(
+                    editCard ? 'Edit' : 'See More',
+                    style: TextStyle(color: AppColors.black),
+                  )),
+                ),
+              );
+            }),
           ),
         )
       ],

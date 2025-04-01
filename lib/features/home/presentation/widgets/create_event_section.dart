@@ -115,18 +115,29 @@ class CreateEventSectionState extends State<CreateEventSection> {
   }
 
   Widget _buildCreateButton() {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.secondaryColor,
-        side: const BorderSide(color: Colors.transparent),
-      ),
-      onPressed: () {
-        Navigator.of(context).pushNamed('/createEventScreen');
-      },
-      child: FittedBox(child: Text('Create now',style: TextStyle(
-        color: AppColors.shadowhiteColot
-      ),)),
-    );
+    return LayoutBuilder(builder: (context, constrains) {
+      return SizedBox(
+        width: constrains.maxWidth * 0.4,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.all(0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            backgroundColor: AppColors.secondaryColor,
+            side: const BorderSide(color: Colors.transparent),
+          ),
+          onPressed: () {
+            Navigator.of(context).pushNamed('/createEventScreen');
+          },
+          child: FittedBox(
+              child: Text(
+            'Create now',
+            style: TextStyle(color: AppColors.shadowhiteColot),
+          )),
+        ),
+      );
+    });
   }
 }
 

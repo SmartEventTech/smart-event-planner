@@ -77,7 +77,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       ),
                       const SizedBox(height: 30),
                       Pinput(
-                        
                         length: 4,
                         controller: pinController,
                         focusNode: focusNode,

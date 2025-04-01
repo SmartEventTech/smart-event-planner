@@ -3,7 +3,6 @@ import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/create_event_section.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/interested_section/interests_section.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/suggested_section/suggested_events_list_view.dart';
-import 'package:smart_event_planner/features/home/presentation/widgets/suggested_section/suggested_events_section.dart';
 import 'package:smart_event_planner/shared/widgets/sections/section_heading.dart';
 
 class HomeScreenBody extends StatelessWidget {
@@ -49,13 +48,6 @@ class HomeScreenBody extends StatelessWidget {
               ),
             ),
             SuggestedEventsListView(),
-            SliverToBoxAdapter(
-              child: const SizedBox(height: AppSizes.spaceBtwItem),
-            ),
-            SliverToBoxAdapter(
-              child: const SizedBox(height: AppSizes.spaceBtwItem),
-            ),
-            SuggestedEventsSection(),
             SliverToBoxAdapter(
               child: const SizedBox(height: AppSizes.spaceBtwItem),
             ),
