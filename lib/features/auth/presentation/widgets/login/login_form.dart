@@ -1,0 +1,184 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:smart_event_planner/config/routing/routes.dart';
+import 'package:smart_event_planner/core/constants/app_images.dart';
+import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_cubit.dart';
+import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_state.dart';
+import 'package:smart_event_planner/core/widgets/popups/full_screen_loader.dart'
+    show TFullScreenLoader;
+import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
+import 'package:smart_event_planner/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
+import 'package:smart_event_planner/features/auth/presentation/cubits/signin_cubit/signin_state.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:smart_event_planner/core/utils/validators/validation.dart';
+import 'package:smart_event_planner/core/widgets/checkbox/custom_checkbox.dart';
+import 'package:smart_event_planner/features/auth/presentation/widgets/password_field.dart';
+
+class LoginForm extends StatelessWidget {
+  const LoginForm({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => PasswordAndSelectionCubit(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.defaultScreenPadding,
+        ),
+        child: Form(
+          key: context.read<SignInCubit>().formKey,
+          child: Column(
+            children: [
+              _emailField(context),
+              const SizedBox(height: AppSizes.spaceBtwTextField),
+              PasswordField(
+                controller: context.read<SignInCubit>().passwordController,
+              ),
+              const SizedBox(height: AppSizes.spaceBtwTextField / 2),
+              // Remember Me & Forget Password
+              _rememberMeAndForgetPassword(context),
+              const SizedBox(height: AppSizes.spaceBtwSection),
+              _signIn(context),
+              const SizedBox(height: AppSizes.spaceBtwItem),
+              _createAccount(context),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  TextFormField _emailField(BuildContext context) {
+    return TextFormField(
+      controller: context.read<SignInCubit>().emailController,
+      validator: (value) => TValidator.validateEmail(value),
+      textInputAction: TextInputAction.next,
+      autofillHints: const [AutofillHints.email],
+      decoration: const InputDecoration(
+        labelText: 'Email',
+        prefixIcon: Icon(Iconsax.direct_right),
+      ),
+    );
+  }
+
+  Widget _rememberMeAndForgetPassword(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            BlocBuilder<PasswordAndSelectionCubit, PasswordAndSelectionState>(
+              builder: (context, state) {
+                return CustomCheckbox(
+                  value: state.isRememberMe,
+                  onChanged: (value) => context
+                      .read<PasswordAndSelectionCubit>()
+                      .toggleRememberMe(),
+                );
+              },
+            ),
+            const SizedBox(width: 5),
+            const Text('Remember me'),
+          ],
+        ),
+        TextButton(
+          onPressed: () {
+            // context.push(
+            //   BlocProvider(
+            //     create: (context) => ResetPasswordCubit(),
+            //     child: const ForgetPasswordPage(),
+            //   ),
+            // );
+          },
+          child: const Text(
+            'Forget Password',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _signIn(BuildContext context) {
+    return BlocConsumer<SignInCubit, SignInState>(
+      listener: (context, state) {
+        if (state is SignInFailure) {
+          TFullScreenLoader.stopLoading();
+          Loaders.errorSnackBar(title: 'Error', message: state.message);
+        } else if (state is SignInLoading) {
+          TFullScreenLoader.openLoadingDialog(
+            'Logging you in...',
+            AppImages.docerAnimation,
+          );
+        } else if (state is SignInSuccess) {
+          TFullScreenLoader.stopLoading();
+          _navigateToMenuPage(context);
+        }
+      },
+      builder: (context, state) {
+        return _buildLoginButton(
+          context,
+          state: state,
+          onPressed: () async {
+            var isRememberMe =
+                context.read<PasswordAndSelectionCubit>().state.isRememberMe;
+            // Login
+            await context.read<SignInCubit>().signInWithEmailAndPassword(
+                  isRememberMe,
+                );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildLoginButton(BuildContext context,
+      {required VoidCallback onPressed, required SignInState state}) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: state is SignInLoading
+            ? FittedBox(
+                child: SizedBox(
+                  height: 25,
+                  width: 25,
+                  child: FittedBox(
+                    child: const CircularProgressIndicator(color: Colors.white),
+                  ),
+                ),
+              )
+            : Text(
+                'Sign In',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+      ),
+    );
+  }
+
+  SizedBox _createAccount(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton(
+        onPressed: () {
+          // Navigate to Sign Up screen
+          context.pushPage(Routes.signupScreen);
+        },
+        child: const Text('Create Account'),
+      ),
+    );
+  }
+
+  _navigateToMenuPage(BuildContext context) {
+    context.pushPageAndRemoveAll(Routes.navigationScreen);
+  }
+}

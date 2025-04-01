@@ -1,5 +1,5 @@
 class AppSizes {
-  AppSizes._();
+  const AppSizes._();
 
   static const double buttonRadius = 20.0;
   static const double textFieldRadius = 22.0;
@@ -26,7 +26,7 @@ class AppSizes {
   static const double spaceBtwSection = 24.0;
   static const double spaceBtwItem = 16.0;
 
-  static const double spaceBtwTextField = 14.0;
+  static const double spaceBtwTextField = 16.0;
   static const double spaceBtwLogoAndItem = 12.0;
 
   static const double iconSize = 20.0;
@@ -41,4 +41,10 @@ class AppSizes {
   static const double md = 6;
   static const double lg = 8;
   static const double slg = 10;
+
+  // Icon sizes
+  static const double iconXs = 12.0;
+  static const double iconSm = 16.0;
+  static const double iconMd = 24.0;
+  static const double iconLg = 32.0;
 }

@@ -6,7 +6,6 @@ import 'package:smart_event_planner/features/home/presentation/widgets/suggested
 import 'package:smart_event_planner/features/home/presentation/widgets/suggested_section/suggested_events_section.dart';
 import 'package:smart_event_planner/shared/widgets/sections/section_heading.dart';
 
-
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
 
@@ -33,9 +32,7 @@ class HomeScreenBody extends StatelessWidget {
                   SectionHeading(
                     title: 'Interests',
                     btnTitle: 'View All',
-                    onPressed: ()async {
-                      //await TestApi().chattest(message: 'ازيك عامل اي ؟ ');
-                    },
+                    onPressed: () async {},
                   ),
                   SizedBox(height: AppSizes.spaceBtwItem / 2),
                   InterestsSection(),

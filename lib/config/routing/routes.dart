@@ -11,4 +11,6 @@ class Routes {
   static const String searchScreen = '/searchScreen';
   static const String scheduleScreen = '/scheduleScreen';
   static const String createEventScreen = '/createEventScreen';
+
+  static const String chatBotScreen = '/chatBotScreen';
 }

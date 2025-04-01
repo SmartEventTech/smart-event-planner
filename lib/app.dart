@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         navigatorKey: AppContext.navigatorKey,
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.system,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         title: 'Smart Event Planner',
@@ -54,7 +54,6 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: const [Locale('en')],
-        
         onGenerateRoute: appRouter.generateRoute,
         initialRoute: Routes.splashScreen,
       ),

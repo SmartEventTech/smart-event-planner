@@ -16,7 +16,7 @@ class AppTheme {
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.white,
     textTheme: CustomTextTheme.lightTextTheme,
-    // elevatedButtonTheme: CustomElevetedButtonTheme.lightElevetedButtonTheme,
+    elevatedButtonTheme: CustomElevetedButtonTheme.lightElevetedButtonTheme,
     appBarTheme: CustomAppbarTheme.lightAppBarTheme,
     outlinedButtonTheme: CustomOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.lightInputDecorationTheme,

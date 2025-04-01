@@ -1,15 +1,16 @@
 class AppImages {
   AppImages._();
   // --Logos--
-  static const String facebookLogo = 'assets/logos/facebook-icon.png';
-  static const String googleLogo = 'assets/logos/google-icon.png';
+  // -- Social Logos
+  static const String google = "assets/logos/google-icon.png";
+  static const String facebook = "assets/logos/facebook-icon.png";
   static const String chatBotLogo = 'assets/logos/chatbot-icon.png';
   static const String appLogo = 'assets/logos/app-logo.png';
   static const String eventLogo = 'assets/logos/eventy/eventy-logo.svg';
   static const String eventLogo2 = 'assets/logos/eventy/eventy-logo2.svg';
-  static const String startChatbotMessage = 'assets/icons/chat-bot/start-chatbot-message.svg';
+  static const String startChatbotMessage =
+      'assets/icons/chat-bot/start-chatbot-message.svg';
   static const String chatbotAvatar = 'assets/icons/chat-bot/chat-bot-icon.png';
-
 
   // --Animations--
   static const String docerAnimation =

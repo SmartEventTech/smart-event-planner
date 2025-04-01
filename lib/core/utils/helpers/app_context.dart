@@ -16,4 +16,7 @@ class AppContext {
 
     return navigatorKey.currentState!.context;
   }
+
+  // over lay context
+  static BuildContext get overlayContext => navigatorKey.currentState!.overlay!.context;
 }
