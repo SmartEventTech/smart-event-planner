@@ -1,13 +1,14 @@
 class SignupModel {
+  final String name;
   final String email;
   final String password;
-  final String confirmPassword;
+  final String? role;
+  final String? confirmPassword;
 
-  SignupModel(this.email, this.password, this.confirmPassword);
+  SignupModel(this.name, this.email, this.password,
+      {this.confirmPassword, this.role = 'admin'});
 
   // toJson
-  Map<String, dynamic> toJson() => {
-        'email': email,
-        'password': password,
-      };
+  Map<String, dynamic> toJson() =>
+      {'name': name, 'email': email, 'password': password, 'role': role};
 }

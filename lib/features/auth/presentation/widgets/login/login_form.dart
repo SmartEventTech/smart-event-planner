@@ -122,46 +122,40 @@ class LoginForm extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return _buildLoginButton(
-          context,
-          state: state,
-          onPressed: () async {
-            var isRememberMe =
-                context.read<PasswordAndSelectionCubit>().state.isRememberMe;
-            // Login
-            await context.read<SignInCubit>().signInWithEmailAndPassword(
-                  isRememberMe,
-                );
-          },
+        return SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () async {
+              var isRememberMe =
+                  context.read<PasswordAndSelectionCubit>().state.isRememberMe;
+              // Login
+              await context.read<SignInCubit>().signInWithEmailAndPassword(
+                    isRememberMe,
+                  );
+            },
+            child: state is SignInLoading
+                ? FittedBox(
+                    child: SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: FittedBox(
+                        child: const CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                : Text(
+                    'Sign In',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+          ),
         );
       },
-    );
-  }
-
-  Widget _buildLoginButton(BuildContext context,
-      {required VoidCallback onPressed, required SignInState state}) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: state is SignInLoading
-            ? FittedBox(
-                child: SizedBox(
-                  height: 25,
-                  width: 25,
-                  child: FittedBox(
-                    child: const CircularProgressIndicator(color: Colors.white),
-                  ),
-                ),
-              )
-            : Text(
-                'Sign In',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-      ),
     );
   }
 

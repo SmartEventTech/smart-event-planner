@@ -1,7 +1,4 @@
-
-
 import 'package:equatable/equatable.dart';
-import 'package:smart_event_planner/core/entities/user_entity.dart';
 
 abstract class SignupState extends Equatable {
   const SignupState();
@@ -12,22 +9,34 @@ abstract class SignupState extends Equatable {
 
 class SignupInitial extends SignupState {}
 
-class SignupLoading extends SignupState {}
+class SignupLoadingState extends SignupState {}
 
-class SignupSuccess extends SignupState {
-  final UserEntity userEntity;
-
-  const SignupSuccess({required this.userEntity});
-
-  @override
-  List<Object> get props => [userEntity];
-}
-
-class SignupFailure extends SignupState {
+class SignupSuccessState extends SignupState {
   final String message;
 
-  const SignupFailure({required this.message});
+  const SignupSuccessState(this.message);
 
   @override
   List<Object> get props => [message];
+}
+
+class SignupErrorState extends SignupState {
+  final String message;
+
+  const SignupErrorState(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
+class PrivacyValidationErrorState extends SignupState {
+  final String errorMessage;
+
+  const PrivacyValidationErrorState(this.errorMessage);
+}
+
+class PasswordValidationErrorState extends SignupState {
+  final String errorMessage;
+
+  const PasswordValidationErrorState(this.errorMessage);
 }
