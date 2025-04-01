@@ -133,26 +133,7 @@ class LoginForm extends StatelessWidget {
                     isRememberMe,
                   );
             },
-            child: state is SignInLoading
-                ? FittedBox(
-                    child: SizedBox(
-                      height: 25,
-                      width: 25,
-                      child: FittedBox(
-                        child: const CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  )
-                : Text(
-                    'Sign In',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+            child: Text('Sign In'),
           ),
         );
       },
