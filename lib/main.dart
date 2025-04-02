@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:smart_event_planner/app.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:smart_event_planner/config/routing/app_router.dart';
@@ -38,9 +37,6 @@ Future<void> main() async {
 
   // Start the App
   runApp(
-    DevicePreview(
-      enabled: false,
-      builder: (context) => MyApp(appRouter: AppRouter()),
-    ),
+    MyApp(appRouter: AppRouter()),
   );
 }
