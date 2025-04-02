@@ -10,27 +10,24 @@ import 'package:smart_event_planner/features/auth/presentation/cubits/signup_cub
 final getIt = GetIt.instance;
 
 Future<void> initializeDependencies() async {
-  // ------API------
+  getIt.registerLazySingleton<ApiClient>(() => ApiClient());
 
-  getIt.registerFactory<ApiServices>(() => ApiServices(
-        ApiClient(),
+  getIt.registerLazySingleton<ApiServices>(() => ApiServices(
+        getIt<ApiClient>(),
       ));
 
-  // ------Services------
-  // --Remote
-  getIt.registerFactory<AuthRemoteDataSource>(
+  getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(getIt<ApiServices>()),
   );
 
-  // ------Repositories------
-  getIt.registerFactory<AuthRepo>(() => AuthRepoImpl(
+  getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(
         getIt<AuthRemoteDataSource>(),
       ));
 
-  // ------Cubits------
   getIt.registerFactory<SignInCubit>(() => SignInCubit(
         authRepo: getIt<AuthRepo>(),
       ));
+
   getIt.registerFactory<SignupCubit>(() => SignupCubit(
         authRepo: getIt<AuthRepo>(),
       ));

@@ -6,11 +6,9 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/api/api_error.dart';
 import 'package:smart_event_planner/core/api/interceptors/auth_interceptor.dart';
 import 'package:smart_event_planner/core/api/interceptors/connectivity_interceptor.dart';
-import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
 
 class ApiClient {
   static final ApiClient _instance = ApiClient._internal();
@@ -55,7 +53,7 @@ class ApiClient {
       // Connectivity interceptor
       ConnectivityInterceptor(),
       // Auth interceptor
-      AuthInterceptor(onLogout: getIt<AuthRepo>().logout),
+      AuthInterceptor(onLogout: () {}),
       // Retry interceptor
       _retryInterceptor(),
 
