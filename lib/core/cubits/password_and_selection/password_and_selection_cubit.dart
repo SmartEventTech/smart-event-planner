@@ -6,7 +6,7 @@ class PasswordAndSelectionCubit extends Cubit<PasswordAndSelectionState> {
       : super(PasswordAndSelectionState(
           isPasswordHidden: true,
           isPrivacyAccepted: false,
-          isRememberMe: true,
+          isRememberMe: false,
           isConfirmPasswordHidden: true,
         ));
 
@@ -14,10 +14,11 @@ class PasswordAndSelectionCubit extends Cubit<PasswordAndSelectionState> {
   void togglePasswordVisibility() {
     emit(state.copyWith(isPasswordHidden: !state.isPasswordHidden));
   }
-  
+
   // Toggle confirm password visibility
   void toggleConfirmPasswordVisibility() {
-    emit(state.copyWith(isConfirmPasswordHidden: !state.isConfirmPasswordHidden));
+    emit(state.copyWith(
+        isConfirmPasswordHidden: !state.isConfirmPasswordHidden));
   }
 
   // Toggle Privacy Acceptance
