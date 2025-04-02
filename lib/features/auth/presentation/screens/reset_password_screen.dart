@@ -65,17 +65,6 @@ class ResetPasswordScreen extends StatelessWidget {
     );
   }
 
-  // Widget _emailField(BuildContext context) {
-  //   return TextFormField(
-  //     controller: context.read<ResetPasswordCubit>().emailController,
-  //     validator: (value) => TValidator.validateEmail(value),
-  //     decoration: const InputDecoration(
-  //       labelText: TTexts.email,
-  //       prefixIcon: Icon(Iconsax.direct_right),
-  //     ),
-  //   );
-  // }
-
   Widget _submitButton(BuildContext context) {
     return BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
       listener: (context, state) {
