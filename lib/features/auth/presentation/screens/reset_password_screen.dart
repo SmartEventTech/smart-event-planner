@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/text_strings.dart';
 import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_cubit.dart';
 import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
-import 'package:smart_event_planner/core/utils/validators/validation.dart';
 import 'package:smart_event_planner/core/widgets/popups/full_screen_loader.dart';
 import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
 import 'package:smart_event_planner/features/auth/presentation/cubits/forget_password/reset_password_cubit.dart';
@@ -67,16 +65,16 @@ class ResetPasswordScreen extends StatelessWidget {
     );
   }
 
-  Widget _emailField(BuildContext context) {
-    return TextFormField(
-      controller: context.read<ResetPasswordCubit>().emailController,
-      validator: (value) => TValidator.validateEmail(value),
-      decoration: const InputDecoration(
-        labelText: TTexts.email,
-        prefixIcon: Icon(Iconsax.direct_right),
-      ),
-    );
-  }
+  // Widget _emailField(BuildContext context) {
+  //   return TextFormField(
+  //     controller: context.read<ResetPasswordCubit>().emailController,
+  //     validator: (value) => TValidator.validateEmail(value),
+  //     decoration: const InputDecoration(
+  //       labelText: TTexts.email,
+  //       prefixIcon: Icon(Iconsax.direct_right),
+  //     ),
+  //   );
+  // }
 
   Widget _submitButton(BuildContext context) {
     return BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
