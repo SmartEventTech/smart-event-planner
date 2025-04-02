@@ -17,7 +17,7 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(
       widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
 
-  // Load Environment Variables 
+  // Load Environment Variables
   await dotenv.load(fileName: '.env');
 
   // Initialize Gemini API
