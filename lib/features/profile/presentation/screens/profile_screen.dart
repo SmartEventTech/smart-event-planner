@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
@@ -7,12 +8,17 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
+import 'package:smart_event_planner/core/widgets/shimmer/shimmer_widget.dart';
 import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
+import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
+import 'package:smart_event_planner/features/profile/presentation/cubits/user_state.dart';
 import 'package:smart_event_planner/features/profile/presentation/widgets/profile_tab_bar.dart';
 
 import 'package:smart_event_planner/shared/widgets/buttons/custom_eleveted_btn.dart';
 import 'package:smart_event_planner/shared/widgets/events/events_list_view.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/user_avatar_widget.dart';
+import 'package:clipboard/clipboard.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -39,13 +45,28 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(height: AppSizes.slg),
                   Column(
                     children: [
-                      Text(
-                        'John Doe',
-                        style: AppTextStyle.textStyle24Medium(context),
-                      ),
-                      Text(
-                        'BwM4V@example.com',
-                        style: AppTextStyle.textStyle16Regular(context),
+                      BlocBuilder<UserCubit, UserState>(
+                        builder: (context, state) {
+                          if (state is UserLoadedState) {
+                            return Column(
+                              children: [
+                                Text(
+                                  state.userModel.name.isNotEmpty
+                                      ? state.userModel.name
+                                      : 'No Name',
+                                  style:
+                                      AppTextStyle.textStyle24Medium(context),
+                                ),
+                                Text(
+                                  state.userModel.email,
+                                  style:
+                                      AppTextStyle.textStyle16Regular(context),
+                                ),
+                              ],
+                            );
+                          }
+                          return _builoadingWidget(context);
+                        },
                       ),
                     ],
                   ),
@@ -59,6 +80,13 @@ class ProfileScreen extends StatelessWidget {
                         CustomElevetedBtn(
                           title: 'Share Profile',
                           icon: Icons.share,
+                          onPressed: () {
+                            final link = context.read<UserCubit>().profelink;
+                            FlutterClipboard.copy(link).then(
+                              (value) =>
+                                  Loaders.customToast(message: 'URL Copied!'),
+                            );
+                          },
                         ),
                         const SizedBox(width: 30),
                         CustomElevetedBtn(
@@ -133,4 +161,15 @@ class ProfileScreen extends StatelessWidget {
       title: Text('My Profile', style: AppTextStyle.textStyle20Medium(context)),
     );
   }
+
+  _builoadingWidget(BuildContext context) => Column(
+        children: [
+          ShimmerWidget(
+              width: MediaQuery.of(context).size.width * 0.5, height: 16),
+          const SizedBox(height: 8),
+          ShimmerWidget(
+              width: MediaQuery.of(context).size.width * 0.5, height: 16),
+          const SizedBox(height: 3),
+        ],
+      );
 }

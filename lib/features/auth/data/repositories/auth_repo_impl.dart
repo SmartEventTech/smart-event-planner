@@ -21,19 +21,20 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<ApiError, void>> signup({required SignupModel signupModel}) {
-    return authRemoteDataSource.signup(signupModel);
+  Future<Either<ApiError, void>> signup(
+      {required SignupModel signupModel}) async {
+    return await authRemoteDataSource.signup(signupModel);
   }
 
   @override
-  Future<Either<ApiError, void>> forgetPassword({required String email}) {
-    return authRemoteDataSource.forgetPassword(email: email);
+  Future<Either<ApiError, void>> forgetPassword({required String email}) async {
+    return await authRemoteDataSource.forgetPassword(email: email);
   }
 
   @override
   Future<Either<ApiError, void>> resetPassword(
-      {required ResetPassworModel resetPassworModel}) {
-    return authRemoteDataSource.resetPassword(resetPassworModel);
+      {required ResetPassworModel resetPassworModel}) async {
+    return await authRemoteDataSource.resetPassword(resetPassworModel);
   }
 
   @override

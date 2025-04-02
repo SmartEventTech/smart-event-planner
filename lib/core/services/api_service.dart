@@ -75,4 +75,6 @@ class ApiService {
       throw ServerException.fromDioError(e);
     }
   }
+
+  
 }

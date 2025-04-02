@@ -21,7 +21,7 @@ class NavigationScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavCubit, int>(
       builder: (context, state) {
-        return _screens[state];
+        return IndexedStack(index: state, children: _screens);
       },
     );
   }

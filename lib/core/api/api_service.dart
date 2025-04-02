@@ -5,6 +5,7 @@ import 'package:smart_event_planner/core/api/api_error.dart';
 import 'package:smart_event_planner/features/auth/data/models/login_model.dart';
 import 'package:smart_event_planner/features/auth/data/models/reset_passwor_model.dart';
 import 'package:smart_event_planner/features/auth/data/models/signup_model.dart';
+import 'package:smart_event_planner/features/profile/data/models/user_model.dart';
 
 class ApiServices {
   final ApiClient apiClient;
@@ -23,9 +24,11 @@ class ApiServices {
 
     return response.fold((error) {
       return Left(error);
-    }, (response) {
-      _storage.write(
+    }, (response) async {
+      await _storage.write(
           key: 'access_token', value: response.data['data']['accessToken']);
+      await _storage.write(
+          key: 'user_id', value: response.data['data']['user']['_id']);
       return const Right(null);
     });
   }
@@ -41,9 +44,11 @@ class ApiServices {
 
     return response.fold((error) {
       return Left(error);
-    }, (response) {
-      _storage.write(
+    }, (response) async {
+      await _storage.write(
           key: 'access_token', value: response.data['data']['accessToken']);
+      await _storage.write(
+          key: 'user_id', value: response.data['data']['user']['_id']);
       return const Right(null);
     });
   }
@@ -108,6 +113,7 @@ class ApiServices {
       return Left(error);
     }, (response) async {
       await _storage.delete(key: 'access_token');
+      await _storage.delete(key: 'user_id');
       return const Right(null);
     });
   }
@@ -115,5 +121,54 @@ class ApiServices {
   /// Send OTP
   Future<Either<ApiError, void>> sendOTP({required String email}) async {
     return await forgetPassword(email: email);
+  }
+
+  /// -----------User Profile-----------
+  // Get User
+  Future<Either<ApiError, UserModel>> getUser() async {
+    // get user id
+     final userId = await _storage.read(key: 'user_id');
+
+    final response = await apiClient.request(
+      path: 'ce6e.up.railway.app/api/auth/viewprofile/$userId',
+      method: 'GET',
+    );
+
+    return response.fold((error) {
+      return Left(error);
+    }, (response) {
+      return Right(UserModel.fromJson(response.data));
+    });
+  }
+
+  // Update User
+  Future<Either<ApiError, UserModel>> updateProfile() async {
+    final response = await apiClient.request(
+      path: 'ce6e.up.railway.app/api/auth/updateprofile',
+      method: 'PUT',
+    );
+
+    return response.fold((error) {
+      return Left(error);
+    }, (response) {
+      return Right(response.data);
+    });
+  }
+
+  // Share Profile
+  Future<Either<ApiError, String>> shareProfile() async {
+    // get user id
+     final userId = await _storage.read(key: 'user_id');
+
+    final response = await apiClient.request(
+      path: 'ce6e.up.railway.app/api/auth/shareprofile/$userId/share',
+      method: 'GET',
+    );
+
+    return response.fold((error) {
+      return Left(error);
+    }, (response) {
+      return Right(response.data['link']);
+    });
   }
 }

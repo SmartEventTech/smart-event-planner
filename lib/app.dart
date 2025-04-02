@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logger/logger.dart';
+import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/storage/secure_storage.dart';
 import 'package:smart_event_planner/core/theme/app_theme.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
@@ -12,6 +14,7 @@ import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 import 'package:smart_event_planner/core/services/api_service.dart';
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo.dart';
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo_impl.dart';
+import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
 
 bool isLogin = false;
 
@@ -40,22 +43,25 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: AppContext.navigatorKey,
-        themeMode: ThemeMode.system,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        title: 'Smart Event Planner',
-        locale: const Locale('en'),
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [Locale('en')],
-        onGenerateRoute: (settings) => appRouter.generateRoute(settings),
-        initialRoute: isLogin ? Routes.navigationScreen : Routes.splashScreen,
+      child: BlocProvider(
+        create: (context) => getIt.get<UserCubit>()..getProfile()..shareProfile(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: AppContext.navigatorKey,
+          themeMode: ThemeMode.system,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          title: 'Smart Event Planner',
+          locale: const Locale('en'),
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('en')],
+          onGenerateRoute: (settings) => appRouter.generateRoute(settings),
+          initialRoute: isLogin ? Routes.navigationScreen : Routes.splashScreen,
+        ),
       ),
     );
   }
