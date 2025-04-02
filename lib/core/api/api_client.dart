@@ -5,10 +5,13 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/core/api/api_error.dart';
 import 'package:smart_event_planner/core/api/interceptors/auth_interceptor.dart';
 import 'package:smart_event_planner/core/api/interceptors/connectivity_interceptor.dart';
+import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 
 class ApiClient {
   static final ApiClient _instance = ApiClient._internal();
@@ -53,7 +56,9 @@ class ApiClient {
       // Connectivity interceptor
       ConnectivityInterceptor(),
       // Auth interceptor
-      AuthInterceptor(onLogout: () {}),
+      AuthInterceptor(onLogout: () {
+        Navigator.pushReplacementNamed(AppContext.context, Routes.loginScreen);
+      }),
       // Retry interceptor
       _retryInterceptor(),
 
