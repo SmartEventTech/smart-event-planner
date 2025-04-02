@@ -33,7 +33,7 @@ Future<void> main() async {
   // Remove Splash Screen after initialization
   FlutterNativeSplash.remove();
 
-  // Entry
+  // Entry Point
   await entry();
 
   // Start the App
