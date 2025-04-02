@@ -1,8 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/api/api_client.dart';
 import 'package:smart_event_planner/core/api/api_service.dart';
 import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp_verification_cubit_state.dart';
+import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart'
+    as auth_repo;
 import 'package:smart_event_planner/core/repos/auth_repo/auth_repo.dart';
 
 class OtpVerificationCubit extends Cubit<OtpVerificationState> {
@@ -43,5 +46,14 @@ class OtpVerificationCubit extends Cubit<OtpVerificationState> {
     }
   }
 
-  Future<void> resendOtp(String email, {bool reset = false}) async {}
+  Future<void> resendOtp(String email, {bool reset = false}) async {
+    emit(ResndOtpLoading());
+    var result = await getIt.get<auth_repo.AuthRepo>().sendOTP(email: email);
+    result.fold(
+      (failure) => emit(ResndOtpFailure(failure.message)),
+      (_) {
+        emit(ResndOtpSuccess('OTP sent successfully'));
+      },
+    );
+  }
 }

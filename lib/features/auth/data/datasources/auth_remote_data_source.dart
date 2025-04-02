@@ -20,6 +20,9 @@ abstract class AuthRemoteDataSource {
 
   // forget password
   Future<Either<ApiError, void>> forgetPassword({required String email});
+
+  // Send OTP
+  Future<Either<ApiError, void>> sendOTP({required String email});
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -48,9 +51,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       ResetPassworModel resetPassworModel) async {
     return await apiService.restPassword(resetPassworModel: resetPassworModel);
   }
-  
+
   @override
-  Future<void> logout() async{
+  Future<void> logout() async {
     await apiService.logout();
+  }
+
+  @override
+  Future<Either<ApiError, void>> sendOTP({required String email}) async {
+    return await apiService.sendOTP(email: email);
   }
 }

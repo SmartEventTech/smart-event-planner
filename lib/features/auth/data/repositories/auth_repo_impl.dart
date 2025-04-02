@@ -35,4 +35,9 @@ class AuthRepoImpl extends AuthRepo {
       {required ResetPassworModel resetPassworModel}) {
     return authRemoteDataSource.resetPassword(resetPassworModel);
   }
+
+  @override
+  Future<Either<ApiError, void>> sendOTP({required String email}) async {
+    return await authRemoteDataSource.sendOTP(email: email);
+  }
 }

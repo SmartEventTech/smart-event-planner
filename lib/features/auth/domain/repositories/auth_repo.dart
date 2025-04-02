@@ -20,4 +20,7 @@ abstract class AuthRepo {
   // reset password
   Future<Either<ApiError, void>> resetPassword(
       {required ResetPassworModel resetPassworModel});
+
+  // Send OTP
+  Future<Either<ApiError, void>> sendOTP({required String email});     
 }

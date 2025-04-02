@@ -37,7 +37,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSizes.spaceBtwItems),
                   Text(
-                    'Please enter your new password for\n$email', 
+                    'Please enter your new password for\n$email',
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                   // _emailField(context),
@@ -81,7 +81,7 @@ class ResetPasswordScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is ResetPasswordLoadingState) {
           TFullScreenLoader.openLoadingDialog(
-            'Logging you in...',
+            'We are processing your information...',
             AppImages.docerAnimation,
           );
         } else if (state is ResetPasswordSuccessState) {

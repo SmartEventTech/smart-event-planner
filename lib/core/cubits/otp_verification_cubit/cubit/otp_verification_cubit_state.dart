@@ -28,3 +28,18 @@ class OtpVerificationFailure extends OtpVerificationState {
   @override
   List<Object> get props => [message];
 }
+
+
+class ResndOtpSuccess extends OtpVerificationState {
+  final String message;
+
+  const ResndOtpSuccess(this.message);
+}
+
+class ResndOtpFailure extends OtpVerificationState {
+  final String message;
+
+  const ResndOtpFailure(this.message);
+}
+
+class ResndOtpLoading extends OtpVerificationState {}

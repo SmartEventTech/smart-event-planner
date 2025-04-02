@@ -68,6 +68,12 @@ class _OtpScreenState extends State<OtpScreen> {
                 } else if (state is OtpVerificationFailure) {
                   Loaders.errorSnackBar(title: 'Error', message: state.message);
                 }
+                if (state is ResndOtpSuccess) {
+                  Loaders.successSnackBar(
+                      title: 'Success', message: state.message);
+                } else if (state is ResndOtpFailure) {
+                  Loaders.errorSnackBar(title: 'Error', message: state.message);
+                }
               },
               builder: (context, state) {
                 return Form(
@@ -191,10 +197,12 @@ class _OtpScreenState extends State<OtpScreen> {
                         width: MediaQuery.of(context).size.width * 0.45,
                         child: TextButton(
                           child: const Text('Resend OTP'),
-                          onPressed: () => context
+                          onPressed: () async => await context
                               .read<OtpVerificationCubit>()
-                              .resendOtp(email ?? '',
-                                  reset: widget.reset ?? false),
+                              .resendOtp(
+                                email ?? '',
+                                reset: widget.reset ?? false,
+                              ),
                         ),
                       ),
                     ],

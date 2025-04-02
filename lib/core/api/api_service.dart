@@ -111,4 +111,9 @@ class ApiServices {
       return const Right(null);
     });
   }
+
+  /// Send OTP
+  Future<Either<ApiError, void>> sendOTP({required String email}) async {
+    return await forgetPassword(email: email);
+  }
 }

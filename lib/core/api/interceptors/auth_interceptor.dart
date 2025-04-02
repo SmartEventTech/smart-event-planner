@@ -22,12 +22,16 @@ class AuthInterceptor extends Interceptor {
   }
 
   @override
-  Future<void> onError(
-      DioException err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
       if (err.requestOptions.path == '/auth/refresh') {
         await _logout();
-        return handler.next(err);
+        return handler.reject(DioException(
+          requestOptions: err.requestOptions,
+          response: err.response,
+          type: DioExceptionType.badResponse,
+          error: 'Refresh token expired',
+        ));
       }
 
       if (_refreshCompleter != null) {
@@ -36,34 +40,33 @@ class AuthInterceptor extends Interceptor {
       }
 
       _refreshCompleter = Completer();
-
       try {
         final refreshToken = await storage.read(key: 'refresh_token');
         if (refreshToken == null) throw Exception('No refresh token');
 
-        // Use a new Dio instance to avoid interceptor loops
-        final refreshDio =
-            Dio(BaseOptions(baseUrl: err.requestOptions.baseUrl));
+        final refreshDio = Dio(BaseOptions(baseUrl: ApiClient().dio.options.baseUrl));
         final response = await refreshDio.post('/auth/refresh', data: {
           'refresh_token': refreshToken,
         });
 
         if (response.statusCode == 200) {
-          await storage.write(
-              key: 'access_token', value: response.data['access_token']);
-          await storage.write(
-              key: 'refresh_token', value: response.data['refresh_token']);
+          await storage.write(key: 'access_token', value: response.data['access_token']);
+          await storage.write(key: 'refresh_token', value: response.data['refresh_token']);
           _refreshCompleter?.complete();
           _refreshCompleter = null;
-          return handler
-              .resolve(await ApiClient().dio.fetch(err.requestOptions));
+          return handler.resolve(await ApiClient().dio.fetch(err.requestOptions));
         } else {
           throw Exception('Refresh failed');
         }
       } catch (e) {
         _refreshCompleter?.completeError(e);
         await _logout();
-        return handler.next(err);
+        return handler.reject(DioException(
+          requestOptions: err.requestOptions,
+          response: err.response,
+          type: DioExceptionType.badResponse,
+          error: 'Failed to refresh token',
+        ));
       } finally {
         _refreshCompleter = null;
       }
