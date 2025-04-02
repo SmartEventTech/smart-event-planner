@@ -145,7 +145,10 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
+            SliverToBoxAdapter(
+              child: const SizedBox(height: AppSizes.spaceBtwItems),
+            ),
           ],
         ),
       ),
