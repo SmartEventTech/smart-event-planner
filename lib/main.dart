@@ -34,7 +34,7 @@ Future<void> main() async {
   FlutterNativeSplash.remove();
 
   // Entry
-  //await entry();
+  await entry();
 
   // Start the App
   runApp(
