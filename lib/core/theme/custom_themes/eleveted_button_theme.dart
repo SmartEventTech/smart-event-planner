@@ -12,15 +12,15 @@ class CustomElevetedButtonTheme {
       backgroundColor: AppColors.primaryColor,
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
-      side: const BorderSide(color: Colors.transparent),
-      padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+      side: const BorderSide(color: AppColors.primaryColor),
+      padding: const EdgeInsets.symmetric(vertical: 18),
       textStyle: const TextStyle(
-        fontSize: 18,
+        fontSize: 16,
         color: Colors.white,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w600,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
       ),
     ),
   );
@@ -33,15 +33,15 @@ class CustomElevetedButtonTheme {
       backgroundColor: AppColors.primaryColor,
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
-      side: const BorderSide(color: Colors.transparent),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
+      side: const BorderSide(color: AppColors.primaryColor),
+      padding: const EdgeInsets.symmetric(vertical: 18),
       textStyle: const TextStyle(
-        fontSize: 18,
+        fontSize: 16,
         color: Colors.white,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w600,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
       ),
     ),
   );

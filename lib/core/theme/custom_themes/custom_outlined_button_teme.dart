@@ -7,12 +7,12 @@ class CustomOutlinedButtonTheme {
   static final lightOutlinedButtonTheme = OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       elevation: 0,
-      foregroundColor: Colors.white,
-      side: const BorderSide(color: AppColors.outlinedBtnBorderColor),
+      foregroundColor: Colors.black,
+      side: const BorderSide(color: AppColors.primaryColor),
       textStyle: const TextStyle(
         fontSize: 16,
         color: Colors.black,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       shape: RoundedRectangleBorder(
@@ -24,11 +24,11 @@ class CustomOutlinedButtonTheme {
     style: OutlinedButton.styleFrom(
       elevation: 0,
       foregroundColor: Colors.white,
-      side: const BorderSide(color: AppColors.outlinedBtnBorderColor),
+      side: const BorderSide(color: AppColors.primaryColor),
       textStyle: const TextStyle(
         fontSize: 16,
         color: Colors.white,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w600,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       shape: RoundedRectangleBorder(

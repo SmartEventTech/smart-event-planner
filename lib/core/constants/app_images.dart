@@ -1,10 +1,16 @@
 class AppImages {
-  AppImages._();
+  const AppImages._();
   // --Logos--
-  static const String facebookLogo = 'assets/logos/facebook-icon.png';
-  static const String googleLogo = 'assets/logos/google-icon.png';
+  // -- Social Logos
+  static const String google = "assets/logos/google-icon.png";
+  static const String facebook = "assets/logos/facebook-icon.png";
   static const String chatBotLogo = 'assets/logos/chatbot-icon.png';
   static const String appLogo = 'assets/logos/app-logo.png';
+  static const String eventLogo = 'assets/logos/eventy/eventy-logo.svg';
+  static const String eventLogo2 = 'assets/logos/eventy/eventy-logo2.svg';
+  static const String startChatbotMessage =
+      'assets/icons/chat-bot/start-chatbot-message.svg';
+  static const String chatbotAvatar = 'assets/icons/chat-bot/chat-bot-icon.png';
 
   // --Animations--
   static const String docerAnimation =
@@ -20,13 +26,21 @@ class AppImages {
   static const String paymentSuccessfulAnimation =
       'assets/images/animations/120978-payment-successful.json';
 
+  static const String successfullRegisterAnimation =
+      "assets/images/animations/72462-check-register.json";
+
+  static const String deliveredEmailIllustration =
+      "assets/images/animations/sammy-line-man-receives-a-mail.png";
+
   // --User--
   static const String userAvatar = 'assets/images/user/user-avatar.png';
 
   // --Icons--
-  static const String chatBotIcon = 'assets/icons/chatbot-icon.svg';
+  static const String chatBotIcon = 'assets/icons/chat-bot/chatbot-icon.svg';
+  static const String chatBotIcon2 = 'assets/icons/chat-bot/chatbot-icon2.svg';
   static const String programmingIcon = 'assets/icons/programming-icon.svg';
   static const String plusIcon = 'assets/icons/plus-icon.svg';
+  static const String filterIcon = 'assets/icons/filtter-icon.svg';
 
   // --Events--
   static const String event = 'assets/images/events/event-1.svg';

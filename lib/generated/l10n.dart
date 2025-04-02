@@ -18,20 +18,17 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name =
-        (locale.countryCode?.isEmpty ?? false)
-            ? locale.languageCode
-            : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -44,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -87,24 +82,44 @@ class S {
 
   /// `User Name`
   String get userName {
-    return Intl.message('User Name', name: 'userName', desc: '', args: []);
+    return Intl.message(
+      'User Name',
+      name: 'userName',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Password`
   String get password {
-    return Intl.message('Password', name: 'password', desc: '', args: []);
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `E-mail`
   String get email {
-    return Intl.message('E-mail', name: 'email', desc: '', args: []);
+    return Intl.message(
+      'E-mail',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
   }
 
   // skipped getter for the 'Forgot Password' key
 
   /// `Remember Me`
   String get rememberMe {
-    return Intl.message('Remember Me', name: 'rememberMe', desc: '', args: []);
+    return Intl.message(
+      'Remember Me',
+      name: 'rememberMe',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Password confirmation`
@@ -119,12 +134,22 @@ class S {
 
   /// `Login`
   String get login {
-    return Intl.message('Login', name: 'login', desc: '', args: []);
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Register`
   String get register {
-    return Intl.message('Register', name: 'register', desc: '', args: []);
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Or login with`
@@ -179,7 +204,12 @@ class S {
 
   /// `Continue`
   String get continuetext {
-    return Intl.message('Continue', name: 'continuetext', desc: '', args: []);
+    return Intl.message(
+      'Continue',
+      name: 'continuetext',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `What are you interested in?`
@@ -204,12 +234,22 @@ class S {
 
   /// `Interests`
   String get interests {
-    return Intl.message('Interests', name: 'interests', desc: '', args: []);
+    return Intl.message(
+      'Interests',
+      name: 'interests',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Create now`
   String get createNow {
-    return Intl.message('Create now', name: 'createNow', desc: '', args: []);
+    return Intl.message(
+      'Create now',
+      name: 'createNow',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Events you might like`
@@ -224,7 +264,12 @@ class S {
 
   /// `Search`
   String get search {
-    return Intl.message('Search', name: 'search', desc: '', args: []);
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Create event`
@@ -239,7 +284,12 @@ class S {
 
   /// `Event Name`
   String get eventName {
-    return Intl.message('Event Name', name: 'eventName', desc: '', args: []);
+    return Intl.message(
+      'Event Name',
+      name: 'eventName',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Event Description`

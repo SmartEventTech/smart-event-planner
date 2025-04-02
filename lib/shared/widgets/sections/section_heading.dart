@@ -13,12 +13,16 @@ class SectionHeading extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: AppTextStyle.textStyle18Medium),
+        Flexible(
+          child: FittedBox(
+            child: Text(title, style: AppTextStyle.textStyle17Medium(context)),
+          ),
+        ),
         TextButton(
           onPressed: onPressed,
           child: Text(
             btnTitle,
-            style: AppTextStyle.textStyle16Medium
+            style: AppTextStyle.textStyle16Medium(context)
                 .copyWith(color: AppColors.textBtnColor),
           ),
         ),

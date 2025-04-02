@@ -9,14 +9,19 @@ class HomeSliverBarBottomTabBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return TabBar(
       isScrollable: false,
-      indicatorColor: AppColors.blueTextColor,
-      dividerColor: Colors.transparent,
+      
+      indicatorColor: AppColors.white,
+      
       labelPadding: EdgeInsets.zero,
+      
       tabs: [
         Container(
-          color: Colors.white,
+          color: isDark
+              ? AppColors.darkSliverAppBarColor
+              : AppColors.white,
           padding:
               EdgeInsets.symmetric(horizontal: AppSizes.defaultScreenPadding),
           child: Tab(
@@ -32,5 +37,5 @@ class HomeSliverBarBottomTabBar extends StatelessWidget
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(48);
+  Size get preferredSize => const Size.fromHeight(0);
 }

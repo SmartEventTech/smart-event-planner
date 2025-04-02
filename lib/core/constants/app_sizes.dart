@@ -1,8 +1,11 @@
 class AppSizes {
-  AppSizes._();
+  const AppSizes._();
 
   static const double buttonRadius = 20.0;
   static const double textFieldRadius = 22.0;
+
+  // AppBar height
+  static const double appBarHeight = 56.0;
 
   static const double defaultPadding = 14;
   static const double defaultBorderRadius = 20;
@@ -23,10 +26,10 @@ class AppSizes {
   static const double verticalscreenPadding = 16.0;
   static const double horizontalScreenPadding = 16.0;
 
-  static const double spaceBtwSection = 24.0;
-  static const double spaceBtwItem = 16.0;
+  static const double spaceBtwSections = 24.0;
+  static const double spaceBtwItems = 16.0;
 
-  static const double spaceBtwTextField = 14.0;
+  static const double spaceBtwTextField = 16.0;
   static const double spaceBtwLogoAndItem = 12.0;
 
   static const double iconSize = 20.0;
@@ -35,8 +38,16 @@ class AppSizes {
   static const double interestedCardPadding = 10;
 
   static const double btnNavBarRadius = 18;
+  static const double dividerHeight = 30;
 
   static const double sm = 3;
   static const double md = 6;
   static const double lg = 8;
+  static const double slg = 10;
+
+  // Icon sizes
+  static const double iconXs = 12.0;
+  static const double iconSm = 16.0;
+  static const double iconMd = 24.0;
+  static const double iconLg = 32.0;
 }

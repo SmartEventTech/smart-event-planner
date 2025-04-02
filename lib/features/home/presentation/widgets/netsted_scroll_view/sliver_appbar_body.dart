@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/create_event_section.dart';
 import 'package:smart_event_planner/features/home/presentation/widgets/interested_section/interests_section.dart';
@@ -9,28 +10,31 @@ class SliverAppBarBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Container(
+      color: isDark ? AppColors.darkSliverAppBarColor : AppColors.white,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppSizes.defaultScreenPadding,
           vertical: AppSizes.sm,
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: AppSizes.spaceBtwItem),
+            SizedBox(height: AppSizes.spaceBtwItems),
             CreateEventSection(),
-            SizedBox(height: AppSizes.spaceBtwItem / 2),
+            SizedBox(height: AppSizes.spaceBtwItems / 2),
             SectionHeading(
               title: 'Interests',
               btnTitle: 'View All',
               onPressed: () {},
             ),
-            //SizedBox(height: AppSizes.spaceBtwItem / 2),
+            SizedBox(height: AppSizes.spaceBtwItems / 2),
             InterestsSection(),
-            SizedBox(height: AppSizes.spaceBtwSection),
           ],
         ),
       ),
     );
   }
 }
+// const Color.fromARGB(255, 24, 24, 24)
