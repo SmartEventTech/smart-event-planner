@@ -40,9 +40,7 @@ class SignupScreen extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   text: 'Already have an account? ',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                   children: <TextSpan>[
                     TextSpan(
                       text: 'Login',
