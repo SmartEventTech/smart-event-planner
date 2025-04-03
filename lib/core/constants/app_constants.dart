@@ -1,4 +1,1 @@
-
-
-
 const kisOnBoardingSeen = 'isOnBoardingSeen';

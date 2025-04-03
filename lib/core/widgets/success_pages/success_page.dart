@@ -9,9 +9,9 @@ class SuccessPage extends StatelessWidget {
   final bool json;
   const SuccessPage({
     super.key,
-     this.image = '',
-     this.title = '',
-     this.subtitle = '',
+    this.image = '',
+    this.title = '',
+    this.subtitle = '',
     this.onPressed,
     this.json = true,
   });

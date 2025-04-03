@@ -30,7 +30,6 @@ class SearchScreenHeader extends StatelessWidget {
           IconButton(
             onPressed: () {
               onFilterButtonPressed();
-
             },
             icon: SvgPicture.asset(AppImages.filterIcon),
           )

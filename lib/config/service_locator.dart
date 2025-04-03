@@ -1,5 +1,6 @@
 import 'package:smart_event_planner/core/api/api_client.dart';
 import 'package:smart_event_planner/core/api/api_service.dart';
+import 'package:smart_event_planner/core/storage/secure_storage.dart';
 import 'package:smart_event_planner/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:get_it/get_it.dart';
 import 'package:smart_event_planner/features/auth/data/repositories/auth_repo_impl.dart';
@@ -14,6 +15,7 @@ import 'package:smart_event_planner/features/profile/presentation/cubits/user_cu
 final getIt = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+  // ---------- Api ----------
   getIt.registerLazySingleton<ApiClient>(() => ApiClient());
 
   getIt.registerLazySingleton<ApiServices>(
@@ -22,9 +24,13 @@ Future<void> initializeDependencies() async {
     ),
   );
 
+  // ---------- Auth ----------
   getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(getIt<ApiServices>()),
   );
+
+  // ---------- Secure Storage ----------
+  getIt.registerLazySingleton<SecureStorage>(() => SecureStorage());
 
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(

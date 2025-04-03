@@ -3,8 +3,6 @@ import 'package:lottie/lottie.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 
-
-
 /// A widget for displaying an animated loading indicator with optional text and action button.
 class TAnimationLoaderWidget extends StatelessWidget {
   /// Default constructor for the TAnimationLoaderWidget.

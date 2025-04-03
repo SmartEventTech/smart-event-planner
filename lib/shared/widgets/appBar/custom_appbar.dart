@@ -21,7 +21,8 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   OverlayEntry? _overlayEntry;
 
-  void _showMessagePopup(BuildContext context, Offset buttonPosition, Size buttonSize) {
+  void _showMessagePopup(
+      BuildContext context, Offset buttonPosition, Size buttonSize) {
     if (_overlayEntry != null) {
       _removePopup(); // Remove existing popup if any
     }
@@ -40,7 +41,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
             left: buttonPosition.dx - 230, // Adjust this offset as needed
             child: Material(
               elevation: 4.0,
-              
               borderRadius: BorderRadius.circular(10),
               child: MessegesPopupElement(),
             ),
@@ -51,7 +51,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
     Overlay.of(context).insert(_overlayEntry!);
   }
-  void _showNotificationPopup(BuildContext context, Offset buttonPosition, Size buttonSize) {
+
+  void _showNotificationPopup(
+      BuildContext context, Offset buttonPosition, Size buttonSize) {
     if (_overlayEntry != null) {
       _removePopup(); // Remove existing popup if any
     }
@@ -70,7 +72,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
             left: buttonPosition.dx + 30, // Adjust this offset as needed
             child: Material(
               elevation: 4.0,
-              
               borderRadius: BorderRadius.circular(10),
               child: NotificationPopupElement(),
             ),
@@ -82,12 +83,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
     Overlay.of(context).insert(_overlayEntry!);
   }
 
-
   void _removePopup() {
     _overlayEntry?.remove();
     _overlayEntry = null;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -107,13 +106,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
         ),
         automaticallyImplyLeading: false,
         actions: [
-          Builder( // Use Builder to get the IconButton's position
+          Builder(
+            // Use Builder to get the IconButton's position
             builder: (BuildContext context) {
               return IconButton(
                 onPressed: () {
                   // Get button position and size using Builder's context
-                  RenderBox buttonRenderBox = context.findRenderObject() as RenderBox;
-                  Offset buttonPosition = buttonRenderBox.localToGlobal(Offset.zero);
+                  RenderBox buttonRenderBox =
+                      context.findRenderObject() as RenderBox;
+                  Offset buttonPosition =
+                      buttonRenderBox.localToGlobal(Offset.zero);
                   Size buttonSize = buttonRenderBox.size;
                   _showMessagePopup(context, buttonPosition, buttonSize);
                 },
@@ -124,10 +126,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
           IconButton(
             onPressed: () {
               // Get button position and size using Builder's context
-                  RenderBox buttonRenderBox = context.findRenderObject() as RenderBox;
-                  Offset buttonPosition = buttonRenderBox.localToGlobal(Offset.zero);
-                  Size buttonSize = buttonRenderBox.size;
-                  _showNotificationPopup(context, buttonPosition, buttonSize);
+              RenderBox buttonRenderBox =
+                  context.findRenderObject() as RenderBox;
+              Offset buttonPosition =
+                  buttonRenderBox.localToGlobal(Offset.zero);
+              Size buttonSize = buttonRenderBox.size;
+              _showNotificationPopup(context, buttonPosition, buttonSize);
             },
             icon: Icon(Iconsax.notification),
           ),

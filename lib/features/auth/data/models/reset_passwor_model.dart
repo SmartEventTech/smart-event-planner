@@ -3,8 +3,12 @@ class ResetPassworModel {
   final String password;
   final String passwordConfirm;
 
-  ResetPassworModel(this.email, this.password, this.passwordConfirm); 
+  ResetPassworModel(this.email, this.password, this.passwordConfirm);
 
-  // toJson 
-  Map<String, dynamic> toJson() => {'email': email, 'password': password, 'passwordConfirm': passwordConfirm};
+  // toJson
+  Map<String, dynamic> toJson() => {
+        'email': email,
+        'password': password,
+        'passwordConfirm': passwordConfirm
+      };
 }

@@ -37,7 +37,6 @@ class _MapScreenState extends State<MapScreen> {
     super.dispose();
   }
 
-
   Future<void> _checkLocationPermissions() async {
     var location = Location();
     _isLocationServiceEnabled = await location.serviceEnabled();
@@ -70,7 +69,8 @@ class _MapScreenState extends State<MapScreen> {
       _updateLocationAndMarker(
           LatLng(locationData.latitude!, locationData.longitude!));
 
-      _locationSubscription = location.onLocationChanged.listen((LocationData newLocation) {
+      _locationSubscription =
+          location.onLocationChanged.listen((LocationData newLocation) {
         if (mounted) {
           _updateLocationAndMarker(
               LatLng(newLocation.latitude!, newLocation.longitude!));
@@ -149,18 +149,18 @@ class _MapScreenState extends State<MapScreen> {
                               : null,
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size(352, 55),
-                            backgroundColor:
-                                const Color(0xFF0E377C), // Dark blue background color
+                            backgroundColor: const Color(
+                                0xFF0E377C), // Dark blue background color
                             foregroundColor: Colors.white, // White text color
                             textStyle: const TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.w600), // Adjust text size as needed
+                                fontWeight: FontWeight
+                                    .w600), // Adjust text size as needed
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 12), // Adjust padding
+                                horizontal: 20, vertical: 12), // Adjust padding
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  22), // Rounded corners
+                              borderRadius:
+                                  BorderRadius.circular(22), // Rounded corners
                             ),
                           ),
                           child: const Text("Confirm Location"),
@@ -174,10 +174,12 @@ class _MapScreenState extends State<MapScreen> {
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF0E377C), // Make background transparent
+                            backgroundColor: Color(
+                                0xFF0E377C), // Make background transparent
                             // padding: EdgeInsets.zero, // Remove padding
                             // minimumSize: Size.zero, // Remove minimum size
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Adjust tap target size
+                            tapTargetSize: MaterialTapTargetSize
+                                .shrinkWrap, // Adjust tap target size
                           ),
                           child: const Icon(
                             Icons.arrow_back_ios_new_outlined,

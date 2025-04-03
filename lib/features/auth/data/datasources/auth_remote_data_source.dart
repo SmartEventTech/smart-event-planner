@@ -12,7 +12,7 @@ abstract class AuthRemoteDataSource {
   Future<Either<ApiError, void>> signup(SignupModel signupModel);
 
   // logout
-  Future<void> logout();
+  Future<Either<ApiError, void>> logout();
 
   // reset password
   Future<Either<ApiError, void>> resetPassword(
@@ -53,8 +53,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<void> logout() async {
-    await apiService.logout();
+  Future<Either<ApiError, void>> logout() async {
+    return await apiService.logout();
   }
 
   @override

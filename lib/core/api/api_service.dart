@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/api/api_client.dart';
 import 'package:smart_event_planner/core/api/api_error.dart';
+import 'package:smart_event_planner/core/models/event/event_model.dart';
+import 'package:smart_event_planner/core/storage/secure_storage.dart';
 import 'package:smart_event_planner/features/auth/data/models/login_model.dart';
 import 'package:smart_event_planner/features/auth/data/models/reset_passwor_model.dart';
 import 'package:smart_event_planner/features/auth/data/models/signup_model.dart';
@@ -10,9 +12,19 @@ import 'package:smart_event_planner/features/profile/data/models/user_model.dart
 class ApiServices {
   final ApiClient apiClient;
 
-  final _storage = const FlutterSecureStorage();
+  final _storage = getIt.get<SecureStorage>();
 
   ApiServices(this.apiClient);
+
+  // Get Token
+  Future<String?> _getToken() async {
+    return await _storage.getAccessToken();
+  }
+
+  // Get User Id
+  Future<String?> _getUserId() async {
+    return await _storage.getUserId();
+  }
 
   /// Login
   Future<Either<ApiError, void>> login({required LoginModel loginModel}) async {
@@ -25,10 +37,15 @@ class ApiServices {
     return response.fold((error) {
       return Left(error);
     }, (response) async {
-      await _storage.write(
-          key: 'access_token', value: response.data['data']['accessToken']);
-      await _storage.write(
-          key: 'user_id', value: response.data['data']['user']['_id']);
+      // save tokens
+      await _storage.saveTokens(
+          accessToken: response.data['data']['accessToken'],
+          refreshToken: response.data['data']['refreshToken'] ??
+              response.data['data']['accessToken']);
+
+      // save user id
+      await _storage.saveUserId(response.data['data']['user']['_id']);
+
       return const Right(null);
     });
   }
@@ -45,10 +62,12 @@ class ApiServices {
     return response.fold((error) {
       return Left(error);
     }, (response) async {
-      await _storage.write(
-          key: 'access_token', value: response.data['data']['accessToken']);
-      await _storage.write(
-          key: 'user_id', value: response.data['data']['user']['_id']);
+      // await _storage.saveTokens(
+      //   accessToken: response.data['data']['accessToken'],
+      //   refreshToken: response.data['data']['refreshToken'] ??
+      //       response.data['data']['accessToken'],
+      // );
+      // await _storage.saveUserId(response.data['data']['user']['_id']);
       return const Right(null);
     });
   }
@@ -112,8 +131,11 @@ class ApiServices {
     return response.fold((error) {
       return Left(error);
     }, (response) async {
-      await _storage.delete(key: 'access_token');
-      await _storage.delete(key: 'user_id');
+      // delete tokens
+      await _storage.deleteAllTokens();
+      // delete user id
+      await _storage.deleteUserId();
+
       return const Right(null);
     });
   }
@@ -127,7 +149,7 @@ class ApiServices {
   // Get User
   Future<Either<ApiError, UserModel>> getUser() async {
     // get user id
-     final userId = await _storage.read(key: 'user_id');
+    final userId = await _getUserId();
 
     final response = await apiClient.request(
       path: 'ce6e.up.railway.app/api/auth/viewprofile/$userId',
@@ -158,7 +180,7 @@ class ApiServices {
   // Share Profile
   Future<Either<ApiError, String>> shareProfile() async {
     // get user id
-     final userId = await _storage.read(key: 'user_id');
+    final userId = await _getUserId();
 
     final response = await apiClient.request(
       path: 'ce6e.up.railway.app/api/auth/shareprofile/$userId/share',
@@ -171,4 +193,29 @@ class ApiServices {
       return Right(response.data['link']);
     });
   }
+
+  // Get Customized Events
+  Future<Either<ApiError, List<EventModel>>> getCustomizedEvents() async {
+    // get user id
+    final userId = await _getUserId();
+
+    final response = await apiClient.request(
+      path: 'ce6e.up.railway.app/api/auth/viewprofilewithevent/$userId',
+      // header
+      headers: {'Authorization': 'Bearer ${await _getToken()}'},
+      method: 'GET',
+    );
+
+    return response.fold((error) {
+      return Left(error);
+    }, (response) {
+      final events = List.from(response.data['registeredEvents'])
+          .map((e) => EventModel.fromJson(e))
+          .toList();
+
+      return Right(events);
+    });
+  }
+
+  /// -----------":"-----------
 }

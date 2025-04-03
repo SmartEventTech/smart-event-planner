@@ -46,33 +46,34 @@ class _ChatBotBodyState extends State<ChatBotBody> {
   }
 
   Widget _buildChatInterface() {
-     return DashChat(
-    inputOptions: _inputStyle(),
-    messageOptions: MessageOptions(
-      currentUserContainerColor: AppColors.primaryColor,
-      containerColor: AppColors.fillColor,
-      currentUserTextColor: Colors.white,  // White text for user bubbles
-      textColor: Colors.black,             // Black text for bot bubbles
-      maxWidth: MediaQuery.of(context).size.width * 0.75,
-      messageTextBuilder: (message, _, __) {
-        return SelectableText(
-          message.text,
-          style: TextStyle(
-            fontSize: 16,                  // Larger font size
-            color: message.user == currentUser 
-                ? Colors.white            // User message text color
-                : Colors.black,            // Bot message text color
-            fontWeight: FontWeight.w300,    // Medium weight
-          ),
-        );
-      },
-    ),
-    typingUsers: _isLoading ? [botUser] : [],
-    currentUser: currentUser,
-    onSend: _handleMessageSending,
-    messages: messages,
-  );
-}
+    return DashChat(
+      inputOptions: _inputStyle(),
+      messageOptions: MessageOptions(
+        currentUserContainerColor: AppColors.primaryColor,
+        containerColor: AppColors.fillColor,
+        currentUserTextColor: Colors.white, // White text for user bubbles
+        textColor: Colors.black, // Black text for bot bubbles
+        maxWidth: MediaQuery.of(context).size.width * 0.75,
+        messageTextBuilder: (message, _, __) {
+          return SelectableText(
+            message.text,
+            style: TextStyle(
+              fontSize: 16, // Larger font size
+              color: message.user == currentUser
+                  ? Colors.white // User message text color
+                  : Colors.black, // Bot message text color
+              fontWeight: FontWeight.w300, // Medium weight
+            ),
+          );
+        },
+      ),
+      typingUsers: _isLoading ? [botUser] : [],
+      currentUser: currentUser,
+      onSend: _handleMessageSending,
+      messages: messages,
+    );
+  }
+
   Widget _buildWelcomeWidget() {
     return Center(
       child: Padding(
@@ -116,8 +117,8 @@ class _ChatBotBodyState extends State<ChatBotBody> {
         fillColor: Colors.white,
         filled: true,
       ),
-      inputTextStyle: AppTextStyle.textStyle16Medium(context).copyWith(
-        fontSize: 14      ),
+      inputTextStyle:
+          AppTextStyle.textStyle16Medium(context).copyWith(fontSize: 14),
       sendButtonBuilder: (onSend) {
         return IconButton(
           icon: Icon(Icons.send, color: AppColors.primaryColor),
@@ -148,8 +149,9 @@ class _ChatBotBodyState extends State<ChatBotBody> {
           final chunk = event.content?.parts
                   ?.whereType<TextPart>()
                   .map((part) => part.text)
-                  .join(" ") ?? '';
-          
+                  .join(" ") ??
+              '';
+
           _fullResponse += chunk;
 
           if (mounted) {

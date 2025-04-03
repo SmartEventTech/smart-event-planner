@@ -16,7 +16,8 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    bool isOnBoardingSeen = SharedPreferenceSingleton.getBool(kisOnBoardingSeen);
+    bool isOnBoardingSeen =
+        SharedPreferenceSingleton.getBool(kisOnBoardingSeen);
     Future.delayed(const Duration(seconds: 3), () {
       // ignore: use_build_context_synchronously
       if (isOnBoardingSeen) {

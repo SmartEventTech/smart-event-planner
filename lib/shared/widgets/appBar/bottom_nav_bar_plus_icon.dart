@@ -16,7 +16,8 @@ class BottomNavBarPlusIcon extends StatelessWidget {
       right: 0,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateEventScreen()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => CreateEventScreen()));
         },
         child: Container(
           padding: EdgeInsets.all(8),

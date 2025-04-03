@@ -75,7 +75,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             arguments:
                 context.read<ResetPasswordCubit>().emailController.text.trim(),
           );
-          Loaders.successSnackBar(title: 'Success',message: state.message);
+          Loaders.successSnackBar(title: 'Success', message: state.message);
         } else if (state is CheckEmailFailureState) {
           Loaders.errorSnackBar(title: 'Error', message: state.message);
         }

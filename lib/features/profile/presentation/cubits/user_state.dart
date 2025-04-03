@@ -25,7 +25,6 @@ class UserErrorState extends UserState {
   UserErrorState(this.message);
 }
 
-
 class SharePofileState extends UserState {
   final String link;
 

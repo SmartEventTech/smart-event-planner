@@ -32,7 +32,7 @@ class SuccessDialog extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               title,
-              textAlign: TextAlign.center,  
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -51,7 +51,8 @@ class SuccessDialog extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
               ),
               onPressed: onPressed ?? () => Navigator.pop(context),
               child: Text(
@@ -85,7 +86,6 @@ class SuccessDialog extends StatelessWidget {
   }
 }
 
-
 void showSuccessDialog({
   required BuildContext context,
   required String title,
@@ -94,7 +94,6 @@ void showSuccessDialog({
   VoidCallback? onPressed,
 }) {
   showGeneralDialog(
-
     context: context,
     barrierDismissible: true,
     barrierLabel: '',
@@ -105,7 +104,6 @@ void showSuccessDialog({
         message: message,
         buttonText: buttonText,
         onPressed: onPressed,
-      
       );
     },
     transitionBuilder: (_, animation, __, child) {

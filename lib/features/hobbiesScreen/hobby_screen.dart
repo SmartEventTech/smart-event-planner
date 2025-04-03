@@ -39,8 +39,6 @@ class HobbyScreenState extends State<HobbyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-    
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -48,7 +46,6 @@ class HobbyScreenState extends State<HobbyScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            
               const Text(
                 'What are you interested in?',
                 style: TextStyle(
@@ -62,7 +59,7 @@ class HobbyScreenState extends State<HobbyScreen> {
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const SizedBox(height: 20),
-        
+
               // Hobbies Grid
               Expanded(
                 child: ListView(
@@ -79,8 +76,8 @@ class HobbyScreenState extends State<HobbyScreen> {
                           ), // Reduce spacing between two items
                           if (secondIndex < interests.length)
                             Expanded(
-                                child:
-                                    buildHobbyContainer(interests[secondIndex])),
+                                child: buildHobbyContainer(
+                                    interests[secondIndex])),
                         ],
                       );
                     },
@@ -88,7 +85,7 @@ class HobbyScreenState extends State<HobbyScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-        
+
               // Continue Button
               SizedBox(
                 width: double.infinity,
@@ -124,7 +121,6 @@ class HobbyScreenState extends State<HobbyScreen> {
           ),
         ),
       ),
-      
     );
   }
 
@@ -135,58 +131,56 @@ class HobbyScreenState extends State<HobbyScreen> {
 
   GestureDetector containersHobby(bool isSelected, String interest) {
     return GestureDetector(
-    onTap: () {
-      setState(() {
-        isSelected
-            ? selectedInterests.remove(interest)
-            : selectedInterests.add(interest);
-      });
-    },
-    child: Container(
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      constraints: BoxConstraints(
-        minWidth: 90, // Minimum width for tap target
-        maxWidth: MediaQuery.of(context).size.width *
-            0.5, // Maximum 40% of screen width
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-      decoration: BoxDecoration(
-        color:
-            isSelected ? AppColors.secondaryColor : Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color:
-              isSelected ? AppColors.secondaryColor : Colors.grey,
+      onTap: () {
+        setState(() {
+          isSelected
+              ? selectedInterests.remove(interest)
+              : selectedInterests.add(interest);
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 6),
+        constraints: BoxConstraints(
+          minWidth: 90, // Minimum width for tap target
+          maxWidth: MediaQuery.of(context).size.width *
+              0.5, // Maximum 40% of screen width
         ),
-      ),
-      child: IntrinsicWidth(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              'assets/icons/Ellipse.png',
-              width: 16,
-              height: 16,
-            ),
-            const SizedBox(width: 8),
-            Flexible(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  interest,
-                  style: TextStyle(
-                    fontSize: 15, // Base font size
-                    color: isSelected ? Colors.white : Colors.black,
-                    fontWeight:
-                        isSelected ? FontWeight.bold : FontWeight.bold,
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.secondaryColor : Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: isSelected ? AppColors.secondaryColor : Colors.grey,
+          ),
+        ),
+        child: IntrinsicWidth(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'assets/icons/Ellipse.png',
+                width: 16,
+                height: 16,
+              ),
+              const SizedBox(width: 8),
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    interest,
+                    style: TextStyle(
+                      fontSize: 15, // Base font size
+                      color: isSelected ? Colors.white : Colors.black,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
   }
 }

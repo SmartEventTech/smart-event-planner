@@ -26,12 +26,8 @@ Widget buildSignupBackground() {
   );
 }
 
-
-
-
-
-
-Widget buildSignupButton(BuildContext context ,{required VoidCallback onPressed}) {
+Widget buildSignupButton(BuildContext context,
+    {required VoidCallback onPressed}) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       backgroundColor: const Color.fromRGBO(15, 55, 124, 1),
@@ -40,7 +36,7 @@ Widget buildSignupButton(BuildContext context ,{required VoidCallback onPressed}
       ),
       minimumSize: const Size(double.infinity, 55),
     ),
-    onPressed:onPressed,
+    onPressed: onPressed,
     child: const Text(
       'Sign Up',
       style: TextStyle(
@@ -54,11 +50,15 @@ Widget buildLoginText(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       const Text('Already have an account?',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 8)),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 8)),
       InkWell(
         onTap: () => Navigator.pushNamed(context, Routes.loginScreen),
         child: const Text(' Login',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,fontSize: 10)),
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 10)),
       ),
     ],
   );

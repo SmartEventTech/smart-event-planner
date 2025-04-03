@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 abstract class OtpVerificationState extends Equatable {
-  const OtpVerificationState(); 
+  const OtpVerificationState();
 
   @override
   List<Object> get props => [];
@@ -28,7 +28,6 @@ class OtpVerificationFailure extends OtpVerificationState {
   @override
   List<Object> get props => [message];
 }
-
 
 class ResndOtpSuccess extends OtpVerificationState {
   final String message;

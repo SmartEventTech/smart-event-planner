@@ -77,24 +77,21 @@ class UserModel {
     return UserModel(
       uId: json['id'] ?? json['_id'] ?? '',
       email: json['email'] ?? '',
-      name: json['name'] ?? 
-           '${json['firstName'] ?? ''} ${json['lastName'] ?? ''}'.trim(),
+      name: json['name'] ??
+          '${json['firstName'] ?? ''} ${json['lastName'] ?? ''}'.trim(),
       firstName: json['firstName'],
       lastName: json['lastName'],
       phoneNumber: json['phoneNumber'],
       profileImage: json['profileImage'],
       gender: json['gender'],
-      birthDate: json['birthDate'] != null 
-          ? DateTime.parse(json['birthDate']) 
-          : null,
+      birthDate:
+          json['birthDate'] != null ? DateTime.parse(json['birthDate']) : null,
       isVerified: json['isVerified'] ?? false,
       isActive: json['isActive'] ?? true,
-      createdAt: json['createdAt'] != null 
-          ? DateTime.parse(json['createdAt']) 
-          : null,
-      updatedAt: json['updatedAt'] != null 
-          ? DateTime.parse(json['updatedAt']) 
-          : null,
+      createdAt:
+          json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      updatedAt:
+          json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
       favorites: json['favorites'] ?? [],
     );
   }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:iconsax/iconsax.dart';
@@ -22,7 +21,6 @@ class MessegesPopupElement extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: List.generate(5, (index) {
           return ListTile(
-
             leading: Icon(Iconsax.message),
             title: Text(
               "Message",

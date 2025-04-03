@@ -13,8 +13,8 @@ class TFullScreenLoader {
   ///   - animation: The Lottie animation to be shown.
   static void openLoadingDialog(String text, String animation) {
     showDialog(
-      context:
-          AppContext.overlayContext, // Use Get.overlayContext for overlay dialogs
+      context: AppContext
+          .overlayContext, // Use Get.overlayContext for overlay dialogs
       barrierDismissible:
           false, // The dialog can't be dismissed by tapping outside it
       builder: (_) => PopScope(

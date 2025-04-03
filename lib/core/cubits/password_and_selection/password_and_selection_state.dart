@@ -8,7 +8,7 @@ class PasswordAndSelectionState {
     required this.isPasswordHidden,
     required this.isPrivacyAccepted,
     required this.isRememberMe,
-    required this. isConfirmPasswordHidden,
+    required this.isConfirmPasswordHidden,
   });
 
   PasswordAndSelectionState copyWith({
@@ -21,7 +21,8 @@ class PasswordAndSelectionState {
       isPasswordHidden: isPasswordHidden ?? this.isPasswordHidden,
       isPrivacyAccepted: isPrivacyAccepted ?? this.isPrivacyAccepted,
       isRememberMe: isRememberMe ?? this.isRememberMe,
-      isConfirmPasswordHidden: isConfirmPasswordHidden ?? this.isConfirmPasswordHidden,
+      isConfirmPasswordHidden:
+          isConfirmPasswordHidden ?? this.isConfirmPasswordHidden,
     );
   }
 }

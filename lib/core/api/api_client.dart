@@ -96,13 +96,14 @@ class ApiClient {
     Object? data,
     Map<String, dynamic>? queryParameters,
     String method = 'GET',
+    Map<String, dynamic>? headers,
   }) async {
     try {
       dio.options.baseUrl = baseUrl ?? baseUrlLink;
       final response = await dio.request(
         path,
         data: data,
-        options: Options(method: method),
+        options: Options(method: method, headers: headers),
         queryParameters: queryParameters,
       );
 

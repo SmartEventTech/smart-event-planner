@@ -18,5 +18,6 @@ class AppContext {
   }
 
   // over lay context
-  static BuildContext get overlayContext => navigatorKey.currentState!.overlay!.context;
+  static BuildContext get overlayContext =>
+      navigatorKey.currentState!.overlay!.context;
 }

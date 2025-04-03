@@ -3,10 +3,10 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 
 class PrivacypolicyCheckBox extends StatefulWidget {
   const PrivacypolicyCheckBox({
-    super.key, 
+    super.key,
     required this.onTermsAccepted,
   });
-  
+
   final ValueChanged<bool> onTermsAccepted;
 
   @override
@@ -22,7 +22,7 @@ class _PrivacypolicyCheckBoxState extends State<PrivacypolicyCheckBox> {
       children: [
         Checkbox(
           activeColor: AppColors.primaryColor,
-          value: isTermsAccepted, 
+          value: isTermsAccepted,
           onChanged: (value) {
             setState(() {
               isTermsAccepted = value ?? false;
@@ -33,7 +33,7 @@ class _PrivacypolicyCheckBoxState extends State<PrivacypolicyCheckBox> {
         const Text(
           'I agree to the privacy policy',
           style: TextStyle(
-            fontWeight: FontWeight.bold, 
+            fontWeight: FontWeight.bold,
             color: Colors.black,
             fontSize: 10,
           ),

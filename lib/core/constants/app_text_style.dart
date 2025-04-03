@@ -9,20 +9,19 @@ class AppTextStyle {
   }
 
   static TextStyle textStyle20Bold(BuildContext context) {
-    return Theme.of(context)
-        .textTheme
-        .titleMedium!
-        .copyWith(fontSize: 20.0.responsiveText(context), fontWeight: FontWeight.w700);
+    return Theme.of(context).textTheme.titleMedium!.copyWith(
+        fontSize: 20.0.responsiveText(context), fontWeight: FontWeight.w700);
   }
 
   static TextStyle textStyle13SemiBold(BuildContext context) =>
-      Theme.of(context)
-          .textTheme
-          .bodyMedium!
-          .copyWith(fontWeight: FontWeight.w600, fontSize: 13.0.responsiveText(context));
+      Theme.of(context).textTheme.bodyMedium!.copyWith(
+          fontWeight: FontWeight.w600, fontSize: 13.0.responsiveText(context));
 
   static TextStyle textStyle18ExtraBold(BuildContext context) =>
-      Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18.0.responsiveText(context));
+      Theme.of(context)
+          .textTheme
+          .titleLarge!
+          .copyWith(fontSize: 18.0.responsiveText(context));
 
   static TextStyle textStyle20Medium(BuildContext context) =>
       Theme.of(context).textTheme.titleMedium!;
@@ -39,8 +38,10 @@ class AppTextStyle {
   static TextStyle textStyle16Regular(BuildContext context) =>
       Theme.of(context).textTheme.bodyMedium!;
 
-  static TextStyle textStyle16Medium(BuildContext context) =>
-      Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 14.0.responsiveText(context));
+  static TextStyle textStyle16Medium(BuildContext context) => Theme.of(context)
+      .textTheme
+      .bodyLarge!
+      .copyWith(fontSize: 14.0.responsiveText(context));
 
   static defaultCalendarTextStyle(BuildContext context) => Theme.of(context)
       .textTheme
@@ -48,27 +49,30 @@ class AppTextStyle {
       .copyWith(fontWeight: FontWeight.w500);
 
   static TextStyle textStyle16Bold(BuildContext context) =>
-      Theme.of(context)
-          .textTheme
-          .bodyLarge!
-          .copyWith(fontSize: 16.0.responsiveText(context), fontWeight: FontWeight.w700);
+      Theme.of(context).textTheme.bodyLarge!.copyWith(
+          fontSize: 16.0.responsiveText(context), fontWeight: FontWeight.w700);
 
-  static TextStyle textStyle17Medium(BuildContext context) =>
-      Theme.of(context)
-          .textTheme
-          .headlineSmall!
-          .copyWith(fontSize: 17.0.responsiveText(context));
+  static TextStyle textStyle17Medium(BuildContext context) => Theme.of(context)
+      .textTheme
+      .headlineSmall!
+      .copyWith(fontSize: 17.0.responsiveText(context));
 
   static TextStyle textStyle12Regular(BuildContext context) =>
       Theme.of(context).textTheme.bodySmall!;
 
-  static TextStyle textStyle15Regular(BuildContext context) =>
-      Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 15.0.responsiveText(context));
+  static TextStyle textStyle15Regular(BuildContext context) => Theme.of(context)
+      .textTheme
+      .bodyMedium!
+      .copyWith(fontSize: 15.0.responsiveText(context));
 
   static TextStyle textStyle13Light(BuildContext context) =>
       Theme.of(context).textTheme.bodyMedium!.copyWith(
-          fontWeight: FontWeight.w300, fontSize: 13.0.responsiveText(context), color: Colors.white);
+          fontWeight: FontWeight.w300,
+          fontSize: 13.0.responsiveText(context),
+          color: Colors.white);
   static TextStyle textStyle14Light(BuildContext context) =>
       Theme.of(context).textTheme.bodyMedium!.copyWith(
-          fontWeight: FontWeight.w300, fontSize: 14.0.responsiveText(context), color: Colors.white);
+          fontWeight: FontWeight.w300,
+          fontSize: 14.0.responsiveText(context),
+          color: Colors.white);
 }

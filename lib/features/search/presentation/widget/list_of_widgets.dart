@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -21,7 +17,6 @@ class _ListOfContentState extends State<ListOfContent> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      
       leading: Icon(
         isSelected ? Iconsax.tick_square5 : Iconsax.tick_square4,
         color: isSelected ? Colors.blue : Colors.black,

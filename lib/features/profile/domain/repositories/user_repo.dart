@@ -11,6 +11,4 @@ abstract class UserRepo {
 
   // share profile
   Future<Either<ApiError, String>> shareProfile();
-
-  
 }

@@ -12,7 +12,7 @@ abstract class AuthRepo {
   Future<Either<ApiError, void>> signup({required SignupModel signupModel});
 
   // logout
-  Future<void> logout();
+ Future<Either<ApiError, void>> logout();
 
   // register
   Future<Either<ApiError, void>> forgetPassword({required String email});
@@ -22,5 +22,5 @@ abstract class AuthRepo {
       {required ResetPassworModel resetPassworModel});
 
   // Send OTP
-  Future<Either<ApiError, void>> sendOTP({required String email});     
+  Future<Either<ApiError, void>> sendOTP({required String email});
 }

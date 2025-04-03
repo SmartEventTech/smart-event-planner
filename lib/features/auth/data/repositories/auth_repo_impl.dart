@@ -16,7 +16,7 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<void> logout() async {
+Future<Either<ApiError, void>> logout() async {
     return await authRemoteDataSource.logout();
   }
 

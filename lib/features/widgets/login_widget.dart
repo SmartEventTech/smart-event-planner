@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 
-
-
 Widget buildLoginButton(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
@@ -58,13 +56,15 @@ Widget buildSignupText(BuildContext context) {
     children: [
       const Text(
         "Don't have an account?",
-        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 8),
+        style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 8),
       ),
       InkWell(
         onTap: () => Navigator.pushNamed(context, Routes.signupScreen),
         child: const Text(
           ' Sign Up',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 10),
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 10),
         ),
       ),
     ],

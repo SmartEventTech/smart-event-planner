@@ -15,7 +15,6 @@ class _SearchSecreenState extends State<SearchSecreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       key: _scaffoldKey,
       body: Padding(
@@ -25,16 +24,17 @@ class _SearchSecreenState extends State<SearchSecreen> {
         child: Column(
           children: [
             const SizedBox(height: AppSizes.md),
-            SearchScreenHeader(onFilterButtonPressed: () {
+            SearchScreenHeader(
+              onFilterButtonPressed: () {
                 _scaffoldKey.currentState!.openEndDrawer();
-              },),
+              },
+            ),
             const SizedBox(height: AppSizes.md),
             FilterEventsList(),
           ],
         ),
       ),
-      endDrawer:  CustomDrawer(),
+      endDrawer: CustomDrawer(),
     );
   }
 }
-
