@@ -42,32 +42,34 @@ class ProfileScreen extends StatelessWidget {
                     userImageUrl: AppImages.userAvatar,
                   ),
                   const SizedBox(height: AppSizes.slg),
-                  Column(
-                    children: [
-                      BlocBuilder<UserCubit, UserState>(
-                        builder: (context, state) {
-                          if (state is UserLoadedState) {
-                            return Column(
-                              children: [
-                                Text(
-                                  state.userModel.name.isNotEmpty
-                                      ? state.userModel.name
-                                      : 'No Name',
-                                  style:
-                                      AppTextStyle.textStyle24Medium(context),
-                                ),
-                                Text(
-                                  state.userModel.email,
-                                  style:
-                                      AppTextStyle.textStyle16Regular(context),
-                                ),
-                              ],
-                            );
-                          }
-                          return _builoadingWidget(context);
-                        },
-                      ),
-                    ],
+                  BlocBuilder<UserCubit, UserState>(
+                    builder: (context, state) {
+                      if (state is UserLoadedState) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: AppSizes.defaultScreenPadding),
+                          child: Column(
+                            children: [
+                              Text(
+                                state.userModel.name.isNotEmpty
+                                    ? state.userModel.name
+                                    : 'No Name',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyle.textStyle24Medium(context),
+                              ),
+                              Text(
+                                state.userModel.email,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyle.textStyle16Regular(context),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                      return _builoadingWidget(context);
+                    },
                   ),
                   const SizedBox(height: AppSizes.spaceBtwItems * 2),
                   Padding(
