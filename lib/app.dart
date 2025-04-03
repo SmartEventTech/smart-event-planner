@@ -6,6 +6,8 @@ import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logger/logger.dart';
 import 'package:smart_event_planner/config/service_locator.dart';
+import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
+import 'package:smart_event_planner/core/constants/app_constants.dart';
 import 'package:smart_event_planner/core/storage/secure_storage.dart';
 import 'package:smart_event_planner/core/theme/app_theme.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
@@ -13,7 +15,7 @@ import 'package:smart_event_planner/config/routing/app_router.dart';
 import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
 
-bool isLogin = false;
+String screen = Routes.onboardingScreen;
 
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
@@ -47,7 +49,11 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: const [Locale('en')],
           onGenerateRoute: (settings) => appRouter.generateRoute(settings),
-          initialRoute: isLogin ? Routes.navigationScreen : Routes.splashScreen,
+          initialRoute: screen == Routes.onboardingScreen
+              ? Routes.onboardingScreen
+              : screen == Routes.loginScreen
+                  ? Routes.loginScreen
+                  : Routes.navigationScreen,
         ),
       ),
     );
@@ -56,9 +62,18 @@ class MyApp extends StatelessWidget {
 
 Future<void> entry() async {
   SecureStorage secureStorage = SecureStorage();
+
+  bool isOnBoardingSeen = SharedPreferenceSingleton.getBool(kisOnBoardingSeen);
+
+  if (isOnBoardingSeen) {
+    screen = Routes.loginScreen;
+  } else if (!isOnBoardingSeen) {
+    screen = Routes.onboardingScreen;
+  }
+
   if (await secureStorage.getAccessToken() != null) {
-    isLogin = true;
+    screen = Routes.navigationScreen;
   } else {
-    isLogin = false;
+    screen = Routes.loginScreen;
   }
 }

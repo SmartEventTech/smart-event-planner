@@ -20,6 +20,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: isDark ? Colors.black : AppColors.white,
         leading: GestureDetector(
           onTap: () => context.popPage(),
           child: Icon(
