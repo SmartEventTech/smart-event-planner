@@ -8,7 +8,7 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
-import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
+import 'package:smart_event_planner/core/utils/helpers/share/share_helper.dart';
 import 'package:smart_event_planner/core/widgets/shimmer/shimmer_widget.dart';
 import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
@@ -18,7 +18,6 @@ import 'package:smart_event_planner/features/profile/presentation/widgets/profil
 import 'package:smart_event_planner/shared/widgets/buttons/custom_eleveted_btn.dart';
 import 'package:smart_event_planner/shared/widgets/events/events_list_view.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/user_avatar_widget.dart';
-import 'package:clipboard/clipboard.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -82,10 +81,7 @@ class ProfileScreen extends StatelessWidget {
                           icon: Icons.share,
                           onPressed: () {
                             final link = context.read<UserCubit>().profelink;
-                            FlutterClipboard.copy(link).then(
-                              (value) =>
-                                  Loaders.customToast(message: 'URL Copied!'),
-                            );
+                            ShareHelper.shareContent(link);
                           },
                         ),
                         const SizedBox(width: 30),

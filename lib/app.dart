@@ -12,8 +12,6 @@ import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/config/routing/app_router.dart';
 import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 import 'package:smart_event_planner/core/services/api_service.dart';
-import 'package:smart_event_planner/core/repos/auth_repo/auth_repo.dart';
-import 'package:smart_event_planner/core/repos/auth_repo/auth_repo_impl.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
 
 bool isLogin = false;
@@ -36,15 +34,11 @@ class MyApp extends StatelessWidget {
             connectivity: context.read<Connectivity>(),
           ),
         ),
-        Provider<AuthRepo>(
-          create: (context) => AuthRepoImplementation(
-            apiService: context.read<ApiService>(),
-            logger: context.read<Logger>(),
-          ),
-        ),
       ],
       child: BlocProvider(
-        create: (context) => getIt.get<UserCubit>()..getProfile()..shareProfile(),
+        create: (context) => getIt.get<UserCubit>()
+          ..getProfile()
+          ..shareProfile(),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           navigatorKey: AppContext.navigatorKey,

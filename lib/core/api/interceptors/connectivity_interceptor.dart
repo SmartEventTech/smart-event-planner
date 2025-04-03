@@ -15,6 +15,6 @@ class ConnectivityInterceptor extends Interceptor {
         message: 'Please check your internet connection.',
       ));
     }
-    super.onRequest(options, handler);
+    return handler.next(options);
   }
 }

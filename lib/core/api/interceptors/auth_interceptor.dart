@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:smart_event_planner/config/routing/routes.dart';
+import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/api/api_client.dart';
+import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
 
 class AuthInterceptor extends Interceptor {
   final FlutterSecureStorage storage = FlutterSecureStorage();
-  final VoidCallback onLogout;
-  Completer<void>? _refreshCompleter;
+  final Dio _dio;
 
-  AuthInterceptor({required this.onLogout});
+  AuthInterceptor(this._dio);
 
   @override
   Future<void> onRequest(
@@ -18,61 +21,69 @@ class AuthInterceptor extends Interceptor {
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
     }
-    super.onRequest(options, handler);
+    return handler.next(options);
   }
 
   @override
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
-      if (err.requestOptions.path == '/auth/refresh') {
-        await _logout();
-        return handler.next(err);
+      String? newAccessToken = await _refreshToken();
+      if (newAccessToken != null) {
+        await storage.write(key: 'access_token', value: newAccessToken);
+        err.requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
+
+        final cloneReq = await _dio.request(
+          err.requestOptions.path,
+          options: Options(
+            method: err.requestOptions.method,
+            headers: err.requestOptions.headers,
+          ),
+          data: err.requestOptions.data,
+          queryParameters: err.requestOptions.queryParameters,
+        );
+
+        return handler.resolve(cloneReq);
+      } else {
+        _logout();
+        return handler.reject(err);
       }
-
-      if (_refreshCompleter != null) {
-        await _refreshCompleter!.future;
-        return handler.resolve(await ApiClient().dio.fetch(err.requestOptions));
-      }
-
-      _refreshCompleter = Completer();
-
-      try {
-        final refreshToken = await storage.read(key: 'refresh_token');
-        if (refreshToken == null) throw Exception('No refresh token');
-
-        // Use a new Dio instance to avoid interceptor loops
-        final refreshDio =
-            Dio(BaseOptions(baseUrl: err.requestOptions.baseUrl));
-        final response = await refreshDio.post('/auth/refresh', data: {
-          'refresh_token': refreshToken,
-        });
-
-        if (response.statusCode == 200) {
-          await storage.write(
-              key: 'access_token', value: response.data['access_token']);
-          await storage.write(
-              key: 'refresh_token', value: response.data['refresh_token']);
-          _refreshCompleter?.complete();
-          _refreshCompleter = null;
-          return handler
-              .resolve(await ApiClient().dio.fetch(err.requestOptions));
-        } else {
-          throw Exception('Refresh failed');
-        }
-      } catch (e) {
-        _refreshCompleter?.completeError(e);
-        await _logout();
-        return handler.next(err);
-      } finally {
-        _refreshCompleter = null;
-      }
+    } else {
+      return handler.next(err);
     }
-    super.onError(err, handler);
   }
 
-  Future<void> _logout() async {
-    await storage.deleteAll();
-    onLogout();
+  Future<String?> _refreshToken() async {
+    try {
+      String? refreshToken = await storage.read(key: 'refresh_token');
+
+      if (refreshToken == null) return null;
+
+      final response = await ApiClient().dio.post(
+        'ce6e.up.railway.app/api/auth/refresh',
+        data: {'refreshToken': refreshToken},
+      );
+
+      if (response.statusCode == 200) {
+        await storage.write(
+            key: 'access_token', value: response.data['data']['accessToken']);
+        await storage.write(
+            key: 'refresh_token', value: response.data['data']['refreshToken']);
+        return response.data['data']['accessToken'];
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  void _logout() async {
+    await getIt.get<AuthRepo>().logout();
+    storage.delete(key: 'access_token');
+    storage.delete(key: 'refresh_token');
+    if (AppContext.context.mounted) {
+      AppContext.context.pushNamedAndRemoveUntilPage(Routes.loginScreen);
+    }
   }
 }
