@@ -3,6 +3,7 @@ import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/api/api_client.dart';
 import 'package:smart_event_planner/core/api/api_error.dart';
 import 'package:smart_event_planner/core/models/event/event_model.dart';
+import 'package:smart_event_planner/core/repositories/event_repository.dart';
 import 'package:smart_event_planner/core/storage/secure_storage.dart';
 import 'package:smart_event_planner/features/auth/data/models/login_model.dart';
 import 'package:smart_event_planner/features/auth/data/models/reset_passwor_model.dart';
@@ -151,6 +152,8 @@ class ApiServices {
       await _storage.deleteAllTokens();
       // delete user id
       await _storage.deleteUserId();
+      // reset repo
+      EventRepository().clearCache();
 
       return const Right(null);
     });
