@@ -18,8 +18,10 @@ class OnboardingPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            imagePath,
+          Flexible(
+            child: Image.asset(
+              imagePath,
+            ),
           ),
           const SizedBox(height: AppSizes.spaceBtwSections),
           Padding(
@@ -27,7 +29,9 @@ class OnboardingPage extends StatelessWidget {
             child: Text(
               description,
               textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.headlineSmall!,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    fontSize: 20,
+                  ),
             ),
           ),
         ],
