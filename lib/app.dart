@@ -15,7 +15,7 @@ import 'package:smart_event_planner/config/routing/app_router.dart';
 import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
 
-String screen = Routes.onboardingScreen;
+String route = Routes.onboardingScreen;
 
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
@@ -49,11 +49,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: const [Locale('en')],
           onGenerateRoute: (settings) => appRouter.generateRoute(settings),
-          initialRoute: screen == Routes.onboardingScreen
-              ? Routes.onboardingScreen
-              : screen == Routes.loginScreen
-                  ? Routes.loginScreen
-                  : Routes.navigationScreen,
+          initialRoute: route,
         ),
       ),
     );
@@ -65,15 +61,11 @@ Future<void> entry() async {
 
   bool isOnBoardingSeen = SharedPreferenceSingleton.getBool(kisOnBoardingSeen);
 
-  if (isOnBoardingSeen) {
-    screen = Routes.loginScreen;
-  } else if (!isOnBoardingSeen) {
-    screen = Routes.onboardingScreen;
-  }
-
-  if (await secureStorage.getAccessToken() != null) {
-    screen = Routes.navigationScreen;
+  if (isOnBoardingSeen && await secureStorage.getAccessToken() == null) {
+    route = Routes.loginScreen;
+  } else if (await secureStorage.getAccessToken() != null) {
+    route = Routes.navigationScreen;
   } else {
-    screen = Routes.loginScreen;
+    route = Routes.onboardingScreen;
   }
 }
