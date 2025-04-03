@@ -62,7 +62,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         image: AppImages.successfullRegisterAnimation,
                         onPressed: () {
                           context.pushNamedAndRemoveUntilPage(
-                            Routes.navigationScreen,
+                            Routes.loginScreen,
                           );
                         },
                       ),
