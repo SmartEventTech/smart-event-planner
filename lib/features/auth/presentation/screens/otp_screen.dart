@@ -93,7 +93,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       const SizedBox(height: 16),
                       Text(
                         'Enter the OTP sent to\n$email',
-                        style: Theme.of(context).textTheme.headlineMedium,
+                        style: Theme.of(context).textTheme.headlineSmall,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 30),
