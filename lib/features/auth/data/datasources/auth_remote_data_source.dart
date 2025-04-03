@@ -8,8 +8,13 @@ import 'package:smart_event_planner/features/auth/data/models/signup_model.dart'
 abstract class AuthRemoteDataSource {
   // login
   Future<Either<ApiError, void>> login(LoginModel loginModel);
+
   // register
   Future<Either<ApiError, void>> signup(SignupModel signupModel);
+
+  // verify user
+  Future<Either<ApiError, void>> verifyUser(
+      {required String email, required int otp});
 
   // logout
   Future<Either<ApiError, void>> logout();
@@ -23,6 +28,10 @@ abstract class AuthRemoteDataSource {
 
   // Send OTP
   Future<Either<ApiError, void>> sendOTP({required String email});
+
+  // Verify OTP
+  Future<Either<ApiError, void>> verifyResetPassword(
+      {required String email, required int otp});
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -60,5 +69,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<Either<ApiError, void>> sendOTP({required String email}) async {
     return await apiService.sendOTP(email: email);
+  }
+
+  @override
+  Future<Either<ApiError, void>> verifyResetPassword(
+      {required String email, required int otp}) async {
+    return await apiService.verifyResetPassword(email: email, otp: otp);
+  }
+
+  @override
+  Future<Either<ApiError, void>> verifyUser(
+      {required String email, required int otp}) async {
+    return await apiService.verifyUser(email: email, otp: otp);
   }
 }

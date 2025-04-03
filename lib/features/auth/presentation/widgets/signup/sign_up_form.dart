@@ -117,10 +117,6 @@ class SignupForm extends StatelessWidget {
               context.read<SignupCubit>().emailController.text.trim(),
             );
             Loaders.successSnackBar(
-              title: 'Congratulations',
-              message: state.message,
-            );
-            Loaders.successSnackBar(
               title: 'Verify your email',
               message: 'Please check your email to verify your account',
             );

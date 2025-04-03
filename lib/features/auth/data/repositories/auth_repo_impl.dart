@@ -16,7 +16,7 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-Future<Either<ApiError, void>> logout() async {
+  Future<Either<ApiError, void>> logout() async {
     return await authRemoteDataSource.logout();
   }
 
@@ -40,5 +40,18 @@ Future<Either<ApiError, void>> logout() async {
   @override
   Future<Either<ApiError, void>> sendOTP({required String email}) async {
     return await authRemoteDataSource.sendOTP(email: email);
+  }
+
+  @override
+  Future<Either<ApiError, void>> verifyResetPassword(
+      {required String email, required int otp}) async {
+    return await authRemoteDataSource.verifyResetPassword(
+        email: email, otp: otp);
+  }
+
+  @override
+  Future<Either<ApiError, void>> verifyUser(
+      {required String email, required int otp}) async {
+    return await authRemoteDataSource.verifyUser(email: email, otp: otp);
   }
 }

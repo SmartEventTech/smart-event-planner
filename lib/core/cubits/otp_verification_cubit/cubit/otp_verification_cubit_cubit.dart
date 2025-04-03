@@ -6,10 +6,9 @@ import 'package:smart_event_planner/core/api/api_service.dart';
 import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp_verification_cubit_state.dart';
 import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart'
     as auth_repo;
-import 'package:smart_event_planner/core/repos/auth_repo/auth_repo.dart';
 
 class OtpVerificationCubit extends Cubit<OtpVerificationState> {
-  final AuthRepo authRepo;
+  final auth_repo.AuthRepo authRepo;
   final String email;
   final ApiServices apiService = ApiServices(ApiClient());
 
@@ -23,16 +22,18 @@ class OtpVerificationCubit extends Cubit<OtpVerificationState> {
     try {
       final Either<dynamic, dynamic> result;
       if (!reset) {
+        final confirmCode = int.tryParse(verificationCode.trim()) ?? 0;
+        
         result = await authRepo.verifyUser(
           email: email,
-          verificationCode: verificationCode,
+          otp: confirmCode,
         );
       } else {
         final confirmCode = int.tryParse(verificationCode.trim()) ?? 0;
 
         result = await apiService.verifyResetPassword(
           email: email,
-          verificationCode: confirmCode,
+          otp: confirmCode,
         );
       }
 

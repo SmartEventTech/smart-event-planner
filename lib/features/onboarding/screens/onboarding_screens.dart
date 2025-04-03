@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
 import 'package:smart_event_planner/core/constants/app_constants.dart';
-import 'package:smart_event_planner/features/widgets/onboarding_widget.dart';
+import 'package:smart_event_planner/features/onboarding/widgets/onboarding_widget.dart';
 
 class OnboardingScreens extends StatefulWidget {
   static const String id = Routes.onboardingScreen;
@@ -47,54 +47,49 @@ class OnboardingScreensState extends State<OnboardingScreens> {
             },
             children: onboardingPages,
           ),
-          Positioned(
-            bottom: 70,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                onboardingPages.length,
-                (index) => Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 1.5),
-                  width: 30,
-                  height: 2,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    color: currentPage == index
-                        ? Color.fromRGBO(160, 6, 81, 1)
-                        : Colors.grey,
+          if (currentPage != onboardingPages.length - 1)
+            Positioned(
+              bottom: 70,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  onboardingPages.length,
+                  (index) => Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 2),
+                    width: currentPage == index ? 33 : 25,
+                    height: 2,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: currentPage == index
+                          ? Color.fromRGBO(160, 6, 81, 1)
+                          : Colors.grey,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
           if (currentPage == onboardingPages.length - 1)
             Positioned(
               bottom: 50,
               left: 0,
               right: 0,
               child: Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: Color.fromRGBO(1, 48, 90, 1),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 88,
-                      vertical: 8.5,
-                    ),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      SharedPreferenceSingleton.setBool(
+                          kisOnBoardingSeen, true);
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        Routes.loginScreen,
+                        (route) => false,
+                      );
+                    },
+                    child: Text('Get Started'),
                   ),
-                  onPressed: () {
-                    SharedPreferenceSingleton.setBool(kisOnBoardingSeen, true);
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      Routes.loginScreen,
-                      (route) => false,
-                    );
-                  },
-                  child: Text('Get Started'),
                 ),
               ),
             ),

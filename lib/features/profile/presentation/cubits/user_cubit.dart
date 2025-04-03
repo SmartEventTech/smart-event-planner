@@ -38,7 +38,7 @@ class UserCubit extends Cubit<UserState> {
     final result = await userRepo.shareProfile();
     return result.fold(
       (error) {
-        throw Exception(error.message);
+        return error.message;
       },
       (link) {
         profelink = link;

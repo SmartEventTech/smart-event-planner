@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_event_planner/core/constants/app_sizes.dart';
 
 class OnboardingPage extends StatelessWidget {
   final String imagePath;
@@ -20,17 +21,13 @@ class OnboardingPage extends StatelessWidget {
           Image.asset(
             imagePath,
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: AppSizes.spaceBtwSections),
           Padding(
             padding: const EdgeInsets.only(left: 12, right: 0),
             child: Text(
               description,
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color.fromRGBO(1, 48, 90, 1),
-              ),
+              style: Theme.of(context).textTheme.headlineSmall!,
             ),
           ),
         ],

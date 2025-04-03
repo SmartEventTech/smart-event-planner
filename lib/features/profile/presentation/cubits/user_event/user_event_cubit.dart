@@ -1,28 +1,34 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/widgets.dart';
+import 'package:smart_event_planner/core/repositories/event_repository.dart';
 import 'package:smart_event_planner/features/profile/domain/repositories/user_repo.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_event/user_event_state.dart';
 
 class UserEventCubit extends Cubit<UserEventState> {
-  UserEventCubit(this.userRepo) : super(UserEventInitial());
+  final UserRepo _userRepo;
+  final EventRepository _eventRepository = EventRepository();
 
-  final UserRepo userRepo;
+  UserEventCubit(this._userRepo) : super(UserEventInitial());
 
-  // Fetch customized events
-  void fetchCustomizedEvents() async {
-    debugPrint('fetchCustomizedEvents');
+  Future<void> fetchCustomizedEvents({bool forceRefresh = false}) async {
+    // Return cached data if available and not forcing refresh
+    if (!forceRefresh && _eventRepository.isCacheValid) {
+      emit(UserEventLoaded(_eventRepository.events));
+      return;
+    }
+
     emit(UserEventLoading());
 
-    var result = await userRepo.getCustomizedEvents();
+    final result = await _userRepo.getCustomizedEvents();
 
-    result.fold(
-      (error) => emit(UserEventError(error.message)),
-      (events) => emit(UserEventLoaded(events)),
-    );
+    result.fold((error) => emit(UserEventError(error.message)), (events) {
+      _eventRepository.updateCache(events);
+      emit(UserEventLoaded(events));
+    });
   }
 
-  // Fetch favourite events
-  void fetchFavouriteEvents() {
-    emit(FavouriteEventLoading());
+  // Call this when you know data might be stale
+  void refreshEvents() {
+    _eventRepository.clearCache();
+    fetchCustomizedEvents();
   }
 }

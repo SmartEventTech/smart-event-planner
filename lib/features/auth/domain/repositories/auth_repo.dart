@@ -11,6 +11,10 @@ abstract class AuthRepo {
   // register
   Future<Either<ApiError, void>> signup({required SignupModel signupModel});
 
+  // verify user
+  Future<Either<ApiError, void>> verifyUser(
+      {required String email, required int otp});
+
   // logout
  Future<Either<ApiError, void>> logout();
 
@@ -23,4 +27,8 @@ abstract class AuthRepo {
 
   // Send OTP
   Future<Either<ApiError, void>> sendOTP({required String email});
+
+  // Verify Reset Password
+  Future<Either<ApiError, void>> verifyResetPassword(
+      {required String email, required int otp});
 }

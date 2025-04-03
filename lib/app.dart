@@ -11,7 +11,6 @@ import 'package:smart_event_planner/core/theme/app_theme.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/config/routing/app_router.dart';
 import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
-import 'package:smart_event_planner/core/services/api_service.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
 
 bool isLogin = false;
@@ -28,12 +27,6 @@ class MyApp extends StatelessWidget {
         Provider<Logger>(create: (_) => Logger()),
         Provider<Connectivity>(create: (_) => Connectivity()),
         Provider<Dio>(create: (_) => Dio()),
-        Provider<ApiService>(
-          create: (context) => ApiService(
-            dio: context.read<Dio>(),
-            connectivity: context.read<Connectivity>(),
-          ),
-        ),
       ],
       child: BlocProvider(
         create: (context) => getIt.get<UserCubit>()

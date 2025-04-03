@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
+import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/text_strings.dart';
@@ -12,6 +13,7 @@ import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_ext
 import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
 import 'package:smart_event_planner/core/widgets/success_pages/success_page.dart'
     show SuccessPage;
+import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key, this.reset});
@@ -36,9 +38,10 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     final email = ModalRoute.of(context)?.settings.arguments as String?;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return BlocProvider(
       create: (context) => OtpVerificationCubit(
-        authRepo: context.read(),
+        authRepo: getIt<AuthRepo>(),
         email: email ?? '',
       ),
       child: Scaffold(
@@ -81,15 +84,16 @@ class _OtpScreenState extends State<OtpScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.lock_outline,
                         size: 80,
-                        color: AppColors.primaryColor,
+                        color:
+                            isDark ? AppColors.white : AppColors.primaryColor,
                       ),
                       const SizedBox(height: 16),
                       Text(
                         'Enter the OTP sent to\n$email',
-                        style: const TextStyle(fontSize: 18),
+                        style: Theme.of(context).textTheme.headlineMedium,
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 30),
@@ -100,12 +104,11 @@ class _OtpScreenState extends State<OtpScreen> {
                         defaultPinTheme: PinTheme(
                           width: 56,
                           height: 56,
-                          textStyle: const TextStyle(
-                            fontSize: 22,
-                            color: Colors.black,
-                          ),
+                          textStyle: Theme.of(context).textTheme.headlineSmall,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
+                            color: isDark
+                                ? Colors.grey.shade500
+                                : Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: Colors.transparent),
                           ),
@@ -132,23 +135,32 @@ class _OtpScreenState extends State<OtpScreen> {
                               margin: const EdgeInsets.only(bottom: 9),
                               width: 22,
                               height: 1,
-                              color: AppColors.primaryColor,
+                              color: isDark
+                                  ? AppColors.white
+                                  : AppColors.primaryColor,
                             ),
                           ],
                         ),
                         focusedPinTheme: PinTheme(
                           width: 56,
                           height: 56,
+                          textStyle: Theme.of(context).textTheme.headlineSmall,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
+                            color: isDark
+                                ? Colors.grey.shade700
+                                : Colors.grey.shade100,
                             border: Border.all(color: AppColors.primaryColor),
                           ),
                         ),
                         submittedPinTheme: PinTheme(
                           width: 56,
                           height: 56,
+                          textStyle: Theme.of(context).textTheme.headlineSmall,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
+                            color: isDark
+                                ? Colors.grey.shade700
+                                : Colors.grey.shade100,
                             borderRadius: BorderRadius.circular(19),
                             border: Border.all(color: AppColors.primaryColor),
                           ),
@@ -156,6 +168,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         errorPinTheme: PinTheme(
                           width: 56,
                           height: 56,
+                          textStyle: Theme.of(context).textTheme.headlineSmall,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.redAccent),
                           ),
@@ -193,18 +206,19 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        child: TextButton(
-                          child: const Text('Resend OTP'),
-                          onPressed: () async => await context
-                              .read<OtpVerificationCubit>()
-                              .resendOtp(
-                                email ?? '',
-                                reset: widget.reset ?? false,
-                              ),
+                      if (widget.reset == true)
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: TextButton(
+                            child: const Text('Resend OTP'),
+                            onPressed: () async => await context
+                                .read<OtpVerificationCubit>()
+                                .resendOtp(
+                                  email ?? '',
+                                  reset: widget.reset ?? false,
+                                ),
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 );

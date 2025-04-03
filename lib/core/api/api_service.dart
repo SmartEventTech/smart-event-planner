@@ -62,6 +62,22 @@ class ApiServices {
     return response.fold((error) {
       return Left(error);
     }, (response) async {
+      return const Right(null);
+    });
+  }
+
+  /// Verify User
+  Future<Either<ApiError, void>> verifyUser(
+      {required String email, required int otp}) async {
+    final response = await apiClient.request(
+      path: 'ce6e.up.railway.app/api/auth/verifyUser',
+      method: 'POST',
+      data: {'email': email, 'confirmCode': otp},
+    );
+
+    return response.fold((error) {
+      return Left(error);
+    }, (response) {
       // await _storage.saveTokens(
       //   accessToken: response.data['data']['accessToken'],
       //   refreshToken: response.data['data']['refreshToken'] ??
@@ -106,12 +122,12 @@ class ApiServices {
   /// Verify Reset Password
   Future<Either<ApiError, void>> verifyResetPassword({
     required String email,
-    required int verificationCode,
+    required int otp,
   }) async {
     final response = await apiClient.request(
       path: 'ce6e.up.railway.app/api/auth/confirmPasswordResetCode',
       method: 'POST',
-      data: {'email': email, 'confirmCode': verificationCode},
+      data: {'email': email, 'confirmCode': otp},
     );
 
     return response.fold((error) {
