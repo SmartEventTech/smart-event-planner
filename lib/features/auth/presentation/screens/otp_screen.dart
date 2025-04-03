@@ -108,7 +108,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           decoration: BoxDecoration(
                             color: isDark
                                 ? Colors.grey.shade500
-                                : Colors.grey.shade200,
+                                : Colors.grey.shade300,
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: Colors.transparent),
                           ),
@@ -149,7 +149,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             borderRadius: BorderRadius.circular(8),
                             color: isDark
                                 ? Colors.grey.shade700
-                                : Colors.grey.shade100,
+                                : Colors.grey.shade300,
                             border: Border.all(color: AppColors.primaryColor),
                           ),
                         ),
@@ -160,8 +160,8 @@ class _OtpScreenState extends State<OtpScreen> {
                           decoration: BoxDecoration(
                             color: isDark
                                 ? Colors.grey.shade700
-                                : Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(19),
+                                : Colors.grey.shade400,
+                            borderRadius: BorderRadius.circular(16),
                             border: Border.all(color: AppColors.primaryColor),
                           ),
                         ),

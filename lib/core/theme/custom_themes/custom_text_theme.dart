@@ -54,9 +54,8 @@ class CustomTextTheme {
       color: AppColors.white,
     ),
     headlineSmall: TextStyle().copyWith(
-      fontSize: 18.0,
-      fontWeight: FontWeight.w600,
-      color: Colors.white,
+     fontWeight: FontWeight.w600,
+     color: Colors.white,
     ),
     bodyLarge: const TextStyle().copyWith(
       fontSize: 14.0,
