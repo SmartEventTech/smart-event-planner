@@ -4,6 +4,7 @@ import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
+import 'package:smart_event_planner/core/models/event/event_model.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({
@@ -11,11 +12,13 @@ class EventCard extends StatelessWidget {
     this.editCard = false,
     this.onEditTap,
     this.seeMoreTap,
+    this.event,
   });
 
   final bool editCard;
   final Function()? onEditTap;
   final Function()? seeMoreTap;
+  final EventModel? event;
 
   @override
   Widget build(BuildContext context) {

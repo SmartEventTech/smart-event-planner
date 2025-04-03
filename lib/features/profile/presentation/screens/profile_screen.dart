@@ -12,7 +12,9 @@ import 'package:smart_event_planner/core/utils/helpers/share/share_helper.dart';
 import 'package:smart_event_planner/core/widgets/shimmer/shimmer_widget.dart';
 import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
+import 'package:smart_event_planner/features/profile/presentation/cubits/user_event/user_event_cubit.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_state.dart';
+import 'package:smart_event_planner/features/profile/presentation/widgets/build_customized_event_list.dart';
 import 'package:smart_event_planner/features/profile/presentation/widgets/profile_tab_bar.dart';
 
 import 'package:smart_event_planner/shared/widgets/buttons/custom_eleveted_btn.dart';
@@ -25,129 +27,131 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
-      appBar: _buildAppBar(isDark, context),
-      body: DefaultTabController(
-        length: 2,
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  UserAvatarWidget(
-                    maxRadius: 60,
-                    minRadius: 30,
-                    showBorder: false,
-                    userImageUrl: AppImages.userAvatar,
-                  ),
-                  const SizedBox(height: AppSizes.slg),
-                  BlocBuilder<UserCubit, UserState>(
-                    builder: (context, state) {
-                      if (state is UserLoadedState) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppSizes.defaultScreenPadding),
-                          child: Column(
-                            children: [
-                              Text(
-                                state.userModel.name.isNotEmpty
-                                    ? state.userModel.name
-                                    : 'No Name',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyle.textStyle24Medium(context),
-                              ),
-                              Text(
-                                state.userModel.email,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyle.textStyle16Regular(context),
-                              ),
-                            ],
+    return BlocProvider(
+      create: (context) => getIt.get<UserEventCubit>()..fetchCustomizedEvents(),
+      child: Scaffold(
+        appBar: _buildAppBar(isDark, context),
+        body: DefaultTabController(
+          length: 2,
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    UserAvatarWidget(
+                      maxRadius: 60,
+                      minRadius: 30,
+                      showBorder: false,
+                      userImageUrl: AppImages.userAvatar,
+                    ),
+                    const SizedBox(height: AppSizes.slg),
+                    BlocBuilder<UserCubit, UserState>(
+                      builder: (context, state) {
+                        if (state is UserLoadedState) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: AppSizes.defaultScreenPadding),
+                            child: Column(
+                              children: [
+                                Text(
+                                  state.userModel.name.isNotEmpty
+                                      ? state.userModel.name
+                                      : 'No Name',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style:
+                                      AppTextStyle.textStyle24Medium(context),
+                                ),
+                                Text(
+                                  state.userModel.email,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style:
+                                      AppTextStyle.textStyle16Regular(context),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                        return _builoadingWidget(context);
+                      },
+                    ),
+                    const SizedBox(height: AppSizes.spaceBtwItems * 2),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSizes.defaultScreenPadding,
+                      ),
+                      child: Row(
+                        children: [
+                          CustomElevetedBtn(
+                            title: 'Share Profile',
+                            icon: Icons.share,
+                            onPressed: () {
+                              final link = context.read<UserCubit>().profelink;
+                              ShareHelper.shareContent(link);
+                            },
                           ),
-                        );
-                      }
-                      return _builoadingWidget(context);
-                    },
-                  ),
-                  const SizedBox(height: AppSizes.spaceBtwItems * 2),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSizes.defaultScreenPadding,
-                    ),
-                    child: Row(
-                      children: [
-                        CustomElevetedBtn(
-                          title: 'Share Profile',
-                          icon: Icons.share,
-                          onPressed: () {
-                            final link = context.read<UserCubit>().profelink;
-                            ShareHelper.shareContent(link);
-                          },
-                        ),
-                        const SizedBox(width: 30),
-                        CustomElevetedBtn(
-                          title: 'Edit Profile',
-                          icon: Iconsax.edit,
-                          onPressed: () async {
-                            try {
-                              await getIt.get<AuthRepo>().logout();
-                              if (context.mounted) {
-                                context.pushNamedAndRemoveUntilPage(
-                                  Routes.loginScreen,
-                                );
+                          const SizedBox(width: 30),
+                          CustomElevetedBtn(
+                            title: 'Edit Profile',
+                            icon: Iconsax.edit,
+                            onPressed: () async {
+                              try {
+                                await getIt.get<AuthRepo>().logout();
+                                if (context.mounted) {
+                                  context.pushNamedAndRemoveUntilPage(
+                                    Routes.loginScreen,
+                                  );
+                                }
+                              } catch (e) {
+                                debugPrint(e.toString());
                               }
-                            } catch (e) {
-                              debugPrint(e.toString());
-                            }
-                          },
-                        ),
-                      ],
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: AppSizes.spaceBtwSections),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Divider(
-                        height: 3,
-                        color: const Color.fromARGB(255, 195, 191, 191)),
-                  ),
-                  SizedBox(height: AppSizes.md),
-                  ProfileTabBar(),
-                  SizedBox(height: AppSizes.spaceBtwSections),
-                ],
+                    SizedBox(height: AppSizes.spaceBtwSections),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Divider(
+                          height: 3,
+                          color: const Color.fromARGB(255, 195, 191, 191)),
+                    ),
+                    SizedBox(height: AppSizes.md),
+                    ProfileTabBar(),
+                    SizedBox(height: AppSizes.spaceBtwSections),
+                  ],
+                ),
               ),
-            ),
-            SliverFillRemaining(
-              child: TabBarView(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      right: AppSizes.defaultScreenPadding,
-                      left: AppSizes.defaultScreenPadding,
+              SliverFillRemaining(
+                child: TabBarView(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: AppSizes.defaultScreenPadding,
+                        left: AppSizes.defaultScreenPadding,
+                      ),
+                      child: EventsListView(
+                        physics: NeverScrollableScrollPhysics(),
+                      ),
                     ),
-                    child: EventsListView(
-                      physics: NeverScrollableScrollPhysics(),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: AppSizes.defaultScreenPadding,
+                        left: AppSizes.defaultScreenPadding,
+                      ),
+                      child: BuildCustomizedEventList(),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      right: AppSizes.defaultScreenPadding,
-                      left: AppSizes.defaultScreenPadding,
-                    ),
-                    child: EventsListView(
-                      editCard: true,
-                      physics: NeverScrollableScrollPhysics(),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: const SizedBox(height: AppSizes.spaceBtwItems),
-            ),
-          ],
+              SliverToBoxAdapter(
+                child: const SizedBox(height: AppSizes.spaceBtwItems),
+              ),
+            ],
+          ),
         ),
       ),
     );
