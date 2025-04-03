@@ -24,6 +24,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           onTap: () => context.popPage(),
           child: Icon(
             Icons.arrow_back_ios_new,
+            color: isDark ? AppColors.white : AppColors.primaryColor,
           ),
         ),
         centerTitle: true,
@@ -47,7 +48,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppSizes.defaultScreenPadding,
+          horizontal: AppSizes.md,
           vertical: AppSizes.md,
         ),
         child: Column(

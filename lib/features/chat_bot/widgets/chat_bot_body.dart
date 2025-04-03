@@ -35,25 +35,30 @@ class _ChatBotBodyState extends State<ChatBotBody> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: Stack(
         children: [
-          _buildChatInterface(),
+          _buildChatInterface(isDark),
           if (messages.isEmpty && !_isLoading) _buildWelcomeWidget(),
         ],
       ),
     );
   }
 
-  Widget _buildChatInterface() {
+  Widget _buildChatInterface(isDark) {
     return DashChat(
-      inputOptions: _inputStyle(),
+      inputOptions: _inputStyle(isDark),
       messageOptions: MessageOptions(
-        currentUserContainerColor: AppColors.primaryColor,
-        containerColor: AppColors.fillColor,
+        currentUserContainerColor: isDark
+            ? const Color.fromARGB(255, 59, 139, 173)
+            : AppColors.primaryColor,
+        containerColor: isDark
+            ? const Color.fromARGB(255, 118, 139, 170)
+            : AppColors.fillColor,
+
         currentUserTextColor: Colors.white, // White text for user bubbles
         textColor: Colors.black, // Black text for bot bubbles
-        maxWidth: MediaQuery.of(context).size.width * 0.75,
         messageTextBuilder: (message, _, __) {
           return SelectableText(
             message.text,
@@ -61,7 +66,9 @@ class _ChatBotBodyState extends State<ChatBotBody> {
               fontSize: 16, // Larger font size
               color: message.user == currentUser
                   ? Colors.white // User message text color
-                  : Colors.black, // Bot message text color
+                  : isDark
+                      ? Colors.white
+                      : Colors.black, // Bot message text color
               fontWeight: FontWeight.w300, // Medium weight
             ),
           );
@@ -92,11 +99,14 @@ class _ChatBotBodyState extends State<ChatBotBody> {
     );
   }
 
-  InputOptions _inputStyle() {
+  InputOptions _inputStyle(isDark) {
     return InputOptions(
       sendOnEnter: true,
       alwaysShowSend: true,
-      cursorStyle: CursorStyle(color: AppColors.primaryColor),
+      cursorStyle: CursorStyle(
+          color: isDark
+              ? const Color.fromARGB(255, 59, 139, 173)
+              : AppColors.primaryColor),
       inputDecoration: InputDecoration(
         hintText: "Write a message...",
         hintStyle: AppTextStyle.textStyle16Medium(context).copyWith(
@@ -104,24 +114,28 @@ class _ChatBotBodyState extends State<ChatBotBody> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: AppColors.secondaryColor, width: 1),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: AppColors.secondaryColor, width: 1),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: 1),
         ),
         contentPadding: EdgeInsets.symmetric(
           vertical: AppSizes.slg,
           horizontal: AppSizes.slg + 4,
         ),
-        fillColor: Colors.white,
+        fillColor:
+            isDark ? const Color.fromARGB(255, 58, 72, 78) : Colors.white,
         filled: true,
       ),
-      inputTextStyle:
-          AppTextStyle.textStyle16Medium(context).copyWith(fontSize: 14),
+      inputTextStyle: AppTextStyle.textStyle16Medium(context)
+          .copyWith(fontSize: 14, color: isDark ? Colors.white : Colors.black),
       sendButtonBuilder: (onSend) {
         return IconButton(
-          icon: Icon(Icons.send, color: AppColors.primaryColor),
+          icon: Icon(Icons.send,
+              color: isDark
+                  ? const Color.fromARGB(255, 80, 111, 124)
+                  : AppColors.primaryColor),
           onPressed: onSend,
         );
       },
