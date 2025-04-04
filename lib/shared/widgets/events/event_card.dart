@@ -5,6 +5,7 @@ import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 import 'package:smart_event_planner/core/models/event/event_model.dart';
+import 'package:smart_event_planner/features/event_details/presentation/screens/paid_event.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({
@@ -127,11 +128,20 @@ class Event extends StatelessWidget {
                     //padding: editCard ? EdgeInsets.symmetric(horizontal: 40) : null,
                     padding: EdgeInsets.symmetric(horizontal: 8.0),
                   ),
-                  child: FittedBox(
-                      child: Text(
-                    editCard ? 'Edit' : 'See More',
-                    style: TextStyle(color: AppColors.black),
-                  )),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PaidEvent()),
+                      );
+                    },
+                    child: FittedBox(
+                        child: Text(
+                      editCard ? 'Edit' : 'See More',
+                      style: TextStyle(color: AppColors.black),
+                    )),
+                  ),
                 ),
               );
             }),
