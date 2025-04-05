@@ -15,7 +15,11 @@ class UserCubit extends Cubit<UserState> {
 
   // get profile
   Future<void> getProfile() async {
+    // check if cubit not closed
+    if (isClosed) return;
+    // check if cubit not closed
     emit(UserLoadingState());
+    // Return cached data if available and not forcing refresh
     final result = await userRepo.getProfile();
     result.fold(
       (error) {

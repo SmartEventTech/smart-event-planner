@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:smart_event_planner/core/api/api_error.dart';
 import 'package:smart_event_planner/core/api/retry_manger.dart';
 import 'package:smart_event_planner/core/repositories/event_repository.dart';
+import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
 import 'package:smart_event_planner/features/profile/domain/repositories/user_repo.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_event/user_event_state.dart';
 
@@ -12,6 +13,8 @@ class UserEventCubit extends Cubit<UserEventState> {
   UserEventCubit(this._userRepo) : super(UserEventInitial());
 
   Future<void> fetchCustomizedEvents({bool forceRefresh = false}) async {
+    // check if cubit not closed
+    if (isClosed) return;
     // Return cached data if available and not forcing refresh
     if (!forceRefresh && _eventRepository.isCacheValid) {
       emit(UserEventLoaded(_eventRepository.events));
@@ -27,6 +30,7 @@ class UserEventCubit extends Cubit<UserEventState> {
         RetryManger.addToQueue(fetchCustomizedEvents);
       }
       emit(UserEventError("Failed to load events"));
+      Loaders.warningSnackBar(title: "Error", message: error.message);
     }, (events) {
       _eventRepository.updateCache(events);
       emit(UserEventLoaded(events));
