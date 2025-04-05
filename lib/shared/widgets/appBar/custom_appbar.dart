@@ -136,7 +136,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             icon: Icon(Iconsax.notification),
           ),
           IconButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {},
             icon: UserAvatarWidget(userImageUrl: AppImages.userAvatar),
           )
         ],

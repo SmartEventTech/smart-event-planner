@@ -13,7 +13,6 @@ class MessegesPopupElement extends StatelessWidget {
       width: 350,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.black, width: 2),
       ),

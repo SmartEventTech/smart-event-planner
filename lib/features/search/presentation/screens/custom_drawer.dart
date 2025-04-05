@@ -27,12 +27,10 @@ class CustomDrawer extends StatelessWidget {
                 leading: SvgPicture.asset(AppImages.filterIcon),
                 title: Text(
                   'Filters',
-                  style: TextStyle(
-                    color: Color(0xff0E377C),
-                    fontSize:
-                        screenWidth < 600 ? 18 : 20, // Responsive font size
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
                 onTap: () {}, // Add functionality if needed
               ),
@@ -40,7 +38,7 @@ class CustomDrawer extends StatelessWidget {
               // Scrollable List
               Expanded(
                 child: ListView.builder(
-                  itemCount: 20,
+                  itemCount: 12,
                   itemBuilder: (context, index) {
                     return ListOfContent(
                       text: 'Content ${index + 1}',
