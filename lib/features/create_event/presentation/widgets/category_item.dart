@@ -49,8 +49,8 @@ class CategoryItem extends StatelessWidget {
             children: [
               // Radio button
               Container(
-                width: 24,
-                height: 24,
+                width: 22,
+                height: 22,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
