@@ -1,0 +1,2 @@
+D:/Graduation Project/smart_event_planner/android/app/.cxx/RelWithDebInfo/3x6i4611/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/Graduation Project/smart_event_planner/android/app/.cxx/RelWithDebInfo/3x6i4611/arm64-v8a/CMakeFiles/rebuild_cache.dir

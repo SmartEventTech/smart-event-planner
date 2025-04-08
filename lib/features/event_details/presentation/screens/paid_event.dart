@@ -69,8 +69,11 @@ class _PaidEventState extends State<PaidEvent> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom + 20),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).padding.bottom + 10,
+          left: 10,
+          right: 10,
+        ),
         child: _buildJoinButton(),
       ),
     );
@@ -222,7 +225,7 @@ class _PaidEventState extends State<PaidEvent> {
         ),
         const SizedBox(height: 10),
         Container(
-          //height: MediaQuery.sizeOf(context).height * 0.18,
+          height: MediaQuery.sizeOf(context).height * 0.2,
           width: double.infinity,
           padding: const EdgeInsets.only(right: 5, top: 5, bottom: 5),
           decoration: BoxDecoration(
@@ -328,8 +331,10 @@ class _PaidEventState extends State<PaidEvent> {
             ),
             // backgroundColor: Colors.white,
           ),
-          child: const Text(
-            'Continue to Payment',
+          child: const FittedBox(
+            child: Text(
+              'Continue to Payment',
+            ),
           ),
         ),
       ),

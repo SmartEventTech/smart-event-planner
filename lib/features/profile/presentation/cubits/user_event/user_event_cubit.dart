@@ -33,6 +33,7 @@ class UserEventCubit extends Cubit<UserEventState> {
       Loaders.warningSnackBar(title: "Error", message: error.message);
     }, (events) {
       _eventRepository.updateCache(events);
+      if (isClosed) return;
       emit(UserEventLoaded(events));
     });
   }
