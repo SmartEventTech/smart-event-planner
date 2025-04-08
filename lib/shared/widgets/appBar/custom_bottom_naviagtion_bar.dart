@@ -17,9 +17,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
             NavigationBar(
               height: 62,
               selectedIndex: state,
-              onDestinationSelected: (index) =>
-                  context.read<BottomNavCubit>().changeTab(index),
-              destinations: [
+              onDestinationSelected: (index) {
+                context.read<BottomNavCubit>().changeTab(index);
+              },
+              destinations: const [
                 NavigationDestination(
                   icon: Icon(Iconsax.home),
                   label: "Home",
@@ -42,7 +43,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 ),
               ],
             ),
-            BottomNavBarPlusIcon(),
+            const BottomNavBarPlusIcon(),
           ],
         );
       },

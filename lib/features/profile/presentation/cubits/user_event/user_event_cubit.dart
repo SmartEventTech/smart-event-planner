@@ -29,7 +29,7 @@ class UserEventCubit extends Cubit<UserEventState> {
       if (error.message == "No internet connection" || error is NetworkError) {
         RetryManger.addToQueue(fetchCustomizedEvents);
       }
-      emit(UserEventError("Failed to load events"));
+      emit(const UserEventError("Failed to load events"));
       Loaders.warningSnackBar(title: "Error", message: error.message);
     }, (events) {
       _eventRepository.updateCache(events);

@@ -14,7 +14,7 @@ class InterestedCard extends StatelessWidget {
       children: [
         Flexible(
           child: Container(
-            padding: EdgeInsets.all(AppSizes.defaultPadding),
+            padding: const EdgeInsets.all(AppSizes.defaultPadding),
             width: 64,
             height: 64,
             decoration: ShapeDecoration(

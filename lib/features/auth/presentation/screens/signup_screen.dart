@@ -23,19 +23,19 @@ class SignupScreen extends StatelessWidget {
           child: Column(
             children: [
               // Header // Image
-              AuthHeader(),
+              const AuthHeader(),
               // Logo
               Image.asset(AppImages.appLogo, width: 140),
               const SizedBox(height: 40),
               // Login Form
-              SignupForm(),
-              SizedBox(height: AppSizes.spaceBtwSections),
+              const SignupForm(),
+              const SizedBox(height: AppSizes.spaceBtwSections),
               // Divider
-              TFormDivider(dividerText: 'or Sign in with'),
-              SizedBox(height: 32.0),
+              const TFormDivider(dividerText: 'or Sign in with'),
+              const SizedBox(height: 32.0),
               // Social Buttons
-              TSocialButtons(),
-              SizedBox(height: 32.0),
+              const TSocialButtons(),
+              const SizedBox(height: 32.0),
               // Footer
               RichText(
                 text: TextSpan(
@@ -54,7 +54,7 @@ class SignupScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: kToolbarHeight,
               )
             ],

@@ -20,11 +20,11 @@ class UserAvatarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(AppSizes.sm),
+      padding: const EdgeInsets.all(AppSizes.sm),
       decoration: ShapeDecoration(
         shape: CircleBorder(
           side: showBorder
-              ? BorderSide(
+              ? const BorderSide(
                   width: 2,
                   color: AppColors.primaryTextColor,
                 )

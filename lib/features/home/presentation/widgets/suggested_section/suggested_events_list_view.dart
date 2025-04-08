@@ -8,8 +8,8 @@ class SuggestedEventsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverList.builder(
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.only(
+      itemBuilder: (context, index) => const Padding(
+        padding: EdgeInsets.only(
           bottom: AppSizes.spaceBtwItems,
         ),
         child: EventCard(),

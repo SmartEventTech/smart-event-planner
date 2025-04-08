@@ -58,7 +58,7 @@ class SignInCubit extends Cubit<SignInState> {
 
     result.fold(
       (failure) => emit(SignInFailure(message: failure.toString())),
-      (_) => emit(SignInSuccess('Successfully Login in')),
+      (_) => emit(const SignInSuccess('Successfully Login in')),
     );
   }
 

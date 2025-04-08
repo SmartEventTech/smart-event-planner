@@ -47,15 +47,15 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
+      body: const Padding(
+        padding: EdgeInsets.symmetric(
           horizontal: AppSizes.md,
           vertical: AppSizes.md,
         ),
         child: Column(
           children: [
             Divider(height: 1, color: AppColors.dividerColor),
-            Expanded(child: const ChatBotBody()),
+            Expanded(child: ChatBotBody()),
           ],
         ),
       ),

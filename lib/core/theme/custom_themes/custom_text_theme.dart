@@ -5,22 +5,22 @@ class CustomTextTheme {
   CustomTextTheme._();
 
   static TextTheme lightTextTheme = TextTheme(
-    headlineLarge: TextStyle().copyWith(
+    headlineLarge: const TextStyle().copyWith(
       fontWeight: FontWeight.bold,
       color: AppColors.primaryColor,
     ),
-    titleMedium: TextStyle().copyWith(
+    titleMedium: const TextStyle().copyWith(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: AppColors.primaryTextColor,
     ),
-    bodyMedium: TextStyle().copyWith(color: AppColors.bodyTextColor),
-    titleLarge: TextStyle().copyWith(
+    bodyMedium: const TextStyle().copyWith(color: AppColors.bodyTextColor),
+    titleLarge: const TextStyle().copyWith(
       fontWeight: FontWeight.w800,
       fontSize: 20,
       color: AppColors.primaryTextColor,
     ),
-    headlineSmall: TextStyle().copyWith(fontWeight: FontWeight.w600),
+    headlineSmall: const TextStyle().copyWith(fontWeight: FontWeight.w600),
     bodyLarge: const TextStyle().copyWith(
       fontSize: 14.0,
       fontWeight: FontWeight.w500,
@@ -43,17 +43,17 @@ class CustomTextTheme {
       fontWeight: FontWeight.bold,
       color: AppColors.primaryColor,
     ),
-    titleMedium: TextStyle().copyWith(
+    titleMedium: const TextStyle().copyWith(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: AppColors.white,
     ),
-    titleLarge: TextStyle().copyWith(
+    titleLarge: const TextStyle().copyWith(
       fontWeight: FontWeight.w800,
       fontSize: 20,
       color: AppColors.white,
     ),
-    headlineSmall: TextStyle().copyWith(
+    headlineSmall: const TextStyle().copyWith(
      fontWeight: FontWeight.w600,
      color: Colors.white,
     ),

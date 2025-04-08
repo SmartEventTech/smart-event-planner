@@ -39,10 +39,10 @@ class OtpVerificationCubit extends Cubit<OtpVerificationState> {
 
       result.fold(
         (failure) => emit(OtpVerificationFailure(failure.message)),
-        (user) => emit(OtpVerificationSuccess('Verification successful')),
+        (user) => emit(const OtpVerificationSuccess('Verification successful')),
       );
     } catch (e) {
-      emit(OtpVerificationFailure(
+      emit(const OtpVerificationFailure(
           'An unexpected error occurred. Please try again.'));
     }
   }
@@ -53,7 +53,7 @@ class OtpVerificationCubit extends Cubit<OtpVerificationState> {
     result.fold(
       (failure) => emit(ResndOtpFailure(failure.message)),
       (_) {
-        emit(ResndOtpSuccess('OTP sent successfully'));
+        emit(const ResndOtpSuccess('OTP sent successfully'));
       },
     );
   }

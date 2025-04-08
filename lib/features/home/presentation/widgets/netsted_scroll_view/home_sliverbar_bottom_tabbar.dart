@@ -18,7 +18,7 @@ class HomeSliverBarBottomTabBar extends StatelessWidget
         Container(
           color: isDark ? AppColors.darkSliverAppBarColor : AppColors.white,
           padding:
-              EdgeInsets.symmetric(horizontal: AppSizes.defaultScreenPadding),
+              const EdgeInsets.symmetric(horizontal: AppSizes.defaultScreenPadding),
           child: Tab(
             child: SectionHeading(
               title: 'Events you might like',

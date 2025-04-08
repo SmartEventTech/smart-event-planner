@@ -23,8 +23,8 @@ class AppTheme {
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: AppColors.white,
       indicatorColor: AppColors.navBarBlack.withValues(alpha: 0.2),
-      iconTheme: WidgetStatePropertyAll(
-        IconThemeData(color: const Color.fromARGB(255, 110, 126, 155)),
+      iconTheme: const WidgetStatePropertyAll(
+        IconThemeData(color: Color.fromARGB(255, 110, 126, 155)),
       ),
     ),
   );
@@ -43,7 +43,7 @@ class AppTheme {
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: AppColors.black,
       indicatorColor: AppColors.activeIconColor.withValues(alpha: 0.6),
-      iconTheme: WidgetStatePropertyAll(
+      iconTheme: const WidgetStatePropertyAll(
         IconThemeData(color: AppColors.grayColor),
       ),
     ),

@@ -114,13 +114,13 @@ class _ChatBotBodyState extends State<ChatBotBody> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: AppColors.primaryColor, width: 1),
+          borderSide: const BorderSide(color: AppColors.primaryColor, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: AppColors.primaryColor, width: 1),
+          borderSide: const BorderSide(color: AppColors.primaryColor, width: 1),
         ),
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           vertical: AppSizes.slg,
           horizontal: AppSizes.slg + 4,
         ),

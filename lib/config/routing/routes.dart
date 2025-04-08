@@ -17,4 +17,6 @@ class Routes {
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String successScreen = '/successScreen';
+
+  static const String mapScreen = '/mapScreen';
 }

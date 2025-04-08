@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           darkTheme: AppTheme.darkTheme,
           title: 'Smart Event Planner',
           locale: const Locale('en'),
-          localizationsDelegates: [
+          localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,

@@ -174,7 +174,7 @@ class _MapScreenState extends State<MapScreen> {
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(
+                            backgroundColor: const Color(
                                 0xFF0E377C), // Make background transparent
                             // padding: EdgeInsets.zero, // Remove padding
                             // minimumSize: Size.zero, // Remove minimum size

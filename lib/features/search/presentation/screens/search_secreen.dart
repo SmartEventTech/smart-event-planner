@@ -30,11 +30,11 @@ class _SearchSecreenState extends State<SearchSecreen> {
               },
             ),
             const SizedBox(height: AppSizes.md),
-            FilterEventsList(),
+            const FilterEventsList(),
           ],
         ),
       ),
-      endDrawer: CustomDrawer(),
+      endDrawer: const CustomDrawer(),
     );
   }
 }

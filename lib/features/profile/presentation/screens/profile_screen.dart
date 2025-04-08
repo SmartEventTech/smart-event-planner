@@ -39,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    UserAvatarWidget(
+                    const UserAvatarWidget(
                       maxRadius: 60,
                       minRadius: 30,
                       showBorder: false,
@@ -112,20 +112,20 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: AppSizes.spaceBtwSections),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                    const SizedBox(height: AppSizes.spaceBtwSections),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Divider(
                           height: 3,
-                          color: const Color.fromARGB(255, 195, 191, 191)),
+                          color: Color.fromARGB(255, 195, 191, 191)),
                     ),
-                    SizedBox(height: AppSizes.md),
-                    ProfileTabBar(),
-                    SizedBox(height: AppSizes.spaceBtwSections),
+                    const SizedBox(height: AppSizes.md),
+                    const ProfileTabBar(),
+                    const SizedBox(height: AppSizes.spaceBtwSections),
                   ],
                 ),
               ),
-              SliverFillRemaining(
+              const SliverFillRemaining(
                 child: TabBarView(
                   children: [
                     Padding(
@@ -147,8 +147,8 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SliverToBoxAdapter(
-                child: const SizedBox(height: AppSizes.spaceBtwItems),
+              const SliverToBoxAdapter(
+                child: SizedBox(height: AppSizes.spaceBtwItems),
               ),
             ],
           ),

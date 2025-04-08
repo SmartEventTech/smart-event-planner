@@ -30,7 +30,7 @@ class EventCard extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizes.eventCardRadius),
-              image: DecorationImage(
+              image: const DecorationImage(
                 image: AssetImage(AppImages.event2),
                 fit: BoxFit.cover,
               ),
@@ -98,7 +98,7 @@ class Event extends StatelessWidget {
                 child: FittedBox(
                   child: InkWell(
                     onTap: () {},
-                    child: Icon(Iconsax.star, color: AppColors.white),
+                    child: const Icon(Iconsax.star, color: AppColors.white),
                   ),
                 ),
               ),
@@ -125,12 +125,12 @@ class Event extends StatelessWidget {
                   style: OutlinedButton.styleFrom(
                     backgroundColor: AppColors.white,
                     //padding: editCard ? EdgeInsets.symmetric(horizontal: 40) : null,
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   ),
                   child: FittedBox(
                       child: Text(
                     editCard ? 'Edit' : 'See More',
-                    style: TextStyle(color: AppColors.black),
+                    style: const TextStyle(color: AppColors.black),
                   )),
                 ),
               );

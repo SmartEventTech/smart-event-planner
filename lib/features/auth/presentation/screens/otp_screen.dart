@@ -193,7 +193,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             }
                           },
                           child: state is OtpVerificationLoading
-                              ? Center(
+                              ? const Center(
                                   child: SizedBox(
                                     width: 22,
                                     height: 22,

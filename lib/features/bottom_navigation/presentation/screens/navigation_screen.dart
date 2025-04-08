@@ -11,7 +11,7 @@ class NavigationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => BottomNavCubit(),
-      child: Scaffold(
+      child: const Scaffold(
         body: NavigationScreenBody(),
         bottomNavigationBar: CustomBottomNavigationBar(),
       ),

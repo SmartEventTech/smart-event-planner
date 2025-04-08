@@ -10,14 +10,14 @@ class InterestsSection extends StatelessWidget {
       height: MediaQuery.sizeOf(context).height * 0.23,
       child: GridView.builder(
         itemCount: 8,
-        padding: EdgeInsets.all(0),
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        padding: const EdgeInsets.all(0),
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           childAspectRatio: 1,
           mainAxisSpacing: 8,
         ),
-        itemBuilder: (context, index) => InterestedCard(),
+        itemBuilder: (context, index) => const InterestedCard(),
       ),
     );
   }

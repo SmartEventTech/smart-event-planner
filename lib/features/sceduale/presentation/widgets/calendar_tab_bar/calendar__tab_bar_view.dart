@@ -16,23 +16,23 @@ class CalendarTabBarView extends StatelessWidget {
       ),
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: const SizedBox(height: AppSizes.sm)),
+          const SliverToBoxAdapter(child: SizedBox(height: AppSizes.sm)),
           SliverToBoxAdapter(
             child: CalenderSection(
               onFocusDay: (focusedDay) {},
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Divider(
               thickness: 2,
               color: AppColors.dividerColor,
               height: AppSizes.dividerHeight,
             ),
           ),
-          SliverToBoxAdapter(
-            child: const SizedBox(height: AppSizes.defaultPadding),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: AppSizes.defaultPadding),
           ),
-          SliverFillRemaining(
+          const SliverFillRemaining(
             child: EventsListView(
               physics: NeverScrollableScrollPhysics(),
             ),
