@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 import 'package:smart_event_planner/core/models/event/event_model.dart';
-import 'package:smart_event_planner/features/event_details/presentation/screens/paid_event.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({
@@ -23,38 +24,43 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 352 / 151,
-      child: Stack(
-        children: [
-          /// Background Image with Gradient Overlay
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppSizes.eventCardRadius),
-              image: const DecorationImage(
-                image: AssetImage(AppImages.event2),
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        context.pushNamedPage(Routes.paidEventScreen);
+      },
+      child: AspectRatio(
+        aspectRatio: 352 / 151,
+        child: Stack(
+          children: [
+            /// Background Image with Gradient Overlay
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSizes.eventCardRadius),
+                image: const DecorationImage(
+                  image: AssetImage(AppImages.event2),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              foregroundDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSizes.eventCardRadius),
+                gradient: AppColors.eventCardGradientColor,
               ),
             ),
-            foregroundDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppSizes.eventCardRadius),
-              gradient: AppColors.eventCardGradientColor,
+      
+            /// Event Details Positioned at Bottom
+            Positioned(
+              left: AppSizes.defaultPadding,
+              right: AppSizes.defaultPadding,
+              bottom: AppSizes.defaultPadding / 2,
+              top: AppSizes.defaultPadding + 2,
+              child: Event(
+                editCard: editCard,
+                onEditTap: onEditTap,
+                seeMoreTap: seeMoreTap,
+              ),
             ),
-          ),
-
-          /// Event Details Positioned at Bottom
-          Positioned(
-            left: AppSizes.defaultPadding,
-            right: AppSizes.defaultPadding,
-            bottom: AppSizes.defaultPadding / 2,
-            top: AppSizes.defaultPadding + 2,
-            child: Event(
-              editCard: editCard,
-              onEditTap: onEditTap,
-              seeMoreTap: seeMoreTap,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

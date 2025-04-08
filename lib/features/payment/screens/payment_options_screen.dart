@@ -152,12 +152,14 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:  IconButton(
-          icon: const Icon(Iconsax.arrow_left,),
+        leading: IconButton(
+          icon: const Icon(
+            Iconsax.arrow_left,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
-        backgroundColor: Colors.white,
-        title: Text('Payment Options'),
+        //backgroundColor: Colors.white,
+        title: const Text('Payment Options'),
         // Matching blue app bar
       ),
       body: SafeArea(
@@ -225,25 +227,24 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  
                   style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      
-                      
-                    ),
+                      // shape: RoundedRectangleBorder(
+                      //   borderRadius: BorderRadius.circular(8),
+                      // ),
 
-                    disabledBackgroundColor: Colors.grey.shade300 ,
-                    
-                    backgroundColor: AppColors.primaryColor, // Blue button
-                    // White text
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                  ),
+                      // disabledBackgroundColor: Colors.grey.shade300,
+
+                      // backgroundColor: AppColors.primaryColor, // Blue button
+                      // // White text
+                      // padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
                   onPressed: _selectedPaymentId != null && !_isProcessing
                       ? _processPayment
                       : null,
-                  child: const Text('Continue',
-                      style: TextStyle(color: Colors.white)),
+                  child: const Text(
+                    'Continue',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ),

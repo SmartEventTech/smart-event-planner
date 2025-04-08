@@ -7,6 +7,7 @@ import 'package:smart_event_planner/features/auth/presentation/screens/otp_scree
 import 'package:smart_event_planner/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:smart_event_planner/features/chat_bot/screens/chat_bot_screen.dart';
 import 'package:smart_event_planner/features/create_event/presentation/screens/create_event_screen.dart';
+import 'package:smart_event_planner/features/event_details/presentation/screens/paid_event.dart';
 import 'package:smart_event_planner/features/hobbiesScreen/hobby_screen.dart';
 import 'package:smart_event_planner/features/auth/presentation/screens/login_screen.dart';
 import 'package:smart_event_planner/features/auth/presentation/screens/signup_screen.dart';
@@ -34,6 +35,7 @@ class AppRouter {
     Routes.mapScreen: (_) => const MapScreen(),
     Routes.otpVerificationScreen: (_) => const OtpScreen(),
     Routes.profileScreen: (_) => const ProfileScreen(),
+    Routes.paidEventScreen: (_) => const PaidEvent(),
     Routes.resetPasswordScreen: (_) => BlocProvider(
           create: (context) => ResetPasswordCubit(),
           child: const ResetPasswordScreen(),

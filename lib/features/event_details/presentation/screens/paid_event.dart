@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:location/location.dart';
 import 'package:smart_event_planner/features/payment/screens/payment_options_screen.dart';
 
@@ -36,7 +38,23 @@ class _PaidEventState extends State<PaidEvent> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: isDark ? Colors.black : Colors.white,
+        title: const Text('Event Name'),
+        actions: [
+          IconButton(
+            icon: const Icon(Iconsax.star),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.share),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -76,7 +94,9 @@ class _PaidEventState extends State<PaidEvent> {
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(25),
-        color: Colors.white,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.black
+            : Colors.white,
         child: _buildEventContent(),
       ),
     );
@@ -115,15 +135,12 @@ class _PaidEventState extends State<PaidEvent> {
         const SizedBox(width: 8),
         Text(
           'Event Name',
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
+          style:
+              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 22),
           maxLines: 1,
         ),
         const SizedBox(width: 50),
-        Flexible(
+        const Flexible(
           child: Text(
             '100.00 EGP',
             style: TextStyle(
@@ -140,30 +157,30 @@ class _PaidEventState extends State<PaidEvent> {
 
   Widget _buildHostName() {
     return Row(
-      children: const [
-        Icon(Icons.circle, size: 30, color: Color.fromARGB(255, 92, 92, 92)),
-        SizedBox(width: 5),
-        Text('Host Name', style: TextStyle(color: Colors.black, fontSize: 15)),
+      children: [
+        const Icon(Icons.circle,
+            size: 30, color: Color.fromARGB(255, 92, 92, 92)),
+        const SizedBox(width: 5),
+        Text('Host Name',
+            style:
+                Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 15)),
       ],
     );
   }
 
   Widget _buildDescription() {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Description',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style:
+              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          style: TextStyle(color: Colors.black, fontSize: 12),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
         ),
       ],
     );
@@ -188,11 +205,7 @@ class _PaidEventState extends State<PaidEvent> {
         const SizedBox(width: 10),
         Text(
           text,
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
         ),
       ],
     );
@@ -202,20 +215,20 @@ class _PaidEventState extends State<PaidEvent> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Location',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style:
+              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
         ),
         const SizedBox(height: 10),
         Container(
-          height: 150,
+          //height: MediaQuery.sizeOf(context).height * 0.18,
           width: double.infinity,
+          padding: const EdgeInsets.only(right: 5, top: 4, bottom: 5),
           decoration: BoxDecoration(
-            color: Colors.grey[200],
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.grey[800]
+                : Colors.grey[200],
             borderRadius: BorderRadius.circular(15),
           ),
           child: FutureBuilder<LocationData?>(
@@ -228,12 +241,34 @@ class _PaidEventState extends State<PaidEvent> {
                 return const Center(child: Text("Location not available"));
               }
               final data = snapshot.data!;
-              return Center(
-                child: Text(
-                  "Lat: ${data.latitude?.toStringAsFixed(4)}\nLng: ${data.longitude?.toStringAsFixed(4)}",
-                  textAlign: TextAlign.center,
+              // return Center(
+              //   child: Text(
+              //     "Lat: ${data.latitude?.toStringAsFixed(4)}\nLng: ${data.longitude?.toStringAsFixed(4)}",
+              //     textAlign: TextAlign.center,
+              //   ),
+              // );
+
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset(
+                  'assets/images/test_map.png',
+                  fit: BoxFit.cover,
                 ),
               );
+
+              // return GoogleMap(
+              //   initialCameraPosition: CameraPosition(
+              //     target: LatLng(data.latitude!, data.longitude!),
+              //     zoom: 15,
+              //   ),
+              //   markers: {
+              //     Marker(
+              //       markerId: const MarkerId('1'),
+              //       position: LatLng(data.latitude!, data.longitude!),
+              //     ),
+              //   },
+              //   mapType: MapType.normal,
+              // );
             },
           ),
         ),
@@ -242,11 +277,30 @@ class _PaidEventState extends State<PaidEvent> {
   }
 
   Widget _buildPreviousEvent() {
-    return const Center(
-      child: Image(
-        image: AssetImage('assets/images/ErrImage.jpg'),
-        height: 150,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 16),
+        Text(
+          'Previous Event',
+          style:
+              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+        ),
+        const SizedBox(height: 10),
+        Container(
+          width: double.infinity,
+          height: MediaQuery.sizeOf(context).height * 0.2,
+          decoration: BoxDecoration(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.grey[800]
+                : Colors.grey[200],
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Center(
+            child: SvgPicture.asset('assets/images/events/default_image.svg'),
+          ),
+        ),
+      ],
     );
   }
 
@@ -256,12 +310,15 @@ class _PaidEventState extends State<PaidEvent> {
       child: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => PaymentOptionsScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => const PaymentOptionsScreen()));
           },
           style: ElevatedButton.styleFrom(
             elevation: 5,
-            padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 120, vertical: 16.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
               side: const BorderSide(
@@ -269,11 +326,10 @@ class _PaidEventState extends State<PaidEvent> {
                 width: 1.5,
               ),
             ),
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
           ),
           child: const Text(
             'Continue to Payment',
-            style: TextStyle(color: Colors.black, fontSize: 16),
           ),
         ),
       ),

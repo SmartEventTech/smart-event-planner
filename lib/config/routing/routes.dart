@@ -19,4 +19,6 @@ class Routes {
   static const String successScreen = '/successScreen';
 
   static const String mapScreen = '/mapScreen';
+
+  static const String paidEventScreen = '/paidEventScreen';
 }

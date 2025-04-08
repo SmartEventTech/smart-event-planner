@@ -18,7 +18,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.2),
+                  color: Colors.green.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -28,7 +28,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              
+
               // Success Title
               const Text(
                 'Payment Successful!',
@@ -39,7 +39,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              
+
               // Success Message
               const Text(
                 'Your payment has been processed successfully. '
@@ -51,7 +51,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              
+
               // Home Button
               SizedBox(
                 width: double.infinity,
@@ -61,7 +61,8 @@ class PaymentSuccessScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
-                    ),),
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
@@ -78,9 +79,9 @@ class PaymentSuccessScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                ), 
+                ),
               ),
-                       ],
+            ],
           ),
         ),
       ),
