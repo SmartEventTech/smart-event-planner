@@ -23,7 +23,7 @@ class CategoryItem extends StatelessWidget {
         child: Container(
           //padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 13.0),
           padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.sizeOf(context).width * 0.0484,
+            horizontal: MediaQuery.sizeOf(context).width * 0.04,
             vertical: 13.0,
           ),
           decoration: BoxDecoration(
@@ -49,8 +49,8 @@ class CategoryItem extends StatelessWidget {
             children: [
               // Radio button
               Container(
-                width: 22,
-                height: 22,
+                width: 20,
+                height: 20,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
@@ -59,17 +59,20 @@ class CategoryItem extends StatelessWidget {
               ),
               const SizedBox(width: AppSizes.slg),
               Flexible(
-                child: Text(
-                  category,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyle.textStyle20Bold(context).copyWith(
-                    color: isSelected
-                        ? Colors.white
-                        : isDark
-                            ? Colors.white
-                            : Colors.black,
-                    fontWeight: FontWeight.w600,
+                child: FittedBox(
+                  child: Text(
+                    category,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: isSelected
+                          ? Colors.white
+                          : isDark
+                              ? Colors.white
+                              : Colors.black,
+                      fontSize: 14.0,
+                    ),
                   ),
                 ),
               ),

@@ -224,7 +224,7 @@ class _PaidEventState extends State<PaidEvent> {
         Container(
           //height: MediaQuery.sizeOf(context).height * 0.18,
           width: double.infinity,
-          padding: const EdgeInsets.only(right: 5, top: 4, bottom: 5),
+          padding: const EdgeInsets.only(right: 5, top: 5, bottom: 5),
           decoration: BoxDecoration(
             color: Theme.of(context).brightness == Brightness.dark
                 ? Colors.grey[800]

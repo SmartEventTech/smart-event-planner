@@ -41,7 +41,7 @@ class CreateEventScreenBody extends StatelessWidget {
                   .headlineSmall
                   ?.copyWith(fontSize: 16),
             ),
-            const SizedBox(height: AppSizes.lg),
+            const SizedBox(height: AppSizes.slg),
             // Category list
             const CategoryList(),
             const SizedBox(height: AppSizes.spaceBtwTextField),
