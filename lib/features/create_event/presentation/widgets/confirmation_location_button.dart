@@ -29,17 +29,21 @@ class ConfirmationLocationButton extends StatelessWidget {
         onPressed: () => context.pushNamedPage(Routes.mapScreen),
         icon: Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: SvgPicture.asset(
-            AppImages.locationPin,
-            fit: BoxFit.scaleDown,
+          child: FittedBox(
+            child: SvgPicture.asset(
+              AppImages.locationPin,
+              fit: BoxFit.scaleDown,
+            ),
           ),
         ),
-        label: Text(
-          'Tap to choose a location',
-          style: TextStyle(
-            fontSize: 16,
-            color: isDark ? Colors.white : AppColors.black,
-            fontWeight: FontWeight.w500,
+        label: FittedBox(
+          child: Text(
+            'Tap to choose a location',
+            style: TextStyle(
+              fontSize: 16,
+              color: isDark ? Colors.white : AppColors.black,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),

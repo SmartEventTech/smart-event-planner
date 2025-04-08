@@ -23,7 +23,7 @@ class CategoryItem extends StatelessWidget {
         child: Container(
           //padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 13.0),
           padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.sizeOf(context).width * 0.046,
+            horizontal: MediaQuery.sizeOf(context).width * 0.0484,
             vertical: 13.0,
           ),
           decoration: BoxDecoration(
@@ -58,15 +58,19 @@ class CategoryItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: AppSizes.slg),
-              Text(
-                category,
-                style: AppTextStyle.textStyle20Bold(context).copyWith(
-                  color: isSelected
-                      ? Colors.white
-                      : isDark
-                          ? Colors.white
-                          : Colors.black,
-                  fontWeight: FontWeight.w600,
+              Flexible(
+                child: Text(
+                  category,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyle.textStyle20Bold(context).copyWith(
+                    color: isSelected
+                        ? Colors.white
+                        : isDark
+                            ? Colors.white
+                            : Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],

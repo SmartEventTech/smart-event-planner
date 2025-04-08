@@ -34,6 +34,8 @@ class CreateEventScreenBody extends StatelessWidget {
             // Event category
             Text(
               'Choose a Category',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall
@@ -74,12 +76,14 @@ class CreateEventScreenBody extends StatelessWidget {
         onPressed: () {},
         style:
             ElevatedButton.styleFrom(backgroundColor: AppColors.secondaryColor),
-        child: Text(
-          'Create Event',
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontSize: 16,
-                color: Colors.white,
-              ),
+        child: FittedBox(
+          child: Text(
+            'Create Event',
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+          ),
         ),
       ),
     );
