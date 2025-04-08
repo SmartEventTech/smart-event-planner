@@ -2,7 +2,7 @@ name: smart_event_planner
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -62,7 +62,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   # Selecting images from the Android and iOS image library
   image_picker: ^1.1.2
-  # 
+  #
   dartz: ^0.10.1
   provider: ^6.1.2
   flutter_gemini: ^3.0.0
@@ -83,9 +83,6 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   flutter_dotenv: ^5.2.1
   shimmer: ^3.0.0
-  
- 
-  
 
 dev_dependencies:
   flutter_test:
@@ -103,7 +100,6 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -120,7 +116,6 @@ flutter:
     - assets/images/events/
     - assets/logos/eventy/
     - .env
-
 
   fonts:
     - family: Poppins
@@ -151,7 +146,7 @@ flutter:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/app_icon/appLogo.png"
+  image_path: "assets/icons/eventy.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
 flutter_intl:
   enabled: true
