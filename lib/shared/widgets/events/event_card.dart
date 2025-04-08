@@ -5,6 +5,7 @@ import 'package:smart_event_planner/core/constants/app_images.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/constants/app_text_style.dart';
 import 'package:smart_event_planner/core/models/event/event_model.dart';
+import 'package:smart_event_planner/features/event_details/presentation/screens/paid_event.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({
