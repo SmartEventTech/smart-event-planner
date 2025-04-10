@@ -42,7 +42,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             child: Material(
               elevation: 4.0,
               borderRadius: BorderRadius.circular(10),
-              child: MessegesPopupElement(),
+              child: const MessegesPopupElement(),
             ),
           ),
         ],
@@ -73,7 +73,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             child: Material(
               elevation: 4.0,
               borderRadius: BorderRadius.circular(10),
-              child: NotificationPopupElement(),
+              child: const NotificationPopupElement(),
             ),
           ),
         ],
@@ -119,7 +119,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   Size buttonSize = buttonRenderBox.size;
                   _showMessagePopup(context, buttonPosition, buttonSize);
                 },
-                icon: Icon(Iconsax.message),
+                icon: const Icon(Iconsax.message),
               );
             },
           ),
@@ -133,11 +133,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
               Size buttonSize = buttonRenderBox.size;
               _showNotificationPopup(context, buttonPosition, buttonSize);
             },
-            icon: Icon(Iconsax.notification),
+            icon: const Icon(Iconsax.notification),
           ),
           IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: UserAvatarWidget(userImageUrl: AppImages.userAvatar),
+            onPressed: () {},
+            icon: const UserAvatarWidget(userImageUrl: AppImages.userAvatar),
           )
         ],
       ),

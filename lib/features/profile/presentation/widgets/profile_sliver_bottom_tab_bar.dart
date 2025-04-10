@@ -13,7 +13,7 @@ class ProfileSliverBottomTabBar extends StatelessWidget
     return Container(
       color: isDark ? Colors.black : AppColors.lightScaffoldBgColor,
       child: Padding(
-        padding: EdgeInsets.only(right: AppSizes.defaultScreenPadding),
+        padding: const EdgeInsets.only(right: AppSizes.defaultScreenPadding),
         child: TabBar(
           tabAlignment: TabAlignment.fill,
           labelStyle: AppTextStyle.textStyle16Bold(context),
@@ -22,7 +22,7 @@ class ProfileSliverBottomTabBar extends StatelessWidget
           unselectedLabelStyle:
               AppTextStyle.textStyle16Bold(context).copyWith(fontSize: 15.7),
           indicatorColor: AppColors.secondaryColor,
-          tabs: [
+          tabs: const [
             Tab(
               child: FittedBox(
                 child: Text('Favourites'),

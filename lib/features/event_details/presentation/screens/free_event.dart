@@ -128,8 +128,8 @@ class _FreeEventState extends State<FreeEvent> {
   }
 
   Widget _buildHostName() {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Icon(Icons.circle, size: 30, color: Color.fromARGB(255, 92, 92, 92)),
         SizedBox(width: 5),
         Text('Host Name', style: TextStyle(color: Colors.black, fontSize: 15)),

@@ -21,11 +21,10 @@ class AppTheme {
     outlinedButtonTheme: CustomOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.lightInputDecorationTheme,
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: Colors.white,
-      // ignore: deprecated_member_use
-      indicatorColor: AppColors.primaryColor.withOpacity(0.2), // soft blue
+      backgroundColor: AppColors.white,
+      indicatorColor: AppColors.navBarBlack.withValues(alpha: 0.2),
       iconTheme: const WidgetStatePropertyAll(
-        IconThemeData(color: Color(0xFF748C9E)), // muted tone
+        IconThemeData(color: Color.fromARGB(255, 110, 126, 155)),
       ),
     ),
   );
@@ -42,10 +41,10 @@ class AppTheme {
     outlinedButtonTheme: CustomOutlinedButtonTheme.darkOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.darkInputDecorationTheme,
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: AppColors.mainblackColor,
-      indicatorColor: AppColors.white.withAlpha(20),
+      backgroundColor: AppColors.black,
+      indicatorColor: AppColors.activeIconColor.withValues(alpha: 0.6),
       iconTheme: const WidgetStatePropertyAll(
-        IconThemeData(color: Color(0xFFB0BEC5)), // soft gray
+        IconThemeData(color: AppColors.grayColor),
       ),
     ),
   );

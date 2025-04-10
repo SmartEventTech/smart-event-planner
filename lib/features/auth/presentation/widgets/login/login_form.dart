@@ -126,7 +126,7 @@ class LoginForm extends StatelessWidget {
                     isRememberMe,
                   );
             },
-            child: Text('Sign In'),
+            child: const Text('Sign In'),
           ),
         );
       },

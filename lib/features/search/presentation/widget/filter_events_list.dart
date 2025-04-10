@@ -11,7 +11,7 @@ class FilterEventsList extends StatelessWidget {
       child: ListView.separated(
         padding: const EdgeInsets.all(0),
         itemCount: 6,
-        itemBuilder: (context, index) => EventCard(),
+        itemBuilder: (context, index) => const EventCard(),
         separatorBuilder: (context, index) =>
             const SizedBox(height: AppSizes.spaceBtwItems),
       ),

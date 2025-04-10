@@ -71,7 +71,7 @@ class ForgetPasswordScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is CheckEmailSuccessState) {
           context.pushPage(
-            OtpScreen(reset: true),
+            const OtpScreen(reset: true),
             arguments:
                 context.read<ResetPasswordCubit>().emailController.text.trim(),
           );

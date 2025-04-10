@@ -22,14 +22,14 @@ class ScheduleScreenBody extends StatelessWidget {
             unselectedLabelStyle:
                 AppTextStyle.textStyle16Bold(context).copyWith(fontSize: 15.7),
             indicatorColor: AppColors.secondaryColor,
-            tabs: [
+            tabs: const [
               Tab(text: 'Your Events'),
               Tab(text: 'Calendar'),
             ],
           ),
-          Expanded(
+          const Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(
+              padding: EdgeInsets.only(
                 top: AppSizes.defaultScreenPadding,
               ),
               child: TabBarView(

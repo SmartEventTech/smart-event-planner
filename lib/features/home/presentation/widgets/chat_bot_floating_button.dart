@@ -20,7 +20,7 @@ class ChatBotFloatingActionButton extends StatelessWidget {
         onPressed: () {
           context.pushNamedPage(Routes.chatBotScreen);
         },
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         child: Center(child: SvgPicture.asset(AppImages.chatBotIcon)),
       ),
     );

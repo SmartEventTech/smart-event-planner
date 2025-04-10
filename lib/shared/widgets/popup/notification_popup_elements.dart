@@ -9,16 +9,15 @@ class NotificationPopupElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 350,
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.black, width: 2),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: List.generate(5, (index) {
-          return ListTile(
+          return const ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.grey,
             ),

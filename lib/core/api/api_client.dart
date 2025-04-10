@@ -50,7 +50,7 @@ class ApiClient {
     // Add interceptors
     dio.interceptors.addAll([
       // Connectivity interceptor
-      ConnectivityInterceptor(),
+      ConnectivityInterceptor(dio),
       // Auth interceptor
       AuthInterceptor(dio),
       // Retry interceptor

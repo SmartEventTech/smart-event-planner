@@ -22,7 +22,7 @@ class CustomDotsIndicator extends StatelessWidget {
             height: 8,
             decoration: ShapeDecoration(
               color: currentIndex == index ? Colors.white : Colors.grey,
-              shape: CircleBorder(),
+              shape: const CircleBorder(),
             ),
             margin: const EdgeInsets.all(4),
           ),

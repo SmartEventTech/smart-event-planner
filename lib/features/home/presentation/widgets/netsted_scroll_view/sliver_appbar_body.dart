@@ -14,23 +14,23 @@ class SliverAppBarBody extends StatelessWidget {
     return Container(
       color: isDark ? AppColors.darkSliverAppBarColor : AppColors.white,
       child: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: AppSizes.defaultScreenPadding,
           vertical: AppSizes.sm,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: AppSizes.spaceBtwItems),
-            CreateEventSection(),
-            SizedBox(height: AppSizes.spaceBtwItems / 2),
+            const SizedBox(height: AppSizes.spaceBtwItems),
+            const CreateEventSection(),
+            const SizedBox(height: AppSizes.spaceBtwItems / 2),
             SectionHeading(
               title: 'Interests',
               btnTitle: 'View All',
               onPressed: () {},
             ),
-            SizedBox(height: AppSizes.spaceBtwItems / 2),
-            InterestsSection(),
+            const SizedBox(height: AppSizes.spaceBtwItems / 2),
+            const InterestsSection(),
           ],
         ),
       ),

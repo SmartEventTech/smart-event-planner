@@ -47,20 +47,20 @@ class ErrorHandler {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
-        return NetworkError('Connection timeout');
+        return const NetworkError('Connection timeout');
 
       case DioExceptionType.badCertificate:
-        return NetworkError('Bad SSL Certificate');
+        return const NetworkError('Bad SSL Certificate');
 
       case DioExceptionType.cancel:
-        return NetworkError('Request cancelled');
+        return const NetworkError('Request cancelled');
 
       case DioExceptionType.badResponse:
         return _parseServerError(error.response);
 
       case DioExceptionType.connectionError:
       case DioExceptionType.unknown:
-        return NetworkError('No internet connection');
+        return const NetworkError('No internet connection');
     }
   }
 

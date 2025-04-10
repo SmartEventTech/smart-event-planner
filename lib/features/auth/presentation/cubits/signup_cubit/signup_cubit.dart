@@ -26,7 +26,7 @@ class SignupCubit extends Cubit<SignupState> {
     // password and confirm password
     if (passwordController.text != confirmPasswordController.text) {
       emit(
-        PasswordValidationErrorState(
+        const PasswordValidationErrorState(
           'Password and Confirm Password must be same',
         ),
       );
@@ -36,7 +36,7 @@ class SignupCubit extends Cubit<SignupState> {
     // handle privacy accepted
     if (!isPrivacyAccepted) {
       emit(
-        PrivacyValidationErrorState(
+        const PrivacyValidationErrorState(
           'In order create account, you must have to read and accept the Privacy Policy & Terms of Use',
         ),
       );
@@ -57,7 +57,7 @@ class SignupCubit extends Cubit<SignupState> {
       (failure) => emit(
         SignupErrorState(failure.toString()),
       ),
-      (_) => emit(SignupSuccessState('Successfully signed up')),
+      (_) => emit(const SignupSuccessState('Successfully signed up')),
     );
   }
 

@@ -11,12 +11,12 @@ class HomeScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: AppSizes.defaultScreenPadding,
         vertical: AppSizes.sm,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppSizes.defaultBorderRadius),
           topRight: Radius.circular(AppSizes.defaultBorderRadius),
         ),
@@ -25,16 +25,16 @@ class HomeScreenBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  SizedBox(height: AppSizes.spaceBtwItems),
-                  CreateEventSection(),
-                  SizedBox(height: AppSizes.spaceBtwItems / 2),
+                  const SizedBox(height: AppSizes.spaceBtwItems),
+                  const CreateEventSection(),
+                  const SizedBox(height: AppSizes.spaceBtwItems / 2),
                   SectionHeading(
                     title: 'Interests',
                     btnTitle: 'View All',
                     onPressed: () async {},
                   ),
-                  SizedBox(height: AppSizes.spaceBtwItems / 2),
-                  InterestsSection(),
+                  const SizedBox(height: AppSizes.spaceBtwItems / 2),
+                  const InterestsSection(),
                   SectionHeading(
                     title: 'Events you might like',
                     btnTitle: 'View All',
@@ -44,9 +44,9 @@ class HomeScreenBody extends StatelessWidget {
                 ],
               ),
             ),
-            SuggestedEventsListView(),
-            SliverToBoxAdapter(
-              child: const SizedBox(height: AppSizes.spaceBtwItems),
+            const SuggestedEventsListView(),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: AppSizes.spaceBtwItems),
             ),
           ],
         ),

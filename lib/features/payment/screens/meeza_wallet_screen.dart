@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
@@ -22,7 +20,7 @@ class MeezaWalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+      
         title: const Text('Meeza Mobile Wallet'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -84,12 +82,12 @@ class MeezaWalletScreen extends StatelessWidget {
               ),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const NavigationScreen(),
-                      ),
-                      (route) => false,
-                    );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NavigationScreen(),
+                  ),
+                  (route) => false,
+                );
               },
               child: const Text(
                 'I HAVE PAID',

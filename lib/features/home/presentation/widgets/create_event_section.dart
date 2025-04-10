@@ -65,7 +65,7 @@ class CreateEventSectionState extends State<CreateEventSection> {
                           child: Align(
                             alignment: Alignment.center,
                             child: PageView.builder(
-                              physics: BouncingScrollPhysics(),
+                              physics: const BouncingScrollPhysics(),
                               controller: _pageController,
                               onPageChanged: _onPageChanged,
                               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -120,7 +120,7 @@ class CreateEventSectionState extends State<CreateEventSection> {
         width: constrains.maxWidth * 0.4,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -130,7 +130,7 @@ class CreateEventSectionState extends State<CreateEventSection> {
           onPressed: () {
             Navigator.of(context).pushNamed('/createEventScreen');
           },
-          child: FittedBox(
+          child: const FittedBox(
               child: Text(
             'Create now',
             style: TextStyle(color: AppColors.shadowhiteColot),

@@ -16,21 +16,18 @@ class _ListOfContentState extends State<ListOfContent> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark =
+        Theme.of(context).brightness == Brightness.dark; // Check theme
     return ListTile(
       leading: Icon(
         isSelected ? Iconsax.tick_square5 : Iconsax.tick_square4,
-        color: isSelected ? Colors.blue : Colors.black,
-        size: widget.screenWidth < 600 ? 18 : 24, // Responsive icon size
+        color: isSelected ? Colors.blue : Colors.grey,
       ),
       title: Text(
         widget.text,
-        style: TextStyle(
-          fontSize: widget.screenWidth < 600 ? 10 : 12, // Responsive font size
-          fontWeight: FontWeight.bold,
-          color: isSelected
-              ? Colors.blue
-              : Colors.black, // Highlight selected item
-        ),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: isDark ? Colors.white : Colors.black,
+            ),
       ),
       onTap: () {
         setState(() {

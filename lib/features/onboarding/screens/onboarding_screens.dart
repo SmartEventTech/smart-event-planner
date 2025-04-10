@@ -63,7 +63,7 @@ class OnboardingScreensState extends State<OnboardingScreens> {
                     decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
                       color: currentPage == index
-                          ? Color.fromRGBO(160, 6, 81, 1)
+                          ? const Color.fromRGBO(160, 6, 81, 1)
                           : Colors.grey,
                     ),
                   ),
@@ -88,7 +88,7 @@ class OnboardingScreensState extends State<OnboardingScreens> {
                         (route) => false,
                       );
                     },
-                    child: Text('Get Started'),
+                    child: const Text('Get Started'),
                   ),
                 ),
               ),

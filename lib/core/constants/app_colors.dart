@@ -41,7 +41,7 @@ class AppColors {
   static const black = Color(0xff000000);
   static const navBarBlack = Color(0xFF232323);
 
-  static LinearGradient interestedCardColor = LinearGradient(
+  static LinearGradient interestedCardColor = const LinearGradient(
     colors: [
       Color(0xff5C2FC2),
       Color(0xff819FD3),
@@ -52,8 +52,8 @@ class AppColors {
 
   static LinearGradient eventCardGradientColor = LinearGradient(
     colors: [
-      Color(0xff5C2FC2).withValues(alpha: 0.32),
-      Color(0xff819FD3).withValues(alpha: 0.3),
+      const Color(0xff5C2FC2).withValues(alpha: 0.32),
+      const Color(0xff819FD3).withValues(alpha: 0.3),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -67,4 +67,8 @@ class AppColors {
   static const Color grey = Color(0xFFE0E0E0);
   static const Color softGrey = Color(0xFFF4F4F4);
   static const Color lightGrey = Color(0xFFF9F9F9);
+
+  static const Color confirmLocationColor = Color(0xFFD9D9D9);
+
+  static const Color dark = Color(0xFF232323);
 }

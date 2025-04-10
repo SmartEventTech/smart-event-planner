@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
 
@@ -19,7 +15,7 @@ class FawryPaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+       
         title: const Text('Fawry Payment'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -33,8 +29,6 @@ class FawryPaymentScreen extends StatelessWidget {
           right: 40,
         ),
         child: Column(
-        
-          
           children: [
             const Text(
               'Use this code to complete your payment:',
@@ -57,7 +51,6 @@ class FawryPaymentScreen extends StatelessWidget {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 40),
-            
             const Text(
               'You can pay at any Fawry outlet,\nFawry mobile app, or online banking',
               textAlign: TextAlign.center,
@@ -71,12 +64,12 @@ class FawryPaymentScreen extends StatelessWidget {
               ),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const NavigationScreen(),
-                      ),
-                      (route) => false,
-                    );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NavigationScreen(),
+                  ),
+                  (route) => false,
+                );
               },
               child: const Text(
                 'I HAVE PAID',
@@ -84,7 +77,6 @@ class FawryPaymentScreen extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            
           ],
         ),
       ),

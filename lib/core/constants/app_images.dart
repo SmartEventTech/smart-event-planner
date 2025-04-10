@@ -34,6 +34,7 @@ class AppImages {
 
   // --User--
   static const String userAvatar = 'assets/images/user/user-avatar.png';
+  static const String arrowLeft = 'assets/icons/arrow_left.svg';
 
   // --Icons--
   static const String chatBotIcon = 'assets/icons/chat-bot/chatbot-icon.svg';
@@ -47,4 +48,6 @@ class AppImages {
   static const String event2 = 'assets/images/events/event2.png';
   static const String event3 = 'assets/images/events/event-3.svg';
   static const String event1 = 'assets/images/events/event.png';
+
+  static String locationPin = 'assets/icons/location_icon.svg';
 }

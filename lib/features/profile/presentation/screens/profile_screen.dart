@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
           context: context,
           builder: (context) => AlertDialog(
             backgroundColor: isdark ? AppColors.mainblackColor : AppColors.white,
-            icon: Icon(
+            icon: const Icon(
               Iconsax.logout,
               size: 40,
               color: Colors.red,
@@ -42,11 +42,11 @@ class ProfileScreen extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop(true),
-                child: Text(
+                child: const Text(
                   'Logout',
                   style: TextStyle(color: Colors.red),
                 ),
@@ -62,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
       // ignore: use_build_context_synchronously
       context: context,
       barrierDismissible: false,
-      builder: (context) => PopScope(
+      builder: (context) => const PopScope(
         canPop: false,
         child: Center(
           child: CircularProgressIndicator(
@@ -105,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  UserAvatarWidget(
+                  const UserAvatarWidget(
                     maxRadius: 60,
                     minRadius: 30,
                     showBorder: false,

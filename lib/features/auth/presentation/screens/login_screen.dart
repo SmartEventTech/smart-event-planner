@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             // Header
-            AuthHeader(),
+            const AuthHeader(),
             // Logo
             Image.asset(AppImages.appLogo, width: 140),
             const SizedBox(height: 40),
@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
             BlocProvider(
               create: (context) =>
                   getIt.get<SignInCubit>()..getStorageEmailAndPassword(),
-              child: LoginForm(),
+              child: const LoginForm(),
             ),
             const SizedBox(height: AppSizes.spaceBtwSections),
             const TFormDivider(dividerText: 'or Sign in with'),
