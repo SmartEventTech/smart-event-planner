@@ -1,6 +1,7 @@
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/shared/widgets/appBar/bottom_nav_bar_plus_icon.dart';
 import 'package:smart_event_planner/features/bottom_navigation/presentation/cubit/bottom_nav_cubit.dart';
 
@@ -9,6 +10,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return BlocBuilder<BottomNavCubit, int>(
       builder: (context, state) {
         return Stack(
@@ -17,6 +19,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             NavigationBar(
               height: 62,
               selectedIndex: state,
+              backgroundColor: isDark ? AppColors.mainblackColor : Colors.white,
               onDestinationSelected: (index) {
                 context.read<BottomNavCubit>().changeTab(index);
               },

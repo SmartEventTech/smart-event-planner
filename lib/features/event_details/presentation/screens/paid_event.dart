@@ -244,7 +244,7 @@ class _PaidEventState extends State<PaidEvent> {
               if (snapshot.hasError || !snapshot.hasData) {
                 return const Center(child: Text("Location not available"));
               }
-              final data = snapshot.data!;
+              //final data = snapshot.data!;
               // return Center(
               //   child: Text(
               //     "Lat: ${data.latitude?.toStringAsFixed(4)}\nLng: ${data.longitude?.toStringAsFixed(4)}",
