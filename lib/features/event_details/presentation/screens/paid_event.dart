@@ -316,7 +316,7 @@ class _PaidEventState extends State<PaidEvent> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) => const PaymentOptionsScreen()));
+                    builder: (_) => const PaymentOptionsScreen(),),);
           },
           style: ElevatedButton.styleFrom(
             elevation: 5,
