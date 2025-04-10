@@ -194,19 +194,14 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                             final method = filteredMethods[index];
                             return Card(
                               elevation: 1,
-                              shadowColor:  AppColors.primaryColor,
-                              color: Colors.white,
-                              
+                              shadowColor: AppColors.primaryColor,
                               child: RadioListTile<int>(
                                 activeColor: AppColors.primaryColor,
                                 contentPadding: const EdgeInsets.all(12),
-
-
                                 title: Text(method.nameEn!),
                                 subtitle: Text(method.nameAr!),
                                 secondary: Image.network(
                                   method.logo!,
-                                  
                                   height: 80,
                                   errorBuilder: (_, __, ___) =>
                                       const Icon(Icons.payment),

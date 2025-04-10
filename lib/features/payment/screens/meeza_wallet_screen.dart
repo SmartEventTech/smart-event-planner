@@ -18,9 +18,9 @@ class MeezaWalletScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-      
         title: const Text('Meeza Mobile Wallet'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -47,6 +47,13 @@ class MeezaWalletScreen extends StatelessWidget {
                 data: qrCode.trim(),
                 version: QrVersions.auto,
                 size: 200,
+                eyeStyle: QrEyeStyle(
+                  color: isDark ? Colors.white : Colors.black,
+                  eyeShape: QrEyeShape.square,
+                ),
+                dataModuleStyle: QrDataModuleStyle(
+                  color: isDark ? Colors.white : Colors.black,
+                ),
               ),
             ),
             const SizedBox(height: 30),
