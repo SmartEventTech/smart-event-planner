@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
       debugPrint('Logout error: $e');
     }
   }
-
+    ///
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
