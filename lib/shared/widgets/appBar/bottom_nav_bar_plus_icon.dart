@@ -22,7 +22,7 @@ class BottomNavBarPlusIcon extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(8),
           decoration: ShapeDecoration(
-            color: isDark ? AppColors.darkScaffoldBgColor : AppColors.white,
+            color: isDark ? AppColors.mainblackColor : AppColors.white,
             shape: CircleBorder(),
           ),
           child: Container(

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:smart_event_planner/app.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:smart_event_planner/app.dart';
 import 'package:smart_event_planner/config/routing/app_router.dart';
 import 'package:smart_event_planner/config/service_locator.dart';
 import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
 import 'package:smart_event_planner/core/storage/app_storage.dart';
+import 'package:smart_event_planner/core/theme/theme_manager.dart';
+import 'package:smart_event_planner/core/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   // Flutter Binding
@@ -29,14 +32,20 @@ Future<void> main() async {
   // Initialize Service Locator
   await initializeDependencies();
 
+  // Load saved theme before running the app
+  final initialThemeMode = await ThemeManager.getThemeMode();
+
   // Remove Splash Screen after initialization
   FlutterNativeSplash.remove();
 
   // Entry Point
   await entry();
 
-  // Start the App
+  // Start the App with ThemeProvider
   runApp(
-    MyApp(appRouter: AppRouter()),
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(initialThemeMode),
+      child: MyApp(appRouter: AppRouter()),
+    ),
   );
 }
