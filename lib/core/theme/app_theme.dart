@@ -43,7 +43,7 @@ class AppTheme {
     inputDecorationTheme: CustomInputDecorationTheme.darkInputDecorationTheme,
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: AppColors.mainblackColor,
-      indicatorColor:AppColors.white.withAlpha(20),
+      indicatorColor: AppColors.white.withAlpha(20),
       iconTheme: const WidgetStatePropertyAll(
         IconThemeData(color: Color(0xFFB0BEC5)), // soft gray
       ),

@@ -1,0 +1,2 @@
+D:/GraduationProject/smart_event_planner/android/app/.cxx/Debug/1wz2y1p6/x86/CMakeFiles/edit_cache.dir
+D:/GraduationProject/smart_event_planner/android/app/.cxx/Debug/1wz2y1p6/x86/CMakeFiles/rebuild_cache.dir

@@ -37,8 +37,8 @@ class ProfileListTile extends StatelessWidget {
         textColor ?? (isDark ? AppColors.white : AppColors.primaryColor);
     final effectiveBorderColor =
         borderColor ?? (isDark ? Colors.grey[800]! : Colors.grey[300]!);
-    final effectiveBackgroundColor =
-        backgroundColor ?? (isDark ? AppColors.mainblackColor : AppColors.white);
+    final effectiveBackgroundColor = backgroundColor ??
+        (isDark ? AppColors.mainblackColor : AppColors.white);
 
     return Card(
       elevation: 0,
@@ -52,8 +52,8 @@ class ProfileListTile extends StatelessWidget {
       color: effectiveBackgroundColor,
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
       child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         onTap: onTap,
         leading: Icon(
           leadingIcon,
