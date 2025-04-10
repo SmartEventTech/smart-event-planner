@@ -6,6 +6,7 @@ class PaidEvent extends StatefulWidget {
   const PaidEvent({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _PaidEventState createState() => _PaidEventState();
 }
 

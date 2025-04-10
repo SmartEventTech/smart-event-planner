@@ -99,7 +99,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         elevation: 0,
         titleSpacing: 0,
         centerTitle: false,
-        backgroundColor: isDark ? Colors.black : AppColors.white,
+        backgroundColor: isDark ? AppColors.mainblackColor : AppColors.white,
         title: Image.asset(
           AppImages.appLogo,
           width: 90,

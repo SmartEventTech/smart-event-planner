@@ -18,17 +18,21 @@ class CustomElevetedBtn extends StatelessWidget {
   final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 100),
       child: TextButton(
+        
+        
         onPressed: onPressed,
         style: TextButton.styleFrom(
           backgroundColor: color,
-          padding: const EdgeInsets.symmetric(vertical: 15),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: AppColors.outlinedBtnBorderColor,
-              width: 1.3,
-            ),
+            side:  BorderSide(
+          width: 1,
+          color: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+        ),
             borderRadius: BorderRadius.circular(10),
           ),
         ),
@@ -38,7 +42,7 @@ class CustomElevetedBtn extends StatelessWidget {
             icon != null
                 ? Icon(
                     icon,
-                    size: 27,
+                    size: 22,
                     color: AppColors.primaryColor,
                   )
                 : const SizedBox.shrink(),

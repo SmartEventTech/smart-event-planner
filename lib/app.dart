@@ -12,6 +12,7 @@ import 'package:smart_event_planner/core/storage/secure_storage.dart';
 import 'package:smart_event_planner/core/theme/app_theme.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/config/routing/app_router.dart';
+import 'package:smart_event_planner/core/theme/theme_provider.dart';
 import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
 
@@ -34,22 +35,26 @@ class MyApp extends StatelessWidget {
         create: (context) => getIt.get<UserCubit>()
           ..getProfile()
           ..shareProfile(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          navigatorKey: AppContext.navigatorKey,
-          themeMode: ThemeMode.system,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          title: 'Smart Event Planner',
-          locale: const Locale('en'),
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [Locale('en')],
-          onGenerateRoute: (settings) => appRouter.generateRoute(settings),
-          initialRoute: route,
+        child: Consumer<ThemeProvider>(
+          builder: (context, themeProvider, child) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              navigatorKey: AppContext.navigatorKey,
+              themeMode: themeProvider.themeMode,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              title: 'Smart Event Planner',
+              locale: const Locale('en'),
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [Locale('en')],
+              onGenerateRoute: (settings) => appRouter.generateRoute(settings),
+              initialRoute: route,
+            );
+          },
         ),
       ),
     );
@@ -58,7 +63,6 @@ class MyApp extends StatelessWidget {
 
 Future<void> entry() async {
   SecureStorage secureStorage = SecureStorage();
-
   bool isOnBoardingSeen = SharedPreferenceSingleton.getBool(kisOnBoardingSeen);
 
   if (isOnBoardingSeen && await secureStorage.getAccessToken() == null) {

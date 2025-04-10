@@ -18,6 +18,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: Colors.green.withOpacity(0.2),
                   shape: BoxShape.circle,
                 ),

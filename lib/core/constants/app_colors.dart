@@ -4,6 +4,8 @@ class AppColors {
   AppColors._();
 
   static const primaryColor = Color(0xff01305A);
+  static const mainblackColor = Color(0xFF121212);
+  static const mainWhiteColor =  Color(0xFFF5F7FA);
   static const secondaryColor = Color(0xffA00651);
 
   static const lightScaffoldBgColor = Color(0xfff4f4f4);

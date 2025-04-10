@@ -5,6 +5,7 @@ class FreeEvent extends StatefulWidget {
   const FreeEvent({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _FreeEventState createState() => _FreeEventState();
 }
 

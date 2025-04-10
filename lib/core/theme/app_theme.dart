@@ -13,18 +13,19 @@ class AppTheme {
     useMaterial3: true,
     fontFamily: 'Poppins',
     brightness: Brightness.light,
-    primaryColor: AppColors.primaryColor,
-    scaffoldBackgroundColor: AppColors.white,
+    primaryColor: Colors.white, // softened blue-grey
+    scaffoldBackgroundColor: Colors.white, // very soft white
     textTheme: CustomTextTheme.lightTextTheme,
     elevatedButtonTheme: CustomElevetedButtonTheme.lightElevetedButtonTheme,
     appBarTheme: CustomAppbarTheme.lightAppBarTheme,
     outlinedButtonTheme: CustomOutlinedButtonTheme.lightOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.lightInputDecorationTheme,
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: AppColors.white,
-      indicatorColor: AppColors.navBarBlack.withValues(alpha: 0.2),
-      iconTheme: WidgetStatePropertyAll(
-        IconThemeData(color: const Color.fromARGB(255, 110, 126, 155)),
+      backgroundColor: Colors.white,
+      // ignore: deprecated_member_use
+      indicatorColor: AppColors.primaryColor.withOpacity(0.2), // soft blue
+      iconTheme: const WidgetStatePropertyAll(
+        IconThemeData(color: Color(0xFF748C9E)), // muted tone
       ),
     ),
   );
@@ -33,18 +34,18 @@ class AppTheme {
     useMaterial3: true,
     fontFamily: 'Poppins',
     brightness: Brightness.dark,
-    primaryColor: AppColors.primaryColor,
-    scaffoldBackgroundColor: AppColors.darkScaffoldBgColor,
+    primaryColor: const Color(0xFF90A4AE), // desaturated cyan-grey
+    scaffoldBackgroundColor: AppColors.mainblackColor,
     textTheme: CustomTextTheme.darkTextTheme,
     elevatedButtonTheme: CustomElevetedButtonTheme.darkElevetedButtonTheme,
     appBarTheme: CustomAppbarTheme.darkAppBarTheme,
     outlinedButtonTheme: CustomOutlinedButtonTheme.darkOutlinedButtonTheme,
     inputDecorationTheme: CustomInputDecorationTheme.darkInputDecorationTheme,
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: AppColors.black,
-      indicatorColor: AppColors.activeIconColor.withValues(alpha: 0.6),
-      iconTheme: WidgetStatePropertyAll(
-        IconThemeData(color: AppColors.grayColor),
+      backgroundColor: AppColors.mainblackColor,
+      indicatorColor:AppColors.white.withAlpha(20),
+      iconTheme: const WidgetStatePropertyAll(
+        IconThemeData(color: Color(0xFFB0BEC5)), // soft gray
       ),
     ),
   );
