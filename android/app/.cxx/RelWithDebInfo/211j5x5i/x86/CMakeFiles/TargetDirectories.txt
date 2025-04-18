@@ -1,0 +1,2 @@
+D:/Eventy project/smart-event-planner/android/app/.cxx/RelWithDebInfo/211j5x5i/x86/CMakeFiles/edit_cache.dir
+D:/Eventy project/smart-event-planner/android/app/.cxx/RelWithDebInfo/211j5x5i/x86/CMakeFiles/rebuild_cache.dir

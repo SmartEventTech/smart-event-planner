@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:smart_event_planner/app.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:smart_event_planner/config/routing/app_router.dart';
 import 'package:smart_event_planner/config/service_locator.dart';
-import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:smart_event_planner/core/storage/app_storage.dart';
+import 'package:smart_event_planner/config/routing/app_router.dart';
+import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
 
 Future<void> main() async {
   // Flutter Binding

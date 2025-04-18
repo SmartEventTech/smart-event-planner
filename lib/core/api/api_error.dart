@@ -8,8 +8,6 @@ abstract class ApiError implements Exception {
   const ApiError(this.message, {this.statusCode, this.details});
 
   @override
-  // String toString() =>
-  //     'ApiError: $message (Status: $statusCode, Details: $details)';
   String toString() => message;
 }
 
@@ -86,18 +84,13 @@ class ErrorHandler {
       case 400:
         return ValidationError(message, details: data);
       case 404:
-        if (response.data is Map<String, dynamic> &&
-            response.data.containsKey('message')) {
-          return ValidationError(message, details: data);
-        }
         return NetworkError('Resource not found', details: data);
       case 401:
         return NetworkError('Unauthorized', details: data);
       case 403:
         return NetworkError('Forbidden', details: data);
       case 500:
-        return ServerError('Internal server error',
-            statusCode: code, details: data);
+        return ServerError('Internal server error', statusCode: code, details: data);
       default:
         return ServerError(message, statusCode: code, details: data);
     }

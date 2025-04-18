@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
 import 'package:smart_event_planner/core/widgets/shimmer/shimmer_widget.dart';
+import 'package:smart_event_planner/shared/widgets/events/events_list_view.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_event/user_event_cubit.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_event/user_event_state.dart';
-import 'package:smart_event_planner/shared/widgets/events/events_list_view.dart';
 
 class BuildCustomizedEventList extends StatelessWidget {
-  const BuildCustomizedEventList({super.key});
+  const BuildCustomizedEventList({super.key, required events});
 
   @override
   Widget build(BuildContext context) {

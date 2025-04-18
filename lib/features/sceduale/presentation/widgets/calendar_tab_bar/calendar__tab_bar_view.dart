@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/features/sceduale/presentation/widgets/calendar_tab_bar/calender_section.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
 import 'package:smart_event_planner/shared/widgets/events/events_list_view.dart';
+import 'package:smart_event_planner/features/sceduale/presentation/widgets/calendar_tab_bar/calender_section.dart';
 
 class CalendarTabBarView extends StatelessWidget {
   const CalendarTabBarView({super.key});
@@ -34,7 +34,7 @@ class CalendarTabBarView extends StatelessWidget {
           ),
           const SliverFillRemaining(
             child: EventsListView(
-              physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(), events: [],
             ),
           ),
         ],

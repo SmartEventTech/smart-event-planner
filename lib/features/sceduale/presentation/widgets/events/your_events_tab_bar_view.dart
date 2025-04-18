@@ -13,7 +13,7 @@ class YourEventsTabBarView extends StatelessWidget {
         right: AppSizes.defaultScreenPadding,
         left: AppSizes.defaultScreenPadding,
       ),
-      child: EventsListView(),
+      child: EventsListView(events: [],),
     );
   }
 }

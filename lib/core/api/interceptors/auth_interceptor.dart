@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:smart_event_planner/core/api/api_client.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
 import 'package:smart_event_planner/config/service_locator.dart';
-import 'package:smart_event_planner/core/api/api_client.dart';
 import 'package:smart_event_planner/core/storage/secure_storage.dart';
 import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
 import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
+import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
 
 class AuthInterceptor extends Interceptor {
   final SecureStorage _storage = getIt.get<SecureStorage>();
@@ -56,8 +56,6 @@ class AuthInterceptor extends Interceptor {
   Future<String?> _refreshToken() async {
     try {
       String? refreshToken = await _storage.read(key: 'refresh_token');
-
-      if (refreshToken == null) return null;
 
       final response = await ApiClient().dio.post(
         'ce6e.up.railway.app/api/auth/refresh',

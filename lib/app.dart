@@ -1,18 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
 import 'package:dio/dio.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logger/logger.dart';
-import 'package:smart_event_planner/config/service_locator.dart';
-import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
-import 'package:smart_event_planner/core/constants/app_constants.dart';
-import 'package:smart_event_planner/core/storage/secure_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:smart_event_planner/core/theme/app_theme.dart';
 import 'package:smart_event_planner/config/routing/routes.dart';
+import 'package:smart_event_planner/config/service_locator.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:smart_event_planner/config/routing/app_router.dart';
+import 'package:smart_event_planner/core/storage/secure_storage.dart';
+import 'package:smart_event_planner/core/constants/app_constants.dart';
 import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
+import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
 import 'package:smart_event_planner/features/profile/presentation/cubits/user_cubit.dart';
 
 String route = Routes.onboardingScreen;

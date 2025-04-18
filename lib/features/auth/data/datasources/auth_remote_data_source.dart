@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:smart_event_planner/core/api/api_error.dart';
 import 'package:smart_event_planner/core/api/api_service.dart';
 import 'package:smart_event_planner/features/auth/data/models/login_model.dart';
-import 'package:smart_event_planner/features/auth/data/models/reset_passwor_model.dart';
 import 'package:smart_event_planner/features/auth/data/models/signup_model.dart';
+import 'package:smart_event_planner/features/auth/data/models/reset_passwor_model.dart';
 
 abstract class AuthRemoteDataSource {
   // login

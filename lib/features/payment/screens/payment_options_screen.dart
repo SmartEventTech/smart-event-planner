@@ -1,18 +1,19 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:smart_event_planner/features/payment/models/fawry_response_model.dart';
-import 'package:smart_event_planner/features/payment/models/meeza_wallet_model.dart';
-import 'package:smart_event_planner/features/payment/models/payment_method_model.dart';
-import 'package:smart_event_planner/features/payment/models/visa_response_model.dart';
-import 'package:smart_event_planner/features/payment/screens/fawry_payment_screen.dart';
-import 'package:smart_event_planner/features/payment/screens/meeza_wallet_screen.dart';
+import 'package:smart_event_planner/core/models/event/event_model.dart';
 import 'package:smart_event_planner/features/payment/screens/web_view.dart';
+import 'package:smart_event_planner/features/payment/models/meeza_wallet_model.dart';
+import 'package:smart_event_planner/features/payment/models/visa_response_model.dart';
+import 'package:smart_event_planner/features/payment/models/fawry_response_model.dart';
+import 'package:smart_event_planner/features/payment/models/payment_method_model.dart';
+import 'package:smart_event_planner/features/payment/screens/meeza_wallet_screen.dart';
+import 'package:smart_event_planner/features/payment/screens/fawry_payment_screen.dart';
 
 class PaymentOptionsScreen extends StatefulWidget {
   const PaymentOptionsScreen({
-    super.key,
+    super.key, required EventModel event,
   });
 
   @override

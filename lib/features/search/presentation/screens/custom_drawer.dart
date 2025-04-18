@@ -1,57 +1,110 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:smart_event_planner/core/models/event/event_model.dart';
 
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/features/search/presentation/widget/list_of_widgets.dart';
+class CustomDrawer extends StatefulWidget {
+  final List<EventModel> events;
+  final Function(List<String>) onFiltersSelected;
 
-class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
     super.key,
+    required this.events,
+    required this.onFiltersSelected,
   });
 
   @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: const EdgeInsets.only(top: 50),
-      child: Drawer(
-        width: screenWidth < 600
-            ? screenWidth * 0.40
-            : screenWidth * 0.30, // Responsive drawer width
-        child: Padding(
-          padding: const EdgeInsets.only(top: 5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                leading: SvgPicture.asset(AppImages.filterIcon),
-                title: Text(
-                  'Filters',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                ),
-                onTap: () {}, // Add functionality if needed
-              ),
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
 
-              // Scrollable List
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 12,
-                  itemBuilder: (context, index) {
-                    return ListOfContent(
-                      text: 'Content ${index + 1}',
-                      screenWidth:
-                          screenWidth, // Pass screenWidth for responsiveness
-                    );
-                  },
-                  padding: EdgeInsets.zero,
-                ),
-              ),
-            ],
+class _CustomDrawerState extends State<CustomDrawer> {
+  List<String> selectedCategories = [];
+
+  List<String> _getUniqueCategories() {
+    return widget.events
+        .map((e) => e.category)
+        .whereType<String>()
+        .where((category) => category.isNotEmpty)
+        .toSet()
+        .toList()
+        ..sort();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final categories = _getUniqueCategories();
+
+    return Drawer(
+      width: MediaQuery.of(context).size.width * 0.50,
+      child: Column(
+        children: [
+          const SizedBox(height: 60),
+          const Text(
+            'Filter Events',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: AppColors.primaryColor,
+            ),
           ),
-        ),
+          const Divider(),
+          Expanded(
+            child: ListView.builder(
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final category = categories[index];
+                return CheckboxListTile(
+                  title: Text(category),
+                  value: selectedCategories.contains(category),
+                  onChanged: (bool? value) {
+                    setState(() {
+                      if (value == true) {
+                        selectedCategories.add(category);
+                      } else {
+                        selectedCategories.remove(category);
+                      }
+                    });
+                  },
+                  activeColor: AppColors.primaryColor,
+                );
+              },
+            ),
+          ),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryColor,
+                    foregroundColor: Colors.white,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(12),
+                  ),
+                  onPressed: () {
+                    setState(() => selectedCategories.clear());
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(Icons.clear_rounded),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryColor,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(12),
+                  ),
+                  onPressed: () {
+                    widget.onFiltersSelected(selectedCategories);
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(Icons.check_rounded),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
       ),
     );
   }

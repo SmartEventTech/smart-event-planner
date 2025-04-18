@@ -1,38 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
 
 class SearchScreenHeader extends StatelessWidget {
-  const SearchScreenHeader({super.key, required this.onFilterButtonPressed});
+  final TextEditingController controller;
   final VoidCallback onFilterButtonPressed;
+  final List<String> activeFilters;
+  final VoidCallback onClearFilters;
+
+  const SearchScreenHeader({
+    super.key,
+    required this.controller,
+    required this.onFilterButtonPressed,
+    required this.activeFilters,
+    required this.onClearFilters,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 56.0, bottom: 16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SafeArea(
+      child: Column(
         children: [
-          const Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Search',
-                prefixIcon: Icon(
-                  Iconsax.search_normal,
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search_rounded,
+                        color: AppColors.secondaryColor),
+                    hintText: 'Search events...',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey.shade100,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              IconButton(
+                onPressed: onFilterButtonPressed,
+                icon: const Icon(
+                  Icons.filter_alt_outlined,
+                  size: 30,
                   color: AppColors.secondaryColor,
                 ),
               ),
-            ),
+            ],
           ),
-          IconButton(
-            onPressed: () {
-              onFilterButtonPressed();
-            },
-            icon: SvgPicture.asset(AppImages.filterIcon),
-          )
+          if (activeFilters.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Text(
+                  'Active filters:',
+                  style: TextStyle(
+                    color: Colors.grey.shade600,
+                  ),
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: onClearFilters,
+                  child: const Text(
+                    'Clear all',
+                    style: TextStyle(
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );

@@ -1,238 +1,327 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:smart_event_planner/core/services/event_service.dart';
+import 'package:smart_event_planner/core/models/event/event_model.dart';
 import 'package:smart_event_planner/features/payment/screens/payment_options_screen.dart';
+// ignore_for_file: deprecated_member_use
 
 class PaidEvent extends StatefulWidget {
-  const PaidEvent({super.key});
+  final EventModel event;
+
+  const PaidEvent({super.key, required this.event});
 
   @override
-  _PaidEventState createState() => _PaidEventState();
+  State<PaidEvent> createState() => _PaidEventState();
 }
 
 class _PaidEventState extends State<PaidEvent> {
-  final Location _location = Location();
-  Future<LocationData?>? _locationFuture;
+  late Future<LocationData?> _locationFuture;
+  final ScrollController _scrollController = ScrollController();
+  final EventService _eventService = EventService();
+  List<EventModel> previousEvents = [];
+  bool isLoadingPreviousEvents = false;
 
   @override
   void initState() {
     super.initState();
     _locationFuture = _getLocation();
+    _loadPreviousEvents();
+  }
+
+  Future<void> _loadPreviousEvents() async {
+    setState(() => isLoadingPreviousEvents = true);
+    try {
+      final events = await _eventService.getEvents();
+      setState(() {
+        previousEvents = events
+            .where(
+                (e) => e.id != widget.event.id && e.host == widget.event.host)
+            .toList();
+        isLoadingPreviousEvents = false;
+      });
+    } catch (e) {
+      setState(() => isLoadingPreviousEvents = false);
+    }
   }
 
   Future<LocationData?> _getLocation() async {
-    if (!(await _location.serviceEnabled()) &&
-        !(await _location.requestService())) {
-      return null;
+    Location location = Location();
+    bool serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) return null;
     }
-    PermissionStatus permission = await _location.hasPermission();
+
+    PermissionStatus permission = await location.hasPermission();
     if (permission == PermissionStatus.denied) {
-      permission = await _location.requestPermission();
-      if (permission != PermissionStatus.granted) {
-        return null;
-      }
+      permission = await location.requestPermission();
+      if (permission != PermissionStatus.granted) return null;
     }
-    return _location.getLocation();
+
+    return await location.getLocation();
+  }
+
+  String _getImageUrl() {
+    if (widget.event.imageUrl != null && widget.event.imageUrl!.isNotEmpty) {
+      if (widget.event.imageUrl!.startsWith('http')) {
+        return widget.event.imageUrl!;
+      }
+      return 'https://eventplanner-production-ce6e.up.railway.app${widget.event.imageUrl!.startsWith('/') ? '' : '/'}${widget.event.imageUrl!}';
+    }
+    return 'assets/images/payedImg.jpg';
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final imageUrl = _getImageUrl();
+
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: isDark ? Colors.black : Colors.white,
-        title: const Text('Event Name'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,
+              color: isDark ? Colors.white : Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          widget.event.title ?? 'Event',
+          style: TextStyle(color: isDark ? Colors.white : Colors.black),
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Iconsax.star),
+            icon:
+                Icon(Iconsax.star, color: isDark ? Colors.white : Colors.black),
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.share),
+            icon:
+                Icon(Icons.share, color: isDark ? Colors.white : Colors.black),
             onPressed: () {},
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Container(
-              child: _buildEventImage(),
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: SizedBox(
+              height: 300,
+              child: imageUrl.startsWith('http')
+                  ? CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Container(
+                        color: Colors.grey[300],
+                        height: 300,
+                      ),
+                      errorWidget: (context, url, error) => Image.asset(
+                        'assets/images/payedImg.jpg',
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : Image.asset(
+                      imageUrl,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 290),
-              child: _buildCurvedContainer(),
+          ),
+          NotificationListener<ScrollNotification>(
+            onNotification: (scrollNotification) => false,
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              physics: const ClampingScrollPhysics(),
+              child: Container(
+                margin: const EdgeInsets.only(top: 250),
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.black : Colors.white,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 40),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  widget.event.title ?? 'Event Title',
+                                  style: theme.textTheme.headlineSmall,
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              widget.event.paid == false ||
+                                      widget.event.price == '0.00'
+                                  ? Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 6),
+                                      decoration: BoxDecoration(
+                                        color: AppColors.greenColor
+                                            .withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: const Text(
+                                        'Free',
+                                        style: TextStyle(
+                                          color: AppColors.greenColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )
+                                  : Text(
+                                      '${widget.event.price ?? '100.00'} EGP',
+                                      style: const TextStyle(
+                                        color: AppColors.greenColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              const Icon(Icons.account_circle,
+                                  size: 30, color: Colors.grey),
+                              const SizedBox(width: 8),
+                              Text(
+                                widget.event.host ?? 'Host Name',
+                                style: theme.textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 24),
+                          Text(
+                            'Description',
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            widget.event.description ??
+                                'No description available',
+                            style: theme.textTheme.bodyMedium,
+                          ),
+                          const SizedBox(height: 24),
+                          const Divider(height: 1),
+                          const SizedBox(height: 24),
+                          _buildEventDetails(theme),
+                          const SizedBox(height: 32),
+                          _buildLocationSection(theme),
+                          const SizedBox(height: 32),
+                          _buildPreviousEventsSection(theme),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ],
+          ),
+        ],
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => PaymentOptionsScreen(event: widget.event),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primaryColor,
+              minimumSize: const Size(double.infinity, 56),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 16),
+            ),
+            child: const Text(
+              'Continue to Payment',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).padding.bottom + 10,
-          left: 10,
-          right: 10,
-        ),
-        child: _buildJoinButton(),
-      ),
     );
   }
 
-  Widget _buildEventImage() {
-    return Image.asset(
-      'assets/images/payedImg.jpg',
-      width: double.infinity,
-      fit: BoxFit.cover,
-      height: 350,
-    );
-  }
-
-  Widget _buildCurvedContainer() {
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(60),
-        topRight: Radius.circular(60),
-      ),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(25),
-        color: Theme.of(context).brightness == Brightness.dark
-            ? Colors.black
-            : Colors.white,
-        child: _buildEventContent(),
-      ),
-    );
-  }
-
-  Widget _buildEventContent() {
+  Widget _buildEventDetails(ThemeData theme) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
       children: [
-        _buildEventTitle(),
-        const SizedBox(height: 10),
-        _buildHostName(),
-        const SizedBox(height: 10),
-        _buildDescription(),
-        const Divider(color: Colors.grey, thickness: 1),
-        _buildEventDetails(),
-        const SizedBox(height: 30),
-        _buildLocationSection(),
-        const SizedBox(height: 20),
-        _buildPreviousEvent(),
+        _buildDetailRow(Icons.access_time,
+            widget.event.time ?? 'Time not specified', theme),
+        const SizedBox(height: 16),
+        _buildDetailRow(Icons.category,
+            widget.event.category ?? 'Category not specified', theme),
+        const SizedBox(height: 16),
+        _buildDetailRow(
+            Icons.calendar_today, _formatDate(widget.event.date), theme),
       ],
     );
   }
 
-  Widget _buildEventTitle() {
+  String _formatDate(DateTime? date) {
+    if (date == null) return 'Date not specified';
+    return '${date.day}/${date.month}/${date.year}';
+  }
+
+  Widget _buildDetailRow(IconData icon, String text, ThemeData theme) {
     return Row(
       children: [
-        IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-          iconSize: 24,
-        ),
-        const SizedBox(width: 8),
+        Icon(icon, size: 24, color: AppColors.primaryColor),
+        const SizedBox(width: 12),
         Text(
-          'Event Name',
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 22),
-          maxLines: 1,
-        ),
-        const SizedBox(width: 50),
-        const Flexible(
-          child: Text(
-            '100.00 EGP',
-            style: TextStyle(
-              color: Colors.green,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-            ),
-            maxLines: 1,
+          text,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            fontSize: 15,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildHostName() {
-    return Row(
-      children: [
-        const Icon(Icons.circle,
-            size: 30, color: Color.fromARGB(255, 92, 92, 92)),
-        const SizedBox(width: 5),
-        Text('Host Name',
-            style:
-                Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 15)),
-      ],
-    );
-  }
-
-  Widget _buildDescription() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Description',
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
-        ),
-        const SizedBox(height: 5),
-        Text(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildEventDetails() {
-    return Column(
-      children: [
-        _buildEventDetailsRow(Icons.access_time, '9:00 PM'),
-        const SizedBox(height: 20),
-        _buildEventDetailsRow(Icons.computer_outlined, 'AI Event'),
-        const SizedBox(height: 20),
-        _buildEventDetailsRow(Icons.calendar_today_outlined, '25 NOV, 25'),
-      ],
-    );
-  }
-
-  Widget _buildEventDetailsRow(IconData icon, String text) {
-    return Row(
-      children: [
-        Icon(icon, size: 24, color: Colors.red[900]),
-        const SizedBox(width: 10),
-        Text(
-          text,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildLocationSection() {
+  Widget _buildLocationSection(ThemeData theme) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Location',
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 12),
         Container(
-          height: MediaQuery.sizeOf(context).height * 0.2,
+          height: 180,
           width: double.infinity,
-          padding: const EdgeInsets.only(right: 5, top: 5, bottom: 5),
           decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.grey[800]
-                : Colors.grey[200],
-            borderRadius: BorderRadius.circular(15),
+            color: theme.colorScheme.surfaceContainerHighest,
+            borderRadius: BorderRadius.circular(12),
           ),
           child: FutureBuilder<LocationData?>(
             future: _locationFuture,
@@ -240,38 +329,29 @@ class _PaidEventState extends State<PaidEvent> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               }
-              if (snapshot.hasError || !snapshot.hasData) {
-                return const Center(child: Text("Location not available"));
-              }
-              final data = snapshot.data!;
-              // return Center(
-              //   child: Text(
-              //     "Lat: ${data.latitude?.toStringAsFixed(4)}\nLng: ${data.longitude?.toStringAsFixed(4)}",
-              //     textAlign: TextAlign.center,
-              //   ),
-              // );
-
               return ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.asset(
-                  'assets/images/test_map.png',
-                  fit: BoxFit.cover,
+                borderRadius: BorderRadius.circular(12),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Image.network(
+                        'https://maps.googleapis.com/maps/api/staticmap?center=${widget.event.location?.lat},${widget.event.location?.lng}&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7C${widget.event.location?.lat},${widget.event.location?.lng}&key=https://eventplanner-production-ce6e.up.railway.app/api/events/getevents',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorBuilder: (context, error, stackTrace) =>
+                            Image.asset('assets/images/test_map.png'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.event.location?.name ?? 'Location not specified',
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ),
+                  ],
                 ),
               );
-
-              // return GoogleMap(
-              //   initialCameraPosition: CameraPosition(
-              //     target: LatLng(data.latitude!, data.longitude!),
-              //     zoom: 15,
-              //   ),
-              //   markers: {
-              //     Marker(
-              //       markerId: const MarkerId('1'),
-              //       position: LatLng(data.latitude!, data.longitude!),
-              //     ),
-              //   },
-              //   mapType: MapType.normal,
-              // );
             },
           ),
         ),
@@ -279,65 +359,98 @@ class _PaidEventState extends State<PaidEvent> {
     );
   }
 
-  Widget _buildPreviousEvent() {
+  Widget _buildPreviousEventsSection(ThemeData theme) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 16),
         Text(
-          'Previous Event',
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
-        ),
-        const SizedBox(height: 10),
-        Container(
-          width: double.infinity,
-          height: MediaQuery.sizeOf(context).height * 0.2,
-          decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.grey[800]
-                : Colors.grey[200],
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Center(
-            child: SvgPicture.asset('assets/images/events/default_image.svg'),
+          'Previous Events',
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
           ),
         ),
+        const SizedBox(height: 12),
+        isLoadingPreviousEvents
+            ? const Center(child: CircularProgressIndicator())
+            : previousEvents.isEmpty
+                ? Container(
+                    height: 120,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.surfaceContainerHighest,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'No previous events available',
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ),
+                  )
+                : SizedBox(
+                    height: 160,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: previousEvents.length,
+                      itemBuilder: (context, index) {
+                        final event = previousEvents[index];
+                        return Container(
+                          width: 140,
+                          margin: const EdgeInsets.only(right: 12),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            image: DecorationImage(
+                              image: event.imageUrl != null
+                                  ? NetworkImage(event.imageUrl!)
+                                  : const AssetImage(
+                                          'assets/images/payedImg.jpg')
+                                      as ImageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [
+                                  Colors.black.withOpacity(0.7),
+                                  Colors.transparent,
+                                ],
+                              ),
+                            ),
+                            padding: const EdgeInsets.all(12),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  event.title ?? 'Event',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  _formatDate(event.date),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
       ],
-    );
-  }
-
-  Widget _buildJoinButton() {
-    return SizedBox(
-      height: 50,
-      child: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const PaymentOptionsScreen(),),);
-          },
-          style: ElevatedButton.styleFrom(
-            elevation: 5,
-            padding:
-                const EdgeInsets.symmetric(horizontal: 120, vertical: 16.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-              side: const BorderSide(
-                color: Color.fromARGB(255, 197, 38, 125),
-                width: 1.5,
-              ),
-            ),
-            // backgroundColor: Colors.white,
-          ),
-          child: const FittedBox(
-            child: Text(
-              'Continue to Payment',
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+// ignore_for_file: library_private_types_in_public_api
+
 
 class FreeEvent extends StatefulWidget {
-  const FreeEvent({super.key});
+  final String eventName;
+  const FreeEvent({super.key,required this.eventName});
 
   @override
   _FreeEventState createState() => _FreeEventState();
@@ -43,7 +46,6 @@ class _FreeEventState extends State<FreeEvent> {
               // margin: const EdgeInsets.only(bottom: 20),
               child: _buildEventImage(),
             ),
-
             Padding(
               padding: const EdgeInsets.only(top: 290),
               child: _buildCurvedContainer(),
@@ -103,9 +105,9 @@ class _FreeEventState extends State<FreeEvent> {
   Widget _buildEventTitle() {
     return Row(
       children: [
-        const Text(
-          'Event Name',
-          style: TextStyle(
+        Text(
+          widget.eventName,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 22,
             fontWeight: FontWeight.bold,
