@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_cubit.dart';
-import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_state.dart';
-import 'package:smart_event_planner/core/utils/validators/validation.dart';
+import 'package:eventy/core/cubits/password_and_selection/password_and_selection_cubit.dart';
+import 'package:eventy/core/cubits/password_and_selection/password_and_selection_state.dart';
+import 'package:eventy/core/utils/validators/validation.dart';
 
 class PasswordField extends StatelessWidget {
   const PasswordField({
@@ -37,11 +37,11 @@ class PasswordField extends StatelessWidget {
               icon: Icon(
                 passwordField
                     ? state.isPasswordHidden
-                        ? Iconsax.eye_slash
-                        : Iconsax.eye
+                          ? Iconsax.eye_slash
+                          : Iconsax.eye
                     : state.isConfirmPasswordHidden
-                        ? Iconsax.eye_slash
-                        : Iconsax.eye,
+                    ? Iconsax.eye_slash
+                    : Iconsax.eye,
               ),
               onPressed: () {
                 if (passwordField) {

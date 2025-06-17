@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/constants/app_text_style.dart';
-import 'package:smart_event_planner/features/home/presentation/widgets/custom_dots_indicator.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/core/constants/app_text_style.dart';
+import 'package:eventy/features/home/presentation/widgets/custom_dots_indicator.dart';
 
 class CreateEventSection extends StatefulWidget {
   const CreateEventSection({super.key});
@@ -36,13 +36,9 @@ class CreateEventSectionState extends State<CreateEventSection> {
             decoration: ShapeDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(
-                  eventData[_currentIndex]['imageUrl'],
-                ),
+                image: AssetImage(eventData[_currentIndex]['imageUrl']),
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: _buildBorderRadius(),
-              ),
+              shape: RoundedRectangleBorder(borderRadius: _buildBorderRadius()),
             ),
           ),
           Padding(
@@ -73,9 +69,9 @@ class CreateEventSectionState extends State<CreateEventSection> {
                               itemBuilder: (context, index) {
                                 return Text(
                                   eventData[index]['title'],
-                                  style:
-                                      AppTextStyle.textStyle18ExtraBold(context)
-                                          .copyWith(color: Colors.white),
+                                  style: AppTextStyle.textStyle18ExtraBold(
+                                    context,
+                                  ).copyWith(color: Colors.white),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 );
@@ -109,35 +105,36 @@ class CreateEventSectionState extends State<CreateEventSection> {
   }
 
   BorderRadius _buildBorderRadius() {
-    return const BorderRadius.all(
-      Radius.circular(AppSizes.eventCardRadius),
-    );
+    return const BorderRadius.all(Radius.circular(AppSizes.eventCardRadius));
   }
 
   Widget _buildCreateButton() {
-    return LayoutBuilder(builder: (context, constrains) {
-      return SizedBox(
-        width: constrains.maxWidth * 0.4,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.all(0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+    return LayoutBuilder(
+      builder: (context, constrains) {
+        return SizedBox(
+          width: constrains.maxWidth * 0.4,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              backgroundColor: AppColors.secondaryColor,
+              side: const BorderSide(color: Colors.transparent),
             ),
-            backgroundColor: AppColors.secondaryColor,
-            side: const BorderSide(color: Colors.transparent),
-          ),
-          onPressed: () {
-            Navigator.of(context).pushNamed('/createEventScreen');
-          },
-          child: const FittedBox(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/createEventScreen');
+            },
+            child: const FittedBox(
               child: Text(
-            'Create now',
-            style: TextStyle(color: AppColors.shadowhiteColot),
-          )),
-        ),
-      );
-    });
+                'Create now',
+                style: TextStyle(color: AppColors.shadowhiteColot),
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -154,5 +151,5 @@ List<Map<String, dynamic>> eventData = [
   {
     'title': 'Select your favorite hobbies and majors to attend events.',
     'imageUrl': AppImages.event1,
-  }
+  },
 ];

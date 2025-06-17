@@ -1,6 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:smart_event_planner/core/api/retry_manger.dart';
+import 'package:eventy/core/api/retry_manger.dart';
 
 class ConnectivityInterceptor extends Interceptor {
   final Connectivity _connectivity = Connectivity();
@@ -16,17 +16,21 @@ class ConnectivityInterceptor extends Interceptor {
 
   @override
   Future<void> onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     final result = await _connectivity.checkConnectivity();
     if (result.contains(ConnectivityResult.none)) {
       // Store the request for later retry
       _pendingRequests.add(options);
       // Reject the request with a custom error message
-      return handler.reject(DioException(
-        requestOptions: options,
-        error: 'No internet',
-        message: 'Please check your internet connection.',
-      ));
+      return handler.reject(
+        DioException(
+          requestOptions: options,
+          error: 'No internet',
+          message: 'Please check your internet connection.',
+        ),
+      );
     }
     return handler.next(options);
   }

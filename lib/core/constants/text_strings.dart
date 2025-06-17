@@ -1,4 +1,4 @@
-class TTexts {
+class AppStrings {
   // -- GLOBAL Texts
   static const String and = "and";
   static const String skip = "Skip";
@@ -8,9 +8,12 @@ class TTexts {
   static const String tContinue = "Continue";
 
   // -- OnBoarding Texts
-  static const String onBoardingTitle1 = "Choose your product";
-  static const String onBoardingTitle2 = "Select Payment Method";
-  static const String onBoardingTitle3 = "Deliver at your door step";
+  static const String onBoardingTitle1 =
+      'Find events with people that match your interests.';
+  static const String onBoardingTitle2 =
+      'Create your own event and invite your friends.';
+  static const String onBoardingTitle3 =
+      'Get event recommendations based on your location.';
 
   static const String onBoardingSubTitle1 =
       "Welcome to a World of Limitless Choices - Your Perfect Product Awaits!";
@@ -67,4 +70,8 @@ class TTexts {
   // -- Home
   static const String homeAppbarTitle = "Good day for shopping";
   static const String homeAppbarSubTitle = "Mohamed Hassan";
+
+  /// --- New Strings
+
+  static const String youAreHere = "You are here";
 }

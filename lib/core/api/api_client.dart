@@ -1,13 +1,10 @@
 // # Create a singleton ApiClient to manage the Dio instance and interceptors.
-import 'dart:io';
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:smart_event_planner/core/api/api_error.dart';
-import 'package:smart_event_planner/core/api/interceptors/auth_interceptor.dart';
-import 'package:smart_event_planner/core/api/interceptors/connectivity_interceptor.dart';
+import 'package:eventy/core/api/api_error.dart';
+import 'package:eventy/core/api/interceptors/auth_interceptor.dart';
+import 'package:eventy/core/api/interceptors/connectivity_interceptor.dart';
 
 class ApiClient {
   static final ApiClient _instance = ApiClient._internal();
@@ -35,17 +32,14 @@ class ApiClient {
 
   ApiClient._internal() {
     // Initialize Dio with security settings
-    dio = Dio(BaseOptions(
-      baseUrl: baseUrlLink,
-      headers: {'Content-Type': 'application/json'},
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
-    ));
-
-    // Enable certificate pinning in production
-    if (!kDebugMode) {
-      _enableCertificatePinning();
-    }
+    dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrlLink,
+        headers: {'Content-Type': 'application/json'},
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 10),
+      ),
+    );
 
     // Add interceptors
     dio.interceptors.addAll([
@@ -90,39 +84,31 @@ class ApiClient {
   }
 
   // Method to make API requests
-  Future<Either<ApiError, Response>> request({
+  Future<Response> request({
     required String path,
     String? baseUrl,
     Object? data,
     Map<String, dynamic>? queryParameters,
     String method = 'GET',
     Map<String, dynamic>? headers,
+    ValidateStatus? validateStatus,
   }) async {
     try {
       dio.options.baseUrl = baseUrl ?? baseUrlLink;
       final response = await dio.request(
         path,
         data: data,
-        options: Options(method: method, headers: headers),
+        options: Options(
+          method: method,
+          headers: headers,
+          validateStatus: validateStatus,
+        ),
         queryParameters: queryParameters,
       );
 
-      return Right(response);
+      return response;
     } catch (e) {
-      return Left(ErrorHandler.handle(e));
-    }
-  }
-
-  // Certificate Pinning
-  void _enableCertificatePinning() {
-    final httpClientAdapter = dio.httpClientAdapter;
-    if (httpClientAdapter is IOHttpClientAdapter) {
-      httpClientAdapter.createHttpClient = (client) {
-        final SecurityContext ctx = SecurityContext();
-        // Add your certificate(s) here
-        // ctx.setTrustedCertificatesBytes(await rootBundle.load('certificate.pem'));
-        return HttpClient(context: ctx);
-      } as CreateHttpClient?;
+      throw ErrorHandler.handle(e);
     }
   }
 }

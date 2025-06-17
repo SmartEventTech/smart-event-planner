@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/utils/helpers/app_context.dart';
 
 class Loaders {
-  static hideSnackBar() =>
+  static void hideSnackBar() =>
       ScaffoldMessenger.of(AppContext.context).hideCurrentSnackBar();
 
-  static customToast({required message, bool isMedium = true}) {
+  static void customToast({required String message, bool isMedium = true}) {
     ScaffoldMessenger.of(AppContext.context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
@@ -37,8 +37,11 @@ class Loaders {
     );
   }
 
-  static void successSnackBar(
-      {required String title, String message = '', int duration = 3}) {
+  static void successSnackBar({
+    required String title,
+    String message = '',
+    int duration = 3,
+  }) {
     _showSnackBar(
       title: title,
       message: message,
@@ -86,13 +89,12 @@ class Loaders {
                   Text(
                     title,
                     style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 5),
-                  Text(
-                    message,
-                    style: const TextStyle(color: Colors.white),
-                  ),
+                  Text(message, style: const TextStyle(color: Colors.white)),
                 ],
               ),
             ),

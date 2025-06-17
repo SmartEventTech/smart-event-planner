@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/features/payment/screens/successful_payment_screen.dart';
+import 'package:eventy/features/payment/screens/successful_payment_screen.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebView extends StatefulWidget {
@@ -51,16 +51,17 @@ class _WebViewState extends State<WebView> {
           },
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.contains('success')) {
-              
               Navigator.pushAndRemoveUntil(
-                context, 
-                MaterialPageRoute(builder: (context) => const PaymentSuccessScreen()), 
-                (_) => false
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PaymentSuccessScreen(),
+                ),
+                (_) => false,
               );
             } else if (request.url.contains('fail')) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Payment Failed')),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text('Payment Failed')));
               Navigator.pop(context);
             }
             return NavigationDecision.navigate;
@@ -77,10 +78,7 @@ class _WebViewState extends State<WebView> {
       body: Stack(
         children: [
           WebViewWidget(controller: _controller),
-          if (_isLoading)
-            const Center(
-              child: CircularProgressIndicator(),
-            ),
+          if (_isLoading) const Center(child: CircularProgressIndicator()),
         ],
       ),
     );

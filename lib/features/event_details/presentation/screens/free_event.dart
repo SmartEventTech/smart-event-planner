@@ -1,3 +1,4 @@
+import 'package:eventy/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
@@ -233,8 +234,9 @@ class _FreeEventState extends State<FreeEvent> {
   Widget _buildPreviousEvent() {
     return const Center(
       child: Image(
-        image: AssetImage('assets/images/ErrImage.jpg'),
-        height: 150,
+        image: AssetImage(AppImages.defaultImage),
+        fit: BoxFit.cover,
+        width: 50,
       ),
     );
   }

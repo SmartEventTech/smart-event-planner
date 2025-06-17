@@ -1,12 +1,10 @@
+import 'package:eventy/shared/widgets/popup/messeges_popup_elements.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/shared/widgets/popup/messeges_popup_elements.dart';
-import 'package:smart_event_planner/shared/widgets/popup/notification_popup_elements.dart';
-import 'package:smart_event_planner/shared/widgets/appBar/user_avatar_widget.dart';
-
-import '../../../core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/shared/widgets/popup/notification_popup_elements.dart';
+import 'package:eventy/shared/widgets/appBar/user_avatar_widget.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -22,7 +20,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
   OverlayEntry? _overlayEntry;
 
   void _showMessagePopup(
-      BuildContext context, Offset buttonPosition, Size buttonSize) {
+    BuildContext context,
+    Offset buttonPosition,
+    Size buttonSize,
+  ) {
     if (_overlayEntry != null) {
       _removePopup(); // Remove existing popup if any
     }
@@ -53,7 +54,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
   }
 
   void _showNotificationPopup(
-      BuildContext context, Offset buttonPosition, Size buttonSize) {
+    BuildContext context,
+    Offset buttonPosition,
+    Size buttonSize,
+  ) {
     if (_overlayEntry != null) {
       _removePopup(); // Remove existing popup if any
     }
@@ -90,7 +94,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSizes.defaultScreenPadding,
@@ -99,11 +102,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         elevation: 0,
         titleSpacing: 0,
         centerTitle: false,
-        backgroundColor: isDark ? AppColors.mainblackColor : AppColors.white,
-        title: Image.asset(
-          AppImages.appLogo,
-          width: 90,
-        ),
+        title: Image.asset(AppImages.appLogo, width: 90),
         automaticallyImplyLeading: false,
         actions: [
           Builder(
@@ -114,8 +113,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   // Get button position and size using Builder's context
                   RenderBox buttonRenderBox =
                       context.findRenderObject() as RenderBox;
-                  Offset buttonPosition =
-                      buttonRenderBox.localToGlobal(Offset.zero);
+                  Offset buttonPosition = buttonRenderBox.localToGlobal(
+                    Offset.zero,
+                  );
                   Size buttonSize = buttonRenderBox.size;
                   _showMessagePopup(context, buttonPosition, buttonSize);
                 },
@@ -128,8 +128,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
               // Get button position and size using Builder's context
               RenderBox buttonRenderBox =
                   context.findRenderObject() as RenderBox;
-              Offset buttonPosition =
-                  buttonRenderBox.localToGlobal(Offset.zero);
+              Offset buttonPosition = buttonRenderBox.localToGlobal(
+                Offset.zero,
+              );
               Size buttonSize = buttonRenderBox.size;
               _showNotificationPopup(context, buttonPosition, buttonSize);
             },
@@ -138,7 +139,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           IconButton(
             onPressed: () {},
             icon: const UserAvatarWidget(userImageUrl: AppImages.userAvatar),
-          )
+          ),
         ],
       ),
     );

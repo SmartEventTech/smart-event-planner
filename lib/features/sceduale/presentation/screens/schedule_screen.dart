@@ -1,6 +1,6 @@
+import 'package:eventy/shared/widgets/appBar/eventy_appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/features/sceduale/presentation/screens/schedule_screen_body.dart';
-import 'package:smart_event_planner/shared/widgets/appBar/custom_appbar.dart';
+import 'package:eventy/features/sceduale/presentation/screens/schedule_screen_body.dart';
 
 class ScheduleScreen extends StatelessWidget {
   const ScheduleScreen({super.key});
@@ -8,8 +8,8 @@ class ScheduleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(),
-      body: ScheduleScreenBody(),
+      appBar: EventAppBar(),
+      body: SafeArea(child: ScheduleScreenBody()),
     );
   }
 }

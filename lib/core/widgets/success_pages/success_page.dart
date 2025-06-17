@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/constants/text_strings.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/text_strings.dart';
 
 class SuccessPage extends StatelessWidget {
   final String image, title, subtitle;
@@ -30,8 +30,10 @@ class SuccessPage extends StatelessWidget {
                       image,
                       width: MediaQuery.of(context).size.width * 0.6,
                     )
-                  : Image.asset(image,
-                      width: MediaQuery.of(context).size.width * 0.5),
+                  : Image.asset(
+                      image,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                    ),
               const SizedBox(height: AppSizes.spaceBtwSections),
               Text(
                 title,
@@ -53,12 +55,12 @@ class SuccessPage extends StatelessWidget {
     );
   }
 
-  SizedBox _continueButton(context) {
+  SizedBox _continueButton(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: const Text(TTexts.tContinue),
+        child: const Text(AppStrings.tContinue),
       ),
     );
   }

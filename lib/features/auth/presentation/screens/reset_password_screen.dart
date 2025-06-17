@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_event_planner/config/routing/routes.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/constants/text_strings.dart';
-import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_cubit.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
-import 'package:smart_event_planner/core/widgets/popups/full_screen_loader.dart';
-import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
-import 'package:smart_event_planner/features/auth/presentation/cubits/forget_password/reset_password_cubit.dart';
-import 'package:smart_event_planner/features/auth/presentation/cubits/forget_password/reset_password_state.dart';
-import 'package:smart_event_planner/features/auth/presentation/widgets/password_field.dart';
+import 'package:eventy/config/routing/routes.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/text_strings.dart';
+import 'package:eventy/core/cubits/password_and_selection/password_and_selection_cubit.dart';
+import 'package:eventy/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:eventy/core/widgets/popups/full_screen_loader.dart';
+import 'package:eventy/core/widgets/popups/loaders.dart';
+import 'package:eventy/features/auth/presentation/cubits/forget_password/reset_password_cubit.dart';
+import 'package:eventy/features/auth/presentation/cubits/forget_password/reset_password_state.dart';
+import 'package:eventy/features/auth/presentation/widgets/password_field.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
@@ -43,8 +43,9 @@ class ResetPasswordScreen extends StatelessWidget {
                   // _emailField(context),
                   const SizedBox(height: AppSizes.spaceBtwSections),
                   PasswordField(
-                    controller:
-                        context.read<ResetPasswordCubit>().passwordController,
+                    controller: context
+                        .read<ResetPasswordCubit>()
+                        .passwordController,
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections),
                   PasswordField(
@@ -76,14 +77,18 @@ class ResetPasswordScreen extends StatelessWidget {
         } else if (state is ResetPasswordSuccessState) {
           TFullScreenLoader.stopLoading();
           Loaders.successSnackBar(
-              title: 'Success', message: state.successMessage);
+            title: 'Success',
+            message: state.successMessage,
+          );
           context.pushNamedAndRemoveUntilPage(Routes.loginScreen);
         } else if (state is ResetPasswordErrorState) {
           TFullScreenLoader.stopLoading();
           Loaders.errorSnackBar(title: 'Error', message: state.errorMessage);
         } else if (state is ResetPasswordValidationErrorState) {
           Loaders.warningSnackBar(
-              title: 'Wrong Password', message: state.errorMessage);
+            title: 'Wrong Password',
+            message: state.errorMessage,
+          );
         }
       },
       builder: (context, state) => state is CheckEmailLoadingState
@@ -94,7 +99,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 onPressed: () async {
                   await context.read<ResetPasswordCubit>().resetPassword();
                 },
-                child: const Text(TTexts.submit),
+                child: const Text(AppStrings.submit),
               ),
             ),
     );

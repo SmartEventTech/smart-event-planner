@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_colors.dart';
 
 class CustomOutlinedButtonTheme {
   CustomOutlinedButtonTheme._();
@@ -15,9 +15,7 @@ class CustomOutlinedButtonTheme {
         fontWeight: FontWeight.w600,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
     ),
   );
   static final darkOutlinedButtonTheme = OutlinedButtonThemeData(
@@ -31,9 +29,7 @@ class CustomOutlinedButtonTheme {
         fontWeight: FontWeight.w600,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
     ),
   );
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:smart_event_planner/config/routing/routes.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:eventy/config/routing/routes.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/core/utils/helpers/extensions/navigation_extension.dart';
 
 class ConfirmationLocationButton extends StatelessWidget {
   const ConfirmationLocationButton({super.key});

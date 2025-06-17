@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
+import 'package:eventy/features/bottom_navigation/presentation/screens/navigation_screen.dart';
 
 class PaymentSuccessScreen extends StatelessWidget {
   const PaymentSuccessScreen({super.key});
@@ -22,11 +22,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                   color: Colors.green.withOpacity(0.2),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(
-                  Icons.check,
-                  size: 60,
-                  color: Colors.green,
-                ),
+                child: const Icon(Icons.check, size: 60, color: Colors.green),
               ),
               const SizedBox(height: 32),
 
@@ -46,10 +42,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                 'Your payment has been processed successfully. '
                 'You will receive a confirmation email shortly.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black54,
-                ),
+                style: TextStyle(fontSize: 16, color: Colors.black54),
               ),
               const SizedBox(height: 40),
 
@@ -75,10 +68,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                   },
                   child: const Text(
                     'Back to Home',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ),

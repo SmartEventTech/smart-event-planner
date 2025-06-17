@@ -50,4 +50,10 @@ class AppSizes {
   static const double iconSm = 16.0;
   static const double iconMd = 24.0;
   static const double iconLg = 32.0;
+
+  static const double gridViewSpacing = 16.0;
+
+  static const double spaceBtwEventCards = 18.0;
+
+  static const double tabBarViewPadding = 10.0;
 }

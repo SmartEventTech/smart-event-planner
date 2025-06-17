@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/constants/text_strings.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
-import 'package:smart_event_planner/core/utils/validators/validation.dart';
-import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
-import 'package:smart_event_planner/features/auth/presentation/cubits/forget_password/reset_password_cubit.dart';
-import 'package:smart_event_planner/features/auth/presentation/cubits/forget_password/reset_password_state.dart';
-import 'package:smart_event_planner/features/auth/presentation/screens/otp_screen.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/text_strings.dart';
+import 'package:eventy/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:eventy/core/utils/validators/validation.dart';
+import 'package:eventy/core/widgets/popups/loaders.dart';
+import 'package:eventy/features/auth/presentation/cubits/forget_password/reset_password_cubit.dart';
+import 'package:eventy/features/auth/presentation/cubits/forget_password/reset_password_state.dart';
+import 'package:eventy/features/auth/presentation/screens/otp_screen.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});
@@ -35,12 +35,12 @@ class ForgetPasswordScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  TTexts.forgetPassword,
+                  AppStrings.forgetPassword,
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: AppSizes.spaceBtwItems),
                 Text(
-                  TTexts.forgetPasswordSubTitle,
+                  AppStrings.forgetPasswordSubTitle,
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
                 const SizedBox(height: AppSizes.spaceBtwSections * 2),
@@ -60,7 +60,7 @@ class ForgetPasswordScreen extends StatelessWidget {
       controller: context.read<ResetPasswordCubit>().emailController,
       validator: (value) => TValidator.validateEmail(value),
       decoration: const InputDecoration(
-        labelText: TTexts.email,
+        labelText: AppStrings.email,
         prefixIcon: Icon(Iconsax.direct_right),
       ),
     );
@@ -72,8 +72,11 @@ class ForgetPasswordScreen extends StatelessWidget {
         if (state is CheckEmailSuccessState) {
           context.pushPage(
             const OtpScreen(reset: true),
-            arguments:
-                context.read<ResetPasswordCubit>().emailController.text.trim(),
+            arguments: context
+                .read<ResetPasswordCubit>()
+                .emailController
+                .text
+                .trim(),
           );
           Loaders.successSnackBar(title: 'Success', message: state.message);
         } else if (state is CheckEmailFailureState) {
@@ -91,12 +94,10 @@ class ForgetPasswordScreen extends StatelessWidget {
                   child: SizedBox(
                     width: 22,
                     height: 22,
-                    child: FittedBox(
-                      child: CircularProgressIndicator(),
-                    ),
+                    child: FittedBox(child: CircularProgressIndicator()),
                   ),
                 )
-              : const Text(TTexts.submit),
+              : const Text(AppStrings.submit),
         ),
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_cubit.dart';
-import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_state.dart';
-import 'package:smart_event_planner/core/widgets/checkbox/custom_checkbox.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/cubits/password_and_selection/password_and_selection_cubit.dart';
+import 'package:eventy/core/cubits/password_and_selection/password_and_selection_state.dart';
+import 'package:eventy/core/widgets/checkbox/custom_checkbox.dart';
 
 class TTermAndCondationCheckbox extends StatelessWidget {
   const TTermAndCondationCheckbox({super.key});
@@ -38,12 +38,12 @@ class TTermAndCondationCheckbox extends StatelessWidget {
                 TextSpan(
                   text: 'Privacy Policy',
                   style: Theme.of(context).textTheme.bodyMedium!.apply(
-                        color:
-                            isDark ? AppColors.white : AppColors.primaryColor,
-                        decoration: TextDecoration.underline,
-                        decorationColor:
-                            isDark ? AppColors.white : AppColors.primaryColor,
-                      ),
+                    color: isDark ? AppColors.white : AppColors.primaryColor,
+                    decoration: TextDecoration.underline,
+                    decorationColor: isDark
+                        ? AppColors.white
+                        : AppColors.primaryColor,
+                  ),
                 ),
                 TextSpan(
                   text: 'and ',
@@ -52,14 +52,14 @@ class TTermAndCondationCheckbox extends StatelessWidget {
                 TextSpan(
                   text: 'Terms of use',
                   style: Theme.of(context).textTheme.bodyMedium!.apply(
-                        color: isDark
-                            ? AppColors.white
-                            : AppColors.primaryTextColor,
-                        decoration: TextDecoration.underline,
-                        decorationColor: isDark
-                            ? AppColors.white
-                            : AppColors.primaryTextColor,
-                      ),
+                    color: isDark
+                        ? AppColors.white
+                        : AppColors.primaryTextColor,
+                    decoration: TextDecoration.underline,
+                    decorationColor: isDark
+                        ? AppColors.white
+                        : AppColors.primaryTextColor,
+                  ),
                 ),
               ],
             ),

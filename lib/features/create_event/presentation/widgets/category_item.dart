@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem(
-      {super.key,
-      required this.category,
-      required this.isSelected,
-      this.onTap});
+  const CategoryItem({
+    super.key,
+    required this.category,
+    required this.isSelected,
+    this.onTap,
+  });
   final String category;
   final bool isSelected;
   final Function()? onTap;
@@ -29,11 +30,12 @@ class CategoryItem extends StatelessWidget {
             color: isSelected
                 ? AppColors.secondaryColor
                 : isDark
-                    ? AppColors.dark
-                    : Colors.white,
+                ? AppColors.dark
+                : Colors.white,
             borderRadius: BorderRadius.circular(12.0),
             border: Border.all(
-                color: isDark ? Colors.grey.shade800 : Colors.grey.shade300),
+              color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,
+            ),
             boxShadow: [
               BoxShadow(
                 color: isDark ? Colors.grey.shade700 : Colors.grey.shade300,
@@ -68,8 +70,8 @@ class CategoryItem extends StatelessWidget {
                       color: isSelected
                           ? Colors.white
                           : isDark
-                              ? Colors.white
-                              : Colors.black,
+                          ? Colors.white
+                          : Colors.black,
                       fontSize: 14.0,
                     ),
                   ),

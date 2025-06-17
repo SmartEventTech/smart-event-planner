@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:smart_event_planner/config/routing/routes.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_cubit.dart';
-import 'package:smart_event_planner/core/cubits/password_and_selection/password_and_selection_state.dart';
-import 'package:smart_event_planner/core/widgets/popups/full_screen_loader.dart'
+import 'package:eventy/config/routing/routes.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/cubits/password_and_selection/password_and_selection_cubit.dart';
+import 'package:eventy/core/cubits/password_and_selection/password_and_selection_state.dart';
+import 'package:eventy/core/widgets/popups/full_screen_loader.dart'
     show TFullScreenLoader;
-import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
-import 'package:smart_event_planner/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
-import 'package:smart_event_planner/features/auth/presentation/cubits/signin_cubit/signin_state.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
-import 'package:smart_event_planner/core/utils/validators/validation.dart';
-import 'package:smart_event_planner/core/widgets/checkbox/custom_checkbox.dart';
-import 'package:smart_event_planner/features/auth/presentation/widgets/password_field.dart';
+import 'package:eventy/core/widgets/popups/loaders.dart';
+import 'package:eventy/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
+import 'package:eventy/features/auth/presentation/cubits/signin_cubit/signin_state.dart';
+import 'package:eventy/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:eventy/core/utils/validators/validation.dart';
+import 'package:eventy/core/widgets/checkbox/custom_checkbox.dart';
+import 'package:eventy/features/auth/presentation/widgets/password_field.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({
-    super.key,
-  });
+  const LoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +29,7 @@ class LoginForm extends StatelessWidget {
         ),
         child: Form(
           key: context.read<SignInCubit>().formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             children: [
               _emailField(context),
@@ -57,6 +56,7 @@ class LoginForm extends StatelessWidget {
       controller: context.read<SignInCubit>().emailController,
       validator: (value) => TValidator.validateEmail(value),
       textInputAction: TextInputAction.next,
+      keyboardType: TextInputType.emailAddress,
       autofillHints: const [AutofillHints.email],
       decoration: const InputDecoration(
         labelText: 'Email',
@@ -89,9 +89,7 @@ class LoginForm extends StatelessWidget {
           onPressed: () => context.pushNamedPage(Routes.forgetPasswordScreen),
           child: const Text(
             'Forget Password',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-            ),
+            style: TextStyle(fontWeight: FontWeight.w600),
           ),
         ),
       ],
@@ -102,14 +100,18 @@ class LoginForm extends StatelessWidget {
     return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state is SignInFailure) {
+          FocusManager.instance.primaryFocus?.unfocus();
           TFullScreenLoader.stopLoading();
           Loaders.errorSnackBar(title: 'Error', message: state.message);
         } else if (state is SignInLoading) {
+          FocusManager.instance.primaryFocus?.unfocus();
           TFullScreenLoader.openLoadingDialog(
             'Logging you in...',
             AppImages.docerAnimation,
           );
         } else if (state is SignInSuccess) {
+          // close keyboard
+          FocusManager.instance.primaryFocus?.unfocus();
           TFullScreenLoader.stopLoading();
           _navigateToMenuPage(context);
         }
@@ -119,12 +121,14 @@ class LoginForm extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () async {
-              var isRememberMe =
-                  context.read<PasswordAndSelectionCubit>().state.isRememberMe;
+              var isRememberMe = context
+                  .read<PasswordAndSelectionCubit>()
+                  .state
+                  .isRememberMe;
               // Login
               await context.read<SignInCubit>().signInWithEmailAndPassword(
-                    isRememberMe,
-                  );
+                isRememberMe,
+              );
             },
             child: const Text('Sign In'),
           ),
@@ -146,7 +150,7 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  _navigateToMenuPage(BuildContext context) {
+  void _navigateToMenuPage(BuildContext context) {
     context.pushNamedAndRemoveUntilPage(Routes.navigationScreen);
   }
 }

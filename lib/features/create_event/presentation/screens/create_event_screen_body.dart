@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/utils/validators/validation.dart';
-import 'package:smart_event_planner/features/create_event/presentation/widgets/category_list.dart';
-import 'package:smart_event_planner/features/create_event/presentation/widgets/confirmation_location_button.dart';
-import 'package:smart_event_planner/features/create_event/presentation/widgets/upload_event_image_section.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/utils/validators/validation.dart';
+import 'package:eventy/features/create_event/presentation/widgets/category_list.dart';
+import 'package:eventy/features/create_event/presentation/widgets/confirmation_location_button.dart';
+import 'package:eventy/features/create_event/presentation/widgets/upload_event_image_section.dart';
 
 class CreateEventScreenBody extends StatelessWidget {
   const CreateEventScreenBody({super.key});
@@ -36,10 +36,9 @@ class CreateEventScreenBody extends StatelessWidget {
               'Choose a Category',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(fontSize: 16),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontSize: 16),
             ),
             const SizedBox(height: AppSizes.slg),
             // Category list
@@ -47,10 +46,9 @@ class CreateEventScreenBody extends StatelessWidget {
             const SizedBox(height: AppSizes.spaceBtwTextField),
             Text(
               'Else',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(fontSize: 16),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontSize: 16),
             ),
             const SizedBox(height: AppSizes.md),
             _buildCategoryField(context),
@@ -74,15 +72,16 @@ class CreateEventScreenBody extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {},
-        style:
-            ElevatedButton.styleFrom(backgroundColor: AppColors.secondaryColor),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.secondaryColor,
+        ),
         child: FittedBox(
           child: Text(
             'Create Event',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
+              fontSize: 16,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
@@ -141,11 +140,9 @@ class CreateEventScreenBody extends StatelessWidget {
     );
   }
 
-  _buildCategoryField(BuildContext context) {
+  TextFormField _buildCategoryField(BuildContext context) {
     return TextFormField(
-      inputFormatters: [
-        FilteringTextInputFormatter.deny(RegExp(r'^[0-9]')),
-      ],
+      inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'^[0-9]'))],
       decoration: InputDecoration(
         hintText: 'Type your category',
         border: OutlineInputBorder(

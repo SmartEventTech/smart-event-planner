@@ -1,12 +1,9 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:smart_event_planner/config/routing/routes.dart';
-import 'package:smart_event_planner/config/service_locator.dart';
-import 'package:smart_event_planner/core/api/api_client.dart';
-import 'package:smart_event_planner/core/storage/secure_storage.dart';
-import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
-import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
+import 'package:eventy/config/service_locator.dart';
+import 'package:eventy/core/api/api_client.dart';
+import 'package:eventy/core/storage/secure_storage.dart';
+import 'package:eventy/features/personalization/presentation/cubit/user_cubit.dart';
 
 class AuthInterceptor extends Interceptor {
   final SecureStorage _storage = getIt.get<SecureStorage>();
@@ -16,7 +13,9 @@ class AuthInterceptor extends Interceptor {
 
   @override
   Future<void> onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     final token = await _storage.getAccessToken();
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
@@ -26,8 +25,15 @@ class AuthInterceptor extends Interceptor {
 
   @override
   Future<void> onError(
-      DioException err, ErrorInterceptorHandler handler) async {
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
     if (err.response?.statusCode == 401) {
+      // ❌ Skip refresh if it's a logout request
+      if (err.requestOptions.path.contains('/logout')) {
+        return handler.next(err);
+      }
+
       String? newAccessToken = await _refreshToken();
       if (newAccessToken != null) {
         await _storage.saveToken(key: 'access_token', value: newAccessToken);
@@ -57,18 +63,16 @@ class AuthInterceptor extends Interceptor {
     try {
       String? refreshToken = await _storage.read(key: 'refresh_token');
 
-      if (refreshToken == null) return null;
-
       final response = await ApiClient().dio.post(
         'ce6e.up.railway.app/api/auth/refresh',
         data: {'refreshToken': refreshToken},
       );
 
       if (response.statusCode == 200) {
-        // save tokens
         await _storage.saveTokens(
           accessToken: response.data['data']['accessToken'],
-          refreshToken: response.data['data']['refreshToken'] ??
+          refreshToken:
+              response.data['data']['refreshToken'] ??
               response.data['data']['accessToken'],
         );
         return response.data['data']['accessToken'];
@@ -81,10 +85,6 @@ class AuthInterceptor extends Interceptor {
   }
 
   void _logout() async {
-    var result = await getIt.get<AuthRepo>().logout();
-    result.fold(
-      (failure) => null,
-      (_) => AppContext.context.pushNamedAndRemoveUntilPage(Routes.loginScreen),
-    );
+    await getIt.get<UserCubit>().logout();
   }
 }

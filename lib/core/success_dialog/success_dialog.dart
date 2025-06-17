@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_colors.dart';
 
 class SuccessDialog extends StatelessWidget {
   final String title;
@@ -18,9 +18,7 @@ class SuccessDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -33,10 +31,7 @@ class SuccessDialog extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             Text(
@@ -51,8 +46,10 @@ class SuccessDialog extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 12,
+                ),
               ),
               onPressed: onPressed ?? () => Navigator.pop(context),
               child: Text(
@@ -76,11 +73,7 @@ class SuccessDialog extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: const Center(
-        child: Icon(
-          Icons.check_circle,
-          color: Colors.green,
-          size: 60,
-        ),
+        child: Icon(Icons.check_circle, color: Colors.green, size: 60),
       ),
     );
   }
@@ -98,7 +91,7 @@ void showSuccessDialog({
     barrierDismissible: true,
     barrierLabel: '',
     transitionDuration: const Duration(milliseconds: 400),
-    pageBuilder: (_, __, ___) {
+    pageBuilder: (_, _, _) {
       return SuccessDialog(
         title: title,
         message: message,
@@ -106,16 +99,10 @@ void showSuccessDialog({
         onPressed: onPressed,
       );
     },
-    transitionBuilder: (_, animation, __, child) {
+    transitionBuilder: (_, animation, _, child) {
       return ScaleTransition(
-        scale: CurvedAnimation(
-          parent: animation,
-          curve: Curves.fastOutSlowIn,
-        ),
-        child: FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
+        scale: CurvedAnimation(parent: animation, curve: Curves.fastOutSlowIn),
+        child: FadeTransition(opacity: animation, child: child),
       );
     },
   );

@@ -3,18 +3,20 @@ import 'package:shimmer/shimmer.dart';
 
 class ShimmerWidget extends StatelessWidget {
   final double? width, height;
-  final ShapeBorder shapeBorder;
+  final ShapeBorder? shapeBorder;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final Widget? child;
+  final Color? baseColor;
+
   const ShimmerWidget({
     super.key,
     this.width = double.infinity,
     this.height,
-    this.shapeBorder = const RoundedRectangleBorder(),
+    this.shapeBorder,
     this.padding,
     this.margin,
-    this.child,
+    this.child, this.baseColor,
   });
 
   @override
@@ -31,7 +33,9 @@ class ShimmerWidget extends StatelessWidget {
         margin: margin,
         decoration: ShapeDecoration(
           color: Colors.grey,
-          shape: shapeBorder,
+          shape:
+              shapeBorder ??
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
         child: child,
       ),

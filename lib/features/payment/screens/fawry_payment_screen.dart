@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
+import 'package:eventy/features/bottom_navigation/presentation/screens/navigation_screen.dart';
 
 class FawryPaymentScreen extends StatelessWidget {
   final String fawryCode;
@@ -15,7 +15,6 @@ class FawryPaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       
         title: const Text('Fawry Payment'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -23,11 +22,7 @@ class FawryPaymentScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-          top: 150,
-          left: 40,
-          right: 40,
-        ),
+        padding: const EdgeInsets.only(top: 150, left: 40, right: 40),
         child: Column(
           children: [
             const Text(
@@ -46,10 +41,7 @@ class FawryPaymentScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            Text(
-              'Expires: $expireDate',
-              style: const TextStyle(fontSize: 16),
-            ),
+            Text('Expires: $expireDate', style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 40),
             const Text(
               'You can pay at any Fawry outlet,\nFawry mobile app, or online banking',

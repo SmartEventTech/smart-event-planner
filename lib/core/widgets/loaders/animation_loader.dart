@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
 
 /// A widget for displaying an animated loading indicator with optional text and action button.
 class TAnimationLoaderWidget extends StatelessWidget {
@@ -52,13 +52,13 @@ class TAnimationLoaderWidget extends StatelessWidget {
                   child: OutlinedButton(
                     onPressed: onActionPressed,
                     style: OutlinedButton.styleFrom(
-                        backgroundColor: AppColors.black),
+                      backgroundColor: AppColors.black,
+                    ),
                     child: Text(
                       actionText!,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .apply(color: AppColors.white),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium!.apply(color: AppColors.white),
                     ),
                   ),
                 )

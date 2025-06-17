@@ -4,10 +4,10 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/constants/app_text_style.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/app_text_style.dart';
 
 class ChatBotBody extends StatefulWidget {
   const ChatBotBody({super.key});
@@ -46,7 +46,7 @@ class _ChatBotBodyState extends State<ChatBotBody> {
     );
   }
 
-  Widget _buildChatInterface(isDark) {
+  Widget _buildChatInterface(bool isDark) {
     return DashChat(
       inputOptions: _inputStyle(isDark),
       messageOptions: MessageOptions(
@@ -59,16 +59,17 @@ class _ChatBotBodyState extends State<ChatBotBody> {
 
         currentUserTextColor: Colors.white, // White text for user bubbles
         textColor: Colors.black, // Black text for bot bubbles
-        messageTextBuilder: (message, _, __) {
+        messageTextBuilder: (message, _, _) {
           return SelectableText(
             message.text,
             style: TextStyle(
               fontSize: 16, // Larger font size
               color: message.user == currentUser
-                  ? Colors.white // User message text color
+                  ? Colors
+                        .white // User message text color
                   : isDark
-                      ? Colors.white
-                      : Colors.black, // Bot message text color
+                  ? Colors.white
+                  : Colors.black, // Bot message text color
               fontWeight: FontWeight.w300, // Medium weight
             ),
           );
@@ -88,10 +89,7 @@ class _ChatBotBodyState extends State<ChatBotBody> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              AppImages.startChatbotMessage,
-              height: 200,
-            ),
+            SvgPicture.asset(AppImages.startChatbotMessage, height: 200),
             const SizedBox(height: 90),
           ],
         ),
@@ -99,19 +97,20 @@ class _ChatBotBodyState extends State<ChatBotBody> {
     );
   }
 
-  InputOptions _inputStyle(isDark) {
+  InputOptions _inputStyle(bool isDark) {
     return InputOptions(
       sendOnEnter: true,
       alwaysShowSend: true,
       cursorStyle: CursorStyle(
-          color: isDark
-              ? const Color.fromARGB(255, 59, 139, 173)
-              : AppColors.primaryColor),
+        color: isDark
+            ? const Color.fromARGB(255, 59, 139, 173)
+            : AppColors.primaryColor,
+      ),
       inputDecoration: InputDecoration(
         hintText: "Write a message...",
-        hintStyle: AppTextStyle.textStyle16Medium(context).copyWith(
-          color: Colors.grey,
-        ),
+        hintStyle: AppTextStyle.textStyle16Medium(
+          context,
+        ).copyWith(color: Colors.grey),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: AppColors.primaryColor, width: 1),
@@ -124,18 +123,22 @@ class _ChatBotBodyState extends State<ChatBotBody> {
           vertical: AppSizes.slg,
           horizontal: AppSizes.slg + 4,
         ),
-        fillColor:
-            isDark ? const Color.fromARGB(255, 58, 72, 78) : Colors.white,
+        fillColor: isDark
+            ? const Color.fromARGB(255, 58, 72, 78)
+            : Colors.white,
         filled: true,
       ),
-      inputTextStyle: AppTextStyle.textStyle16Medium(context)
-          .copyWith(fontSize: 14, color: isDark ? Colors.white : Colors.black),
+      inputTextStyle: AppTextStyle.textStyle16Medium(
+        context,
+      ).copyWith(fontSize: 14, color: isDark ? Colors.white : Colors.black),
       sendButtonBuilder: (onSend) {
         return IconButton(
-          icon: Icon(Icons.send,
-              color: isDark
-                  ? const Color.fromARGB(255, 80, 111, 124)
-                  : AppColors.primaryColor),
+          icon: Icon(
+            Icons.send,
+            color: isDark
+                ? const Color.fromARGB(255, 80, 111, 124)
+                : AppColors.primaryColor,
+          ),
           onPressed: onSend,
         );
       },
@@ -158,52 +161,55 @@ class _ChatBotBodyState extends State<ChatBotBody> {
     setState(() => messages.insert(0, botMessage));
 
     try {
-      gemini.streamGenerateContent(chatMessage.text).listen(
-        (event) {
-          final chunk = event.content?.parts
-                  ?.whereType<TextPart>()
-                  .map((part) => part.text)
-                  .join(" ") ??
-              '';
+      gemini
+          .streamGenerateContent(chatMessage.text)
+          .listen(
+            (event) {
+              final chunk =
+                  event.content?.parts
+                      ?.whereType<TextPart>()
+                      .map((part) => part.text)
+                      .join(" ") ??
+                  '';
 
-          _fullResponse += chunk;
+              _fullResponse += chunk;
 
-          if (mounted) {
-            setState(() {
-              messages[0] = ChatMessage(
-                text: _fullResponse,
-                user: botUser,
-                createdAt: messages[0].createdAt,
-              );
-            });
-          }
-        },
-        onError: (error) {
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Error: ${error.toString()}')),
-            );
-            setState(() {
-              _isLoading = false;
-              messages[0] = ChatMessage(
-                text: "Sorry, I couldn't process your request.",
-                user: botUser,
-                createdAt: messages[0].createdAt,
-              );
-            });
-          }
-        },
-        onDone: () {
-          if (mounted) {
-            setState(() => _isLoading = false);
-          }
-        },
-      );
+              if (mounted) {
+                setState(() {
+                  messages[0] = ChatMessage(
+                    text: _fullResponse,
+                    user: botUser,
+                    createdAt: messages[0].createdAt,
+                  );
+                });
+              }
+            },
+            onError: (error) {
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Error: ${error.toString()}')),
+                );
+                setState(() {
+                  _isLoading = false;
+                  messages[0] = ChatMessage(
+                    text: "Sorry, I couldn't process your request.",
+                    user: botUser,
+                    createdAt: messages[0].createdAt,
+                  );
+                });
+              }
+            },
+            onDone: () {
+              if (mounted) {
+                setState(() => _isLoading = false);
+              }
+            },
+          );
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${e.toString()}')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: ${e.toString()}')));
         setState(() {
           _isLoading = false;
           messages[0] = ChatMessage(

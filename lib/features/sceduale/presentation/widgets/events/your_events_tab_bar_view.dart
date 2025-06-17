@@ -1,6 +1,6 @@
+import 'package:eventy/features/sceduale/presentation/widgets/events/events_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/shared/widgets/events/events_list_view.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
 
 class YourEventsTabBarView extends StatelessWidget {
   const YourEventsTabBarView({super.key});
@@ -10,10 +10,14 @@ class YourEventsTabBarView extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.only(
         top: AppSizes.slg,
-        right: AppSizes.defaultScreenPadding,
-        left: AppSizes.defaultScreenPadding,
+        right: AppSizes.tabBarViewPadding,
+        left: AppSizes.tabBarViewPadding,
+        bottom: AppSizes.spaceBtwSections,
       ),
-      child: EventsListView(),
+      child: CustomScrollView(
+        clipBehavior: Clip.none,
+        slivers: [EventsListView()],
+      ),
     );
   }
 }

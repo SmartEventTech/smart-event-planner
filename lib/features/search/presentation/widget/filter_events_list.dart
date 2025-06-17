@@ -1,6 +1,6 @@
+import 'package:eventy/shared/widgets/event_widgets/horizontal_event_card.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/shared/widgets/events/event_card.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
 
 class FilterEventsList extends StatelessWidget {
   const FilterEventsList({super.key});
@@ -9,9 +9,12 @@ class FilterEventsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
-        padding: const EdgeInsets.all(0),
+        padding: const EdgeInsets.only(
+          bottom: AppSizes.spaceBtwSections,
+          top: 6,
+        ),
         itemCount: 6,
-        itemBuilder: (context, index) => const EventCard(),
+        itemBuilder: (context, index) => const HorizontalEventCard(),
         separatorBuilder: (context, index) =>
             const SizedBox(height: AppSizes.spaceBtwItems),
       ),

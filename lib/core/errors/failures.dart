@@ -1,5 +1,5 @@
 // failures.dart
-import 'package:smart_event_planner/core/errors/exceptions.dart';
+import 'package:eventy/core/errors/exceptions.dart';
 
 abstract class Failure {
   final String message;

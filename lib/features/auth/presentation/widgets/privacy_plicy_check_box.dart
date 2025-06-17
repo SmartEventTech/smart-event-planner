@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_colors.dart';
 
 class PrivacypolicyCheckBox extends StatefulWidget {
-  const PrivacypolicyCheckBox({
-    super.key,
-    required this.onTermsAccepted,
-  });
+  const PrivacypolicyCheckBox({super.key, required this.onTermsAccepted});
 
   final ValueChanged<bool> onTermsAccepted;
 

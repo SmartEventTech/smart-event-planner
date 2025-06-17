@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_colors.dart';
 
 class TFormDivider extends StatelessWidget {
   final String dividerText;
-  const TFormDivider({
-    super.key,
-    required this.dividerText,
-  });
+  const TFormDivider({super.key, required this.dividerText});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +20,7 @@ class TFormDivider extends StatelessWidget {
             endIndent: 5,
           ),
         ),
-        Text(
-          dividerText,
-          style: Theme.of(context).textTheme.labelMedium,
-        ),
+        Text(dividerText, style: Theme.of(context).textTheme.labelMedium),
         Flexible(
           child: Divider(
             color: isDark ? AppColors.dividerColor : AppColors.grayColor,

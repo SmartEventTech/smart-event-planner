@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
-import 'package:smart_event_planner/core/widgets/loaders/animation_loader.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/utils/helpers/app_context.dart';
+import 'package:eventy/core/widgets/loaders/animation_loader.dart';
 
 /// A utility class for managing a full-screen loading dialog.
 class TFullScreenLoader {
@@ -40,8 +40,9 @@ class TFullScreenLoader {
 
   /// Stop the currently open loading dialog.
   /// This method doesn't return anything.
-  static stopLoading() {
-    Navigator.of(AppContext.overlayContext)
-        .pop(); // Close the dialog using the Navigator
+  static void stopLoading() {
+    Navigator.of(
+      AppContext.overlayContext,
+    ).pop(); // Close the dialog using the Navigator
   }
 }

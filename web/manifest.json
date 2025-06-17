@@ -1,6 +1,6 @@
 {
-    "name": "smart_event_planner",
-    "short_name": "smart_event_planner",
+    "name": "eventy",
+    "short_name": "eventy",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

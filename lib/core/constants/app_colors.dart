@@ -5,7 +5,7 @@ class AppColors {
 
   static const primaryColor = Color(0xff01305A);
   static const mainblackColor = Color(0xFF121212);
-  static const mainWhiteColor =  Color(0xFFF5F7FA);
+  static const mainWhiteColor = Color(0xFFF5F7FA);
   static const secondaryColor = Color(0xffA00651);
 
   static const lightScaffoldBgColor = Color(0xfff4f4f4);
@@ -35,16 +35,29 @@ class AppColors {
   static const textBtnColor = Color(0xFF4b68ff);
 
   static const lightSliverAppBarColor = Color.fromARGB(255, 245, 245, 245);
-  static const darkSliverAppBarColor = Color.fromARGB(251, 20, 20, 20);
+  static const filtterIconColor = Color.fromARGB(251, 20, 20, 20);
 
   static const white = Color(0xffffffff);
   static const black = Color(0xff000000);
   static const navBarBlack = Color(0xFF232323);
 
   static LinearGradient interestedCardColor = const LinearGradient(
+    colors: [Color(0xff5C2FC2), Color(0xff819FD3)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  // static LinearGradient plushIconGradient = LinearGradient(
+  //   colors: [Color(0xFF6464d7), Color(0xff819FD3), const Color.fromARGB(255, 135, 170, 233)],
+  //   begin: Alignment.topCenter,
+  //   end: Alignment.bottomCenter,
+  // );
+
+  static LinearGradient plushIconGradient = LinearGradient(
     colors: [
-      Color(0xff5C2FC2),
-      Color(0xff819FD3),
+      Color.fromARGB(255, 220, 244, 255), 
+      Color.fromARGB(255, 183, 171, 248),
+      Color.fromARGB(255, 140, 137, 230),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -71,4 +84,10 @@ class AppColors {
   static const Color confirmLocationColor = Color(0xFFD9D9D9);
 
   static const Color dark = Color(0xFF232323);
+
+  static const Color light = Color(0xFFF6F6F6);
+
+  static const Color eventyPrimaryColor = Color(0xFF6464d7);
+
+  static const Color primary = Color(0xFF4b68ff);
 }

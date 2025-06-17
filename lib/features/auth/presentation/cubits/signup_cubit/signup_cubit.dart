@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/features/auth/data/models/signup_model.dart';
-import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
-import 'package:smart_event_planner/features/auth/presentation/cubits/signup_cubit/signup_state.dart';
+import 'package:eventy/features/auth/data/models/signup_model.dart';
+import 'package:eventy/features/auth/domain/repositories/auth_repo.dart';
+import 'package:eventy/features/auth/presentation/cubits/signup_cubit/signup_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupCubit extends Cubit<SignupState> {
   final AuthRepo authRepo;
@@ -19,7 +19,7 @@ class SignupCubit extends Cubit<SignupState> {
   // Form Key
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Future<void> signup(isPrivacyAccepted) async {
+  Future<void> signup(bool isPrivacyAccepted) async {
     // Validation
     if (!validateForm()) return;
 
@@ -53,12 +53,10 @@ class SignupCubit extends Cubit<SignupState> {
     emit(SignupLoadingState());
 
     final result = await authRepo.signup(signupModel: signupModel);
-    result.fold(
-      (failure) => emit(
-        SignupErrorState(failure.toString()),
-      ),
-      (_) => emit(const SignupSuccessState('Successfully signed up')),
-    );
+    result.fold((failure) => emit(SignupErrorState(failure.toString())), (_) {
+      // Register user cubit
+      emit(const SignupSuccessState('Successfully signed up'));
+    });
   }
 
   // Validation logic

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
-import 'package:smart_event_planner/features/chat_bot/widgets/chat_bot_body.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:eventy/features/chat_bot/widgets/chat_bot_body.dart';
 
 class ChatBotScreen extends StatefulWidget {
   const ChatBotScreen({super.key});
@@ -41,7 +41,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             const SizedBox(width: 8),
             Flexible(
               child: SvgPicture.asset(
-                isDark ? AppImages.chatBotIcon : AppImages.chatBotIcon2,
+                isDark ? AppImages.lightChatBotIcon : AppImages.darkChatBotIcon,
               ),
             ),
           ],

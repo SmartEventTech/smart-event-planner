@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/features/create_event/presentation/screens/create_event_screen_body.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/features/create_event/presentation/screens/create_event_screen_body.dart';
 
 class CreateEventScreen extends StatelessWidget {
   const CreateEventScreen({super.key, this.isNavBar = false});
@@ -25,9 +25,9 @@ class CreateEventScreen extends StatelessWidget {
       backgroundColor: isDark ? Colors.black : AppColors.white,
       elevation: 1,
       titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+      ),
       leading: isNavBar
           ? null
           : GestureDetector(

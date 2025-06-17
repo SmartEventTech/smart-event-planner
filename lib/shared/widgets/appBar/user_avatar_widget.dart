@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/app_colors.dart';
 
 class UserAvatarWidget extends StatelessWidget {
   const UserAvatarWidget({
@@ -11,12 +11,14 @@ class UserAvatarWidget extends StatelessWidget {
     this.minRadius,
     this.maxRadius,
     this.showBorder = true,
+    this.borderColor = AppColors.primaryTextColor,
   });
   final String userImageUrl;
   final bool isNetworkImage;
   final double? minRadius;
   final double? maxRadius;
   final bool showBorder;
+  final Color borderColor;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,10 +26,7 @@ class UserAvatarWidget extends StatelessWidget {
       decoration: ShapeDecoration(
         shape: CircleBorder(
           side: showBorder
-              ? const BorderSide(
-                  width: 2,
-                  color: AppColors.primaryTextColor,
-                )
+              ? BorderSide(width: 2, color: borderColor)
               : BorderSide.none,
         ),
       ),

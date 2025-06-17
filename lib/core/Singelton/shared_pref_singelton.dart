@@ -7,7 +7,7 @@ class SharedPreferenceSingleton {
     _instance = await SharedPreferences.getInstance();
   }
 
-  static setBool(String key, bool value) {
+  static void setBool(String key, bool value) {
     _instance.setBool(key, value);
   }
 

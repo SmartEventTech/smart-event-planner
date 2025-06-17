@@ -1,40 +1,33 @@
+import 'package:eventy/shared/widgets/search/search_bar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/features/search/presentation/screens/custom_drawer.dart';
-import 'package:smart_event_planner/features/search/presentation/widget/filter_events_list.dart';
-import 'package:smart_event_planner/features/search/presentation/widget/screen_search_header.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/features/search/presentation/widget/filter_events_list.dart';
 
-class SearchSecreen extends StatefulWidget {
+class SearchSecreen extends StatelessWidget {
   const SearchSecreen({super.key});
 
   @override
-  State<SearchSecreen> createState() => _SearchSecreenState();
-}
-
-class _SearchSecreenState extends State<SearchSecreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSizes.defaultScreenPadding,
-        ),
-        child: Column(
-          children: [
-            const SizedBox(height: AppSizes.md),
-            SearchScreenHeader(
-              onFilterButtonPressed: () {
-                _scaffoldKey.currentState!.openEndDrawer();
-              },
-            ),
-            const SizedBox(height: AppSizes.md),
-            const FilterEventsList(),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSizes.defaultScreenPadding,
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: AppSizes.lg),
+              SearchBarWidget(
+                showSearchBar: ValueNotifier<bool>(true),
+                onChanged: (query) {},
+              ),
+              const SizedBox(height: AppSizes.spaceBtwSections),
+
+              const FilterEventsList(),
+            ],
+          ),
         ),
       ),
-      endDrawer: const CustomDrawer(),
     );
   }
 }

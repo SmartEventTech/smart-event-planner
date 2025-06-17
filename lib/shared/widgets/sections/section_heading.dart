@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_text_style.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_text_style.dart';
 
 class SectionHeading extends StatelessWidget {
-  const SectionHeading(
-      {super.key, required this.title, required this.btnTitle, this.onPressed});
+  const SectionHeading({
+    super.key,
+    required this.title,
+    required this.btnTitle,
+    this.onPressed,
+  });
   final String title;
   final String btnTitle;
   final void Function()? onPressed;
@@ -22,8 +26,9 @@ class SectionHeading extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             btnTitle,
-            style: AppTextStyle.textStyle16Medium(context)
-                .copyWith(color: AppColors.textBtnColor),
+            style: AppTextStyle.textStyle16Medium(
+              context,
+            ).copyWith(color: AppColors.textBtnColor),
           ),
         ),
       ],

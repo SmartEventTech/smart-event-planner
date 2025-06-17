@@ -31,7 +31,7 @@ import UIKit
 
     private func shareText(text: String, controller: UIViewController) {
         let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = controller.view // لتجنب مشاكل iPad
+        activityViewController.popoverPresentationController?.sourceView = controller.view 
         controller.present(activityViewController, animated: true, completion: nil)
     }
 }

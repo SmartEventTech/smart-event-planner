@@ -1,4 +1,4 @@
-# smart_event_planner
+# eventy
 
 A new Flutter project.
 

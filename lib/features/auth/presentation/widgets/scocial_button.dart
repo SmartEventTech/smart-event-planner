@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
 
 class TSocialButton extends StatelessWidget {
   final String socialIcon;
   final void Function()? onPressed;
-  const TSocialButton({
-    super.key,
-    required this.socialIcon,
-    this.onPressed,
-  });
+  const TSocialButton({super.key, required this.socialIcon, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

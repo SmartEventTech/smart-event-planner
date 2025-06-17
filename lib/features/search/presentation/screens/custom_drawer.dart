@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/features/search/presentation/widget/list_of_widgets.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/features/search/presentation/widget/list_of_widgets.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({
-    super.key,
-  });
+  const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +26,9 @@ class CustomDrawer extends StatelessWidget {
                 title: Text(
                   'Filters',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 onTap: () {}, // Add functionality if needed
               ),

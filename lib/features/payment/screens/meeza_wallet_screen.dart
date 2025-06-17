@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:smart_event_planner/features/bottom_navigation/presentation/screens/navigation_screen.dart';
+import 'package:eventy/features/bottom_navigation/presentation/screens/navigation_screen.dart';
 
 class MeezaWalletScreen extends StatelessWidget {
   final String reference;
@@ -118,10 +118,7 @@ class RowInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          '$label: ',
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
+        Text('$label: ', style: const TextStyle(fontWeight: FontWeight.bold)),
         Text(value),
       ],
     );

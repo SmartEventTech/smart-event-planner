@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
-import 'package:smart_event_planner/config/routing/routes.dart';
-import 'package:smart_event_planner/config/service_locator.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
-import 'package:smart_event_planner/core/constants/app_images.dart';
-import 'package:smart_event_planner/core/constants/text_strings.dart';
-import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp_verification_cubit_cubit.dart';
-import 'package:smart_event_planner/core/cubits/otp_verification_cubit/cubit/otp_verification_cubit_state.dart';
-import 'package:smart_event_planner/core/utils/helpers/app_context.dart';
-import 'package:smart_event_planner/core/utils/helpers/extensions/navigation_extension.dart';
-import 'package:smart_event_planner/core/widgets/popups/loaders.dart';
-import 'package:smart_event_planner/core/widgets/success_pages/success_page.dart'
+import 'package:eventy/config/routing/routes.dart';
+import 'package:eventy/config/service_locator.dart';
+import 'package:eventy/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_images.dart';
+import 'package:eventy/core/constants/text_strings.dart';
+import 'package:eventy/core/cubits/otp_verification/otp_verification_cubit.dart';
+import 'package:eventy/core/cubits/otp_verification/otp_verification_state.dart';
+import 'package:eventy/core/utils/helpers/app_context.dart';
+import 'package:eventy/core/utils/helpers/extensions/navigation_extension.dart';
+import 'package:eventy/core/widgets/popups/loaders.dart';
+import 'package:eventy/core/widgets/success_pages/success_page.dart'
     show SuccessPage;
-import 'package:smart_event_planner/features/auth/domain/repositories/auth_repo.dart';
+import 'package:eventy/features/auth/domain/repositories/auth_repo.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key, this.reset});
@@ -40,10 +40,8 @@ class _OtpScreenState extends State<OtpScreen> {
     final email = ModalRoute.of(context)?.settings.arguments as String?;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return BlocProvider(
-      create: (context) => OtpVerificationCubit(
-        authRepo: getIt<AuthRepo>(),
-        email: email ?? '',
-      ),
+      create: (context) =>
+          OtpVerificationCubit(authRepo: getIt<AuthRepo>(), email: email ?? ''),
       child: Scaffold(
         body: Center(
           child: SingleChildScrollView(
@@ -52,13 +50,15 @@ class _OtpScreenState extends State<OtpScreen> {
               listener: (context, state) {
                 if (state is OtpVerificationSuccess) {
                   if (widget.reset == true) {
-                    context.pushNamedPage(Routes.resetPasswordScreen,
-                        arguments: email);
+                    context.pushNamedPage(
+                      Routes.resetPasswordScreen,
+                      arguments: email,
+                    );
                   } else {
                     AppContext.context.pushPage(
                       SuccessPage(
-                        title: TTexts.yourAccountCreatedTitle,
-                        subtitle: TTexts.yourAccountCreatedSubTitle,
+                        title: AppStrings.yourAccountCreatedTitle,
+                        subtitle: AppStrings.yourAccountCreatedSubTitle,
                         image: AppImages.successfullRegisterAnimation,
                         onPressed: () {
                           context.pushNamedAndRemoveUntilPage(
@@ -73,7 +73,9 @@ class _OtpScreenState extends State<OtpScreen> {
                 }
                 if (state is ResndOtpSuccess) {
                   Loaders.successSnackBar(
-                      title: 'Success', message: state.message);
+                    title: 'Success',
+                    message: state.message,
+                  );
                 } else if (state is ResndOtpFailure) {
                   Loaders.errorSnackBar(title: 'Error', message: state.message);
                 }
@@ -87,16 +89,16 @@ class _OtpScreenState extends State<OtpScreen> {
                       Icon(
                         Icons.lock_outline,
                         size: 80,
-                        color:
-                            isDark ? AppColors.white : AppColors.primaryColor,
+                        color: isDark
+                            ? AppColors.white
+                            : AppColors.primaryColor,
                       ),
                       const SizedBox(height: 16),
                       Text(
                         'Enter the OTP sent to\n$email',
-                        style:
-                            Theme.of(context).textTheme.headlineSmall!.copyWith(
-                                  fontSize: 17,
-                                ),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.headlineSmall!.copyWith(fontSize: 17),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 30),
@@ -126,9 +128,9 @@ class _OtpScreenState extends State<OtpScreen> {
                         onCompleted: (pin) {
                           if (formKey.currentState!.validate()) {
                             context.read<OtpVerificationCubit>().verifyOtp(
-                                  pin,
-                                  reset: widget.reset ?? false,
-                                );
+                              pin,
+                              reset: widget.reset ?? false,
+                            );
                           }
                         },
                         cursor: Column(

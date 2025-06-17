@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_sizes.dart';
-import 'package:smart_event_planner/features/create_event/presentation/widgets/category_item.dart';
+import 'package:eventy/core/constants/app_sizes.dart';
+import 'package:eventy/features/create_event/presentation/widgets/category_item.dart';
 
 class CategoryList extends StatefulWidget {
   const CategoryList({super.key});
@@ -29,13 +29,14 @@ class _CategoryListState extends State<CategoryList> {
       children: events
           .map(
             (e) => CategoryItem(
-                category: e,
-                isSelected: selectedEvent == e,
-                onTap: () {
-                  setState(() {
-                    selectedEvent = e;
-                  });
-                }),
+              category: e,
+              isSelected: selectedEvent == e,
+              onTap: () {
+                setState(() {
+                  selectedEvent = e;
+                });
+              },
+            ),
           )
           .toList(),
     );

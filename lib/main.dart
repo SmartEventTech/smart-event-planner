@@ -1,15 +1,13 @@
+import 'package:eventy/core/services/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:smart_event_planner/app.dart';
-import 'package:smart_event_planner/config/routing/app_router.dart';
-import 'package:smart_event_planner/config/service_locator.dart';
-import 'package:smart_event_planner/core/Singelton/shared_pref_singelton.dart';
-import 'package:smart_event_planner/core/storage/app_storage.dart';
-import 'package:smart_event_planner/core/theme/theme_manager.dart';
-import 'package:smart_event_planner/core/theme/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:eventy/app.dart';
+import 'package:eventy/config/routing/app_router.dart';
+import 'package:eventy/config/service_locator.dart';
+import 'package:eventy/core/Singelton/shared_pref_singelton.dart';
+import 'package:eventy/core/storage/app_storage.dart';
 
 Future<void> main() async {
   // Flutter Binding
@@ -17,7 +15,8 @@ Future<void> main() async {
 
   // Splash Screen
   FlutterNativeSplash.preserve(
-      widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
+    widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
+  );
 
   // Load Environment Variables
   await dotenv.load(fileName: '.env');
@@ -32,20 +31,14 @@ Future<void> main() async {
   // Initialize Service Locator
   await initializeDependencies();
 
-  // Load saved theme before running the app
-  final initialThemeMode = await ThemeManager.getThemeMode();
-
   // Remove Splash Screen after initialization
   FlutterNativeSplash.remove();
+  // Load saved theme before running the app
+  await ThemeService.init();
 
   // Entry Point
-  await entry();
+  final initialRoute = await getInitialRoute();
 
   // Start the App with ThemeProvider
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider(initialThemeMode),
-      child: MyApp(appRouter: AppRouter()),
-    ),
-  );
+  runApp(MyApp(appRouter: AppRouter(), initialRoute: initialRoute));
 }

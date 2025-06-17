@@ -1,8 +1,8 @@
+import 'package:eventy/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:location/location.dart';
-import 'package:smart_event_planner/features/payment/screens/payment_options_screen.dart';
+import 'package:eventy/features/payment/screens/payment_options_screen.dart';
 
 class PaidEvent extends StatefulWidget {
   const PaidEvent({super.key});
@@ -46,22 +46,14 @@ class _PaidEventState extends State<PaidEvent> {
         backgroundColor: isDark ? Colors.black : Colors.white,
         title: const Text('Event Name'),
         actions: [
-          IconButton(
-            icon: const Icon(Iconsax.star),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.share),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(Iconsax.star), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.share), onPressed: () {}),
         ],
       ),
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
-              child: _buildEventImage(),
-            ),
+            Container(child: _buildEventImage()),
             Padding(
               padding: const EdgeInsets.only(top: 290),
               child: _buildCurvedContainer(),
@@ -139,8 +131,9 @@ class _PaidEventState extends State<PaidEvent> {
         const SizedBox(width: 8),
         Text(
           'Event Name',
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 22),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineSmall?.copyWith(fontSize: 22),
           maxLines: 1,
         ),
         const SizedBox(width: 50),
@@ -162,12 +155,16 @@ class _PaidEventState extends State<PaidEvent> {
   Widget _buildHostName() {
     return Row(
       children: [
-        const Icon(Icons.circle,
-            size: 30, color: Color.fromARGB(255, 92, 92, 92)),
+        const Icon(
+          Icons.circle,
+          size: 30,
+          color: Color.fromARGB(255, 92, 92, 92),
+        ),
         const SizedBox(width: 5),
-        Text('Host Name',
-            style:
-                Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 15)),
+        Text(
+          'Host Name',
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 15),
+        ),
       ],
     );
   }
@@ -178,8 +175,9 @@ class _PaidEventState extends State<PaidEvent> {
       children: [
         Text(
           'Description',
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineSmall?.copyWith(fontSize: 20),
         ),
         const SizedBox(height: 5),
         Text(
@@ -221,8 +219,9 @@ class _PaidEventState extends State<PaidEvent> {
       children: [
         Text(
           'Location',
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineSmall?.copyWith(fontSize: 20),
         ),
         const SizedBox(height: 10),
         Container(
@@ -287,8 +286,9 @@ class _PaidEventState extends State<PaidEvent> {
         const SizedBox(height: 16),
         Text(
           'Previous Event',
-          style:
-              Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 20),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineSmall?.copyWith(fontSize: 20),
         ),
         const SizedBox(height: 10),
         Container(
@@ -300,8 +300,13 @@ class _PaidEventState extends State<PaidEvent> {
                 : Colors.grey[200],
             borderRadius: BorderRadius.circular(15),
           ),
+          padding: EdgeInsets.all(10.0),
           child: Center(
-            child: SvgPicture.asset('assets/images/events/default_image.svg'),
+            child: Image.asset(
+              AppImages.defaultImage,
+              fit: BoxFit.cover,
+              width: 50,
+            ),
           ),
         ),
       ],
@@ -315,14 +320,16 @@ class _PaidEventState extends State<PaidEvent> {
         child: ElevatedButton(
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => const PaymentOptionsScreen(),),);
+              context,
+              MaterialPageRoute(builder: (_) => const PaymentOptionsScreen()),
+            );
           },
           style: ElevatedButton.styleFrom(
             elevation: 5,
-            padding:
-                const EdgeInsets.symmetric(horizontal: 120, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 120,
+              vertical: 16.0,
+            ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
               side: const BorderSide(
@@ -332,11 +339,7 @@ class _PaidEventState extends State<PaidEvent> {
             ),
             // backgroundColor: Colors.white,
           ),
-          child: const FittedBox(
-            child: Text(
-              'Continue to Payment',
-            ),
-          ),
+          child: const FittedBox(child: Text('Continue to Payment')),
         ),
       ),
     );

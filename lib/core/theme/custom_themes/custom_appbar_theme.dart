@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_event_planner/core/constants/app_colors.dart';
+import 'package:eventy/core/constants/app_colors.dart';
 
 class CustomAppbarTheme {
   CustomAppbarTheme._();
@@ -8,11 +8,13 @@ class CustomAppbarTheme {
     elevation: 2,
     centerTitle: false,
     scrolledUnderElevation: 0,
-    backgroundColor: Colors.transparent,
-    surfaceTintColor: Colors.transparent,
+    backgroundColor: Colors.white,
+    surfaceTintColor: Colors.white,
     iconTheme: IconThemeData(color: AppColors.secondaryColor, size: 22),
-    actionsIconTheme:
-        IconThemeData(color: AppColors.primaryTextColor, size: 22),
+    actionsIconTheme: IconThemeData(
+      color: AppColors.primaryTextColor,
+      size: 22,
+    ),
     titleTextStyle: TextStyle(
       fontSize: 18.0,
       fontWeight: FontWeight.w600,
@@ -24,9 +26,9 @@ class CustomAppbarTheme {
     elevation: 2,
     centerTitle: false,
     scrolledUnderElevation: 0,
-    backgroundColor: Colors.transparent,
-    surfaceTintColor: Colors.transparent,
-    iconTheme: IconThemeData(color: Colors.white, size: 22),
+    backgroundColor: Colors.black,
+    surfaceTintColor: Colors.black,
+    iconTheme: IconThemeData(color: Colors.white, size: 22),toolbarHeight: 50,
     actionsIconTheme: IconThemeData(color: Colors.white, size: 22),
     titleTextStyle: TextStyle(
       fontSize: 18.0,
