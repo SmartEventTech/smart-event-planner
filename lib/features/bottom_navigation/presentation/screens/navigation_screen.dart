@@ -1,4 +1,5 @@
 import 'package:eventy/config/service_locator.dart';
+import 'package:eventy/features/home/presentation/widgets/chat_bot_floating_button.dart';
 import 'package:eventy/features/personalization/presentation/cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:eventy/features/bottom_navigation/presentation/widgets/navigation_screen_body.dart';
@@ -31,7 +32,6 @@ class NavigationScreenState extends State<NavigationScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -52,6 +52,10 @@ class NavigationScreenState extends State<NavigationScreen> {
             onTap: _onTabTapped,
           ),
         ),
+
+        floatingActionButton: _currentIndex == 0
+            ? ChatBotFloatingActionButton()
+            : null,
       ),
     );
   }
