@@ -17,7 +17,7 @@ class NavigationScreenBody extends StatelessWidget {
     const SearchSecreen(key: PageStorageKey('SearchSecreen')),
     const CreateEventScreen(
       key: PageStorageKey('CreateEventScreen'),
-      isNavBar: true,
+    
     ),
     const ScheduleScreen(key: PageStorageKey('ScheduleScreen')),
     const ProfileScreen(key: PageStorageKey('ProfileScreen')),

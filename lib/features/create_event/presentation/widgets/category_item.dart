@@ -9,6 +9,7 @@ class CategoryItem extends StatelessWidget {
     required this.isSelected,
     this.onTap,
   });
+
   final String category;
   final bool isSelected;
   final Function()? onTap;
@@ -16,12 +17,13 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: const EdgeInsets.only(right: AppSizes.lg, bottom: AppSizes.md),
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
-          //padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 13.0),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
           padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.sizeOf(context).width * 0.04,
             vertical: 13.0,
@@ -30,51 +32,68 @@ class CategoryItem extends StatelessWidget {
             color: isSelected
                 ? AppColors.secondaryColor
                 : isDark
-                ? AppColors.dark
-                : Colors.white,
+                    ? AppColors.dark
+                    : Colors.white,
             borderRadius: BorderRadius.circular(12.0),
             border: Border.all(
-              color: isDark ? Colors.grey.shade800 : Colors.grey.shade300,
+              color: isSelected
+                  ? AppColors.secondaryColor.withOpacity(0.6)
+                  : (isDark
+                      ? Colors.grey.shade800
+                      : Colors.grey.shade300),
             ),
             boxShadow: [
               BoxShadow(
-                color: isDark ? Colors.grey.shade700 : Colors.grey.shade300,
-                offset: Offset(0, isDark ? 1 : 2),
-                blurRadius: 4.0,
+                color: isDark ? Colors.black26 : Colors.grey.shade200,
+                blurRadius: 6,
+                offset: const Offset(0, 3),
               ),
             ],
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Radio button
+              // Radio indicator
               Container(
                 width: 20,
                 height: 20,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.white,
-                  border: Border.all(color: Colors.grey.shade300),
-                ),
-              ),
-              const SizedBox(width: AppSizes.slg),
-              Flexible(
-                child: FittedBox(
-                  child: Text(
-                    category,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: isSelected
-                          ? Colors.white
-                          : isDark
-                          ? Colors.white
-                          : Colors.black,
-                      fontSize: 14.0,
-                    ),
+                  color: isSelected ? Colors.white : Colors.transparent,
+                  border: Border.all(
+                    color: isSelected
+                        ? Colors.white
+                        : Colors.grey.shade400,
+                    width: 2,
                   ),
+                ),
+                child: isSelected
+                    ? Center(
+                        child: Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: AppColors.secondaryColor,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      )
+                    : null,
+              ),
+              const SizedBox(width: AppSizes.md),
+              // Category Text
+              Text(
+                category,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: isSelected
+                      ? Colors.white
+                      : isDark
+                          ? Colors.white
+                          : Colors.black87,
                 ),
               ),
             ],

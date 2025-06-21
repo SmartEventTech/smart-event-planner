@@ -61,6 +61,7 @@ dependencies:
   qr_flutter: ^4.1.0
   webview_flutter: ^4.10.0
   animations: ^2.0.11
+  step_progress: ^2.5.1
 
 dev_dependencies:
   flutter_test:
