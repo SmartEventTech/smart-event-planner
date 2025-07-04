@@ -11,40 +11,51 @@ class ConfirmationLocationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return SizedBox(
       width: double.infinity,
-      child: ElevatedButton.icon(
+      child: ElevatedButton(
+        onPressed: () => context.pushNamedPage(Routes.mapScreen),
         style: ElevatedButton.styleFrom(
-          alignment: Alignment.centerLeft,
+          
           backgroundColor: isDark
               ? const Color.fromARGB(255, 56, 55, 55)
               : AppColors.confirmLocationColor,
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
-          side: BorderSide.none,
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
           shape: RoundedRectangleBorder(
-            side: BorderSide.none,
-            borderRadius: BorderRadius.circular(24.0),
+            
+            borderRadius: BorderRadius.circular(24),
           ),
+          side:  BorderSide(
+            color: AppColors.secondaryColor,
+          ),
+          elevation: 2,
+          shadowColor: isDark ? Colors.black26 : Colors.grey.shade200,
         ),
-        onPressed: () => context.pushNamedPage(Routes.mapScreen),
-        icon: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: FittedBox(
-            child: SvgPicture.asset(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SvgPicture.asset(
               AppImages.locationPin,
-              fit: BoxFit.scaleDown,
+              width: 20,
+              height: 20,
+              colorFilter: ColorFilter.mode(
+                isDark ? Colors.white : AppColors.black,
+                BlendMode.srcIn,
+              ),
             ),
-          ),
-        ),
-        label: FittedBox(
-          child: Text(
-            'Tap to choose a location',
-            style: TextStyle(
-              fontSize: 16,
-              color: isDark ? Colors.white : AppColors.black,
-              fontWeight: FontWeight.w500,
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                'Tap to choose a location',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: isDark ? Colors.white : AppColors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

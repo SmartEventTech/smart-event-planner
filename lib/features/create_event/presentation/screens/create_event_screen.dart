@@ -5,9 +5,11 @@ import 'package:eventy/core/constants/app_images.dart';
 import 'package:eventy/features/create_event/presentation/screens/create_event_screen_body.dart';
 
 class CreateEventScreen extends StatelessWidget {
-  const CreateEventScreen({super.key, this.isNavBar = false});
+  const CreateEventScreen({super.key, });
 
-  final bool isNavBar;
+  
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +23,14 @@ class CreateEventScreen extends StatelessWidget {
   AppBar _buildAppBar(BuildContext context, bool isDark) {
     return AppBar(
       title: const Text('Create Event'),
-      titleSpacing: isNavBar ? null : 0,
+      titleSpacing:  0,
       backgroundColor: isDark ? Colors.black : AppColors.white,
       elevation: 1,
       titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w600,
       ),
-      leading: isNavBar
-          ? null
-          : GestureDetector(
+      leading:  GestureDetector(
               onTap: () => Navigator.pop(context),
               child: SvgPicture.asset(
                 AppImages.arrowLeft,

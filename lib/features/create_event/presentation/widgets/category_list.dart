@@ -19,6 +19,9 @@ class _CategoryListState extends State<CategoryList> {
     'Wedding',
     'Anniversary',
     'Study group',
+    'Meeting',
+    'Workshop',
+    
   ];
 
   @override

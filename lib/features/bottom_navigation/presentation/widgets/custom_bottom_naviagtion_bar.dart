@@ -1,5 +1,6 @@
 import 'package:eventy/core/utils/helpers/helper_functions.dart';
 import 'package:eventy/features/bottom_navigation/presentation/widgets/bottom_nav_bar_item.dart';
+import 'package:eventy/features/create_event/presentation/screens/create_event_screen.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:eventy/core/constants/app_colors.dart';
@@ -60,7 +61,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
             ],
           ),
-          BottomNavBarPlusIcon(onTap: () => onTap(2)),
+          BottomNavBarPlusIcon(onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateEventScreen()))),
         ],
       ),
     );

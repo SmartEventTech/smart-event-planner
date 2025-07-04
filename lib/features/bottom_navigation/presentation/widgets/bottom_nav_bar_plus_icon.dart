@@ -1,6 +1,7 @@
 import 'package:eventy/core/constants/app_colors.dart';
 import 'package:eventy/core/constants/app_images.dart';
 import 'package:eventy/core/utils/helpers/helper_functions.dart';
+
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 
